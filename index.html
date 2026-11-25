@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KIFY GAME SHOP - MLBB VIP Account Center</title>
+    <!-- Updated brand favicon and apple-touch-icon -->
     <link rel="icon" type="image/png" href="IMG_20261125_220821_646.png">
     <link rel="apple-touch-icon" href="IMG_20261125_220821_646.png">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome 6 Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Pyidaungsu & Inter & Montserrat -->
+    <!-- Google Fonts: Padauk, Plus Jakarta Sans & Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Padauk:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <script>
+        // Configure Tailwind CSS theme tokens for dark gold aesthetic
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -47,6 +49,7 @@
         }
     </script>
     <style>
+        /* Base dark styling and typography */
         body {
             background-color: #08090c;
             color: #e2e8f0;
@@ -225,10 +228,12 @@
     <header class="sticky top-0 z-40 glass-panel border-b border-amber-500/20 shadow-xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
             
-            <!-- BRAND LOGO WITH UPLOADED IMAGE -->
+            <!-- BRAND LOGO WITH UPDATED IMAGE -->
             <div class="flex items-center gap-3 cursor-pointer" onclick="showEntryGateway()">
                 <div class="relative w-12 h-12 rounded-full overflow-hidden coin-glow flex-shrink-0 border border-amber-400/60 bg-darkbg">
-                    <img src="IMG_20261125_220821_646.png" alt="KIFY GAME SHOP Logo" class="w-full h-full object-cover">
+                    <img src="IMG_20261125_220821_646.png" alt="KIFY GAME SHOP Logo"
+                        onerror="this.onerror=null;this.src='https://placehold.co/96x96/12141d/f59e0b?text=KIFY';"
+                        class="w-full h-full object-cover">
                 </div>
                 <div>
                     <h1 class="text-xl font-extrabold tracking-wider gold-gradient-text flex items-center gap-1.5 font-display">
@@ -279,7 +284,7 @@
             <div class="splash-entry-card w-full max-w-2xl rounded-3xl hero-light-border p-6 sm:p-8 text-center space-y-6">
                 <div class="relative w-full h-52 sm:h-64 rounded-2xl overflow-hidden border border-amber-500/40 bg-darkbg shadow-xl">
                     <img id="mlbbSplashImg" src="IMG_20261125_220821_646.png" alt="Mobile Legends Account Banner"
-                        onerror="if(!this.dataset.f1){this.dataset.f1=1;this.src='1000001942_2.jpg';}else if(!this.dataset.f2){this.dataset.f2=1;this.src='53129ee050d008e49b174d49e2e488e3.jpg';}"
+                        onerror="if(!this.dataset.f1){this.dataset.f1=1;this.src='https://placehold.co/800x420/12141d/f59e0b?text=KIFY+GAME+SHOP+MLBB';}"
                         class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none"></div>
                     <span class="absolute bottom-3 left-3 bg-amber-500/20 text-amber-300 border border-amber-400/40 text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-sm">
@@ -311,8 +316,8 @@
                 <div class="splash-entry-card w-full rounded-3xl hero-light-border p-5 sm:p-6 text-center space-y-5 flex flex-col justify-between">
                     <div class="space-y-4">
                         <div class="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden border border-amber-500/40 bg-darkbg shadow-xl">
-                            <img id="diaSplashImg" src="IMG_20261124_210316.jpg?v=3" alt="MLBB Diamond Top-Up Banner"
-                                onerror="if(!this.dataset.f1){this.dataset.f1=1;this.src='1000001941_2.jpg';}else if(!this.dataset.f2){this.dataset.f2=1;this.src='IMG_20261125_220821_646.png';}"
+                            <img id="diaSplashImg" src="IMG_20261125_220821_646.png" alt="MLBB Diamond Top-Up Banner"
+                                onerror="if(!this.dataset.f1){this.dataset.f1=1;this.src='https://placehold.co/600x360/12141d/fbbf24?text=MLBB+DIAMONDS';}"
                                 class="w-full h-full object-cover object-top">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none"></div>
                             <span class="absolute bottom-2.5 left-2.5 bg-amber-500/20 text-amber-300 border border-amber-400/40 text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-sm">
@@ -343,8 +348,8 @@
                 <div class="splash-entry-card w-full rounded-3xl hero-light-border p-5 sm:p-6 text-center space-y-5 flex flex-col justify-between">
                     <div class="space-y-4">
                         <div class="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden border border-amber-500/40 bg-darkbg shadow-xl">
-                            <img id="tgSplashImg" src="Glossy Telegram Cosmic Icons.png" alt="Glossy Telegram Cosmic Icons"
-                                onerror="if(!this.dataset.f1){this.dataset.f1=1;this.src='Glossy%20Telegram%20Cosmic%20Icons.png';}else if(!this.dataset.f2){this.dataset.f2=1;this.src='Glossy%20Telegram%20Cosmic%20Icons.jpg';}else if(!this.dataset.f3){this.dataset.f3=1;this.src='IMG_20261125_220821_646.png';}"
+                            <img id="tgSplashImg" src="IMG_20261125_220821_646.png" alt="Telegram Star & Premium Banner"
+                                onerror="if(!this.dataset.f1){this.dataset.f1=1;this.src='https://placehold.co/600x360/12141d/38bdf8?text=TG+STAR+PREMIUM';}"
                                 class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none"></div>
                             <span class="absolute bottom-2.5 left-2.5 bg-sky-500/20 text-sky-300 border border-sky-400/40 text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-sm">
@@ -547,7 +552,9 @@
             <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-amber-400/60">
-                        <img src="IMG_20261125_220821_646.png" alt="KIFY GAME SHOP Logo" class="w-full h-full object-cover">
+                        <img src="IMG_20261125_220821_646.png" alt="KIFY GAME SHOP Logo"
+                            onerror="this.onerror=null;this.src='https://placehold.co/80x80/12141d/f59e0b?text=KIFY';"
+                            class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h4 class="text-sm font-bold text-white gold-gradient-text">KIFY GAME SHOP</h4>
@@ -556,7 +563,7 @@
                 </div>
 
                 <div class="flex items-center gap-6 text-sm">
-                    <a href="https://t.me/KIFYCASS" target="_blank" class="hover:text-amber-400 transition-colors flex items-center gap-1.5">
+                    <a href="https://t.me/KIFYCASS" target="_blank" rel="noopener noreferrer" class="hover:text-amber-400 transition-colors flex items-center gap-1.5">
                         <i class="fa-brands fa-telegram text-sky-400"></i> Telegram VIP
                     </a>
                     <a id="footerAdminLink" href="javascript:void(0)" onclick="openAdminModal()" class="hidden hover:text-amber-400 transition-colors items-center gap-1.5">
@@ -977,6 +984,7 @@
             sendPasswordResetEmail
         } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
+        // Firebase project configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAnBYPz6lQqbizaU1p2nG9bxQff_eEMm0I",
             authDomain: "rina-game-shop.firebaseapp.com",
@@ -996,6 +1004,9 @@
         let visitorLogs = [];
         let visitorUnsubscribe = null;
 
+        /**
+         * Parses user agent into a clean OS + browser label for visitor logs.
+         */
         function detectDeviceSummary(ua) {
             const s = String(ua || "");
             let os = "Unknown OS";
@@ -1015,6 +1026,9 @@
             return `${os} • ${browser}`;
         }
 
+        /**
+         * Records a single visit per browser session for non-admin visitors.
+         */
         async function recordPageVisit() {
             try {
                 if (hasSecretAdminAccess()) return;
@@ -1036,6 +1050,9 @@
             }
         }
 
+        /**
+         * Subscribes to real-time visitor logs when signed in as admin.
+         */
         function startVisitorLogsSync() {
             if (!currentAdminUser) return;
             if (visitorUnsubscribe) return;
@@ -1050,6 +1067,9 @@
             });
         }
 
+        /**
+         * Stops visitor logs real-time subscription and resets local cache.
+         */
         function stopVisitorLogsSync() {
             if (visitorUnsubscribe) {
                 visitorUnsubscribe();
@@ -1059,6 +1079,9 @@
             renderVisitorLogs();
         }
 
+        /**
+         * Renders visitor statistics and table in the admin modal.
+         */
         function renderVisitorLogs() {
             const tbody = document.getElementById("adminVisitorTable");
             const totalEl = document.getElementById("visitorTotalCount");
@@ -1100,6 +1123,9 @@
             }).join("");
         }
 
+        /**
+         * Deletes all recorded visitor logs in Firestore.
+         */
         window.clearVisitorLogs = async function() {
             if (!currentAdminUser) return;
             try {
@@ -1114,6 +1140,9 @@
             }
         };
 
+        /**
+         * Checks URL query or hash for secret admin access key.
+         */
         function hasSecretAdminAccess() {
             try {
                 const params = new URLSearchParams(window.location.search);
@@ -1125,6 +1154,9 @@
             }
         }
 
+        /**
+         * Shows or hides admin entry triggers based on secret access key.
+         */
         function updateAdminVisibility() {
             const canSeeAdmin = hasSecretAdminAccess();
             const headerBtn = document.getElementById("headerAdminBtn");
@@ -1144,6 +1176,7 @@
             }
         }
 
+        // Default MLBB Diamond & Pass prices
         const DEFAULT_DIA_DATA = {
             bundles: [
                 { id: 'b-weekly-pass', label: 'Weekly Pass', price: 9000 },
@@ -1172,6 +1205,7 @@
             ]
         };
 
+        // Default Telegram Star & Premium prices
         const DEFAULT_TG_DATA = {
             premium: [
                 { id: 'tgp-3m', label: '3 Months (Gift plan)', price: 62000 },
@@ -1219,10 +1253,16 @@
         let currentModalImages = [];
         let activeModalImageIndex = 0;
 
+        /**
+         * Normalizes Telegram handle/URL into a clean username.
+         */
         function cleanTelegramUsername(raw) {
             return (raw || 'KIFYCASS').replace(/^@/, '').replace(/^https?:\/\/t\.me\//i, '').trim() || 'KIFYCASS';
         }
 
+        /**
+         * Formats High Rank label consistently.
+         */
         function formatHighRankLabel(rawRank) {
             const trimmed = (rawRank || '').trim();
             if (!trimmed) return 'High Rank';
@@ -1230,6 +1270,9 @@
             return `High Rank ${trimmed}`;
         }
 
+        /**
+         * Resizes and compresses uploaded image files to JPEG data URLs.
+         */
         function compressSingleFile(file) {
             return new Promise((resolve) => {
                 const reader = new FileReader();
@@ -1266,6 +1309,9 @@
             });
         }
 
+        /**
+         * Ensures total image payload fits comfortably inside Firestore document size limits.
+         */
         function fitImagesWithinFirestoreLimit(imgList, maxBytes = 950000) {
             const result = [];
             let totalBytes = 0;
@@ -1278,6 +1324,9 @@
             return result;
         }
 
+        /**
+         * Subscribes to MLBB account listings in Firestore.
+         */
         function initFirestoreSync() {
             onSnapshot(accountsCol, (querySnapshot) => {
                 const list = [];
@@ -1296,6 +1345,9 @@
             });
         }
 
+        /**
+         * Tracks Firebase Authentication state for the admin dashboard.
+         */
         function initAuthSync() {
             onAuthStateChanged(auth, (user) => {
                 currentAdminUser = user;
@@ -1324,6 +1376,9 @@
             });
         }
 
+        /**
+         * Normalizes Firestore or legacy MLBB diamond pricing data.
+         */
         function normalizeDiaData(raw) {
             if (!raw || typeof raw !== 'object') {
                 return cloneDefaultDiaData();
@@ -1374,6 +1429,9 @@
             };
         }
 
+        /**
+         * Normalizes Telegram Star & Premium pricing data.
+         */
         function normalizeTgData(raw) {
             if (!raw || typeof raw !== 'object') {
                 return cloneDefaultTgData();
@@ -1415,6 +1473,9 @@
             };
         }
 
+        /**
+         * Renders MLBB Diamond bundles and package cards.
+         */
         function renderDiaPricesView() {
             const bundlesGrid = document.getElementById('diaBundlesGrid');
             const leftList = document.getElementById('diaLeftList');
@@ -1464,6 +1525,9 @@
             rightList.innerHTML = rightPkgs.map(buildBox).join('');
         }
 
+        /**
+         * Renders Telegram Premium plans and Telegram Star packages.
+         */
         function renderTgStarPremiumView() {
             const premiumGrid = document.getElementById('tgPremiumGrid');
             const starList = document.getElementById('tgStarList');
@@ -1896,6 +1960,9 @@
 
         window.addEventListener('hashchange', updateAdminVisibility);
 
+        /**
+         * Filters, sorts, and renders MLBB account cards in the storefront grid.
+         */
         window.renderAccounts = function() {
             const grid = document.getElementById('accountGrid');
             const emptyState = document.getElementById('emptyState');
@@ -1946,7 +2013,9 @@
                 return `
                     <div class="group bg-darkcard border border-darkborder hover:border-amber-500/50 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 shadow-lg hover:shadow-amber-500/10 flex flex-col">
                         <div class="relative h-48 sm:h-52 bg-darkbg overflow-hidden cursor-pointer" onclick="openAccountDetails('${acc.id}')">
-                            <img src="${mainImg}" alt="${acc.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="${mainImg}" alt="${acc.title}"
+                                onerror="this.onerror=null;this.src='IMG_20261125_220821_646.png';"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             
                             <div class="absolute top-3 left-3 z-10 flex gap-2">
                                 ${isSold 
@@ -2068,6 +2137,9 @@
             enterStorefront();
         };
 
+        /**
+         * Opens modal showing full details and gallery for a selected MLBB account.
+         */
         window.openAccountDetails = function(id) {
             const acc = accounts.find(a => a.id === id);
             if (!acc) return;
@@ -2087,7 +2159,9 @@
             modalBody.innerHTML = `
                 <div class="space-y-3">
                     <div class="relative h-64 sm:h-80 w-full bg-black rounded-2xl overflow-hidden border border-darkborder">
-                        <img id="mainModalImg" src="${currentModalImages[0]}" class="w-full h-full object-contain">
+                        <img id="mainModalImg" src="${currentModalImages[0]}"
+                            onerror="this.onerror=null;this.src='IMG_20261125_220821_646.png';"
+                            class="w-full h-full object-contain">
                         
                         ${currentModalImages.length > 1 ? `
                             <button onclick="prevModalImg()" class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 text-amber-400 hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all">
@@ -2106,7 +2180,8 @@
                     ${currentModalImages.length > 1 ? `
                         <div class="flex items-center gap-2 overflow-x-auto pb-1">
                             ${currentModalImages.map((img, idx) => `
-                                <img src="${img}" onclick="setModalImg(${idx})" id="thumb-${idx}" 
+                                <img src="${img}" onclick="setModalImg(${idx})" id="thumb-${idx}"
+                                    onerror="this.onerror=null;this.src='IMG_20261125_220821_646.png';"
                                     class="w-16 h-12 object-cover rounded-lg border-2 cursor-pointer transition-all ${idx === 0 ? 'border-amber-500 opacity-100' : 'border-transparent opacity-60 hover:opacity-100'}">
                             `).join('')}
                         </div>
@@ -2350,7 +2425,7 @@
                 return `
                     <tr class="hover:bg-darkcard/50 transition-colors">
                         <td class="p-3">
-                            <img src="${img}" class="w-12 h-9 object-cover rounded-md border border-darkborder">
+                            <img src="${img}" onerror="this.onerror=null;this.src='IMG_20261125_220821_646.png';" class="w-12 h-9 object-cover rounded-md border border-darkborder">
                         </td>
                         <td class="p-3 font-semibold text-white max-w-[150px] truncate">${acc.title}</td>
                         <td class="p-3"><span class="bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded text-[11px] font-bold">${rankLabel}</span></td>
@@ -2457,7 +2532,7 @@
             const description = document.getElementById('accDesc').value.trim();
 
             const highlights = highlightsRaw.split(',').map(s => s.trim()).filter(Boolean);
-            const rawImages = uploadedImagesBase64.length > 0 ? [...uploadedImagesBase64] : ['https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'];
+            const rawImages = uploadedImagesBase64.length > 0 ? [...uploadedImagesBase64] : ['IMG_20261125_220821_646.png'];
             const safeImages = fitImagesWithinFirestoreLimit(rawImages);
             if (safeImages.length < rawImages.length) {
                 showToast(`ပုံ ${rawImages.length} ပုံထဲမှ ${safeImages.length} ပုံကို Firestore limit အတွင်း သိမ်းပေးလိုက်ပါသည်`, 'info');
