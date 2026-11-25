@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KIFY GAME STORE — Digital Armory</title>
-    <!-- Brand favicon and apple-touch-icon -->
+    <!-- Brand Icon -->
     <link rel="icon" type="image/png" href="IMG_20261125_220821_646.png">
     <link rel="apple-touch-icon" href="IMG_20261125_220821_646.png">
-    <!-- Tailwind CSS CDN -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome 6 Icons -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Myanmar:wght@400;600;700;800&family=Padauk:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <script>
-        // Configure Tailwind CSS theme tokens for dark slate/navy glassmorphism and electric blue accents
+        // Tailwind configuration matching dark slate/navy glassmorphism and electric blue accents
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -50,7 +50,7 @@
     </script>
 
     <style>
-        /* Ambient dark slate/navy background with electric blue radial glows */
+        /* Dark slate/navy background with electric blue radial glows */
         body {
             background-color: #060a13;
             background-image:
@@ -97,7 +97,7 @@
             box-shadow: 0 8px 26px rgba(59, 130, 246, 0.58);
         }
 
-        /* Critical overlay guard: closed modals never block pointer events */
+        /* Closed modals never block clicks or touches */
         .kify-modal-overlay {
             display: none;
             pointer-events: none;
@@ -133,10 +133,10 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-royal-600 selection:text-white">
 
-    <!-- 1. TOP HEADER & NAVIGATION PILLS -->
+    <!-- Top Header & Navigation Pills -->
     <header class="sticky top-0 z-40 glass-header border-b border-navyborder">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-3.5 pb-3 space-y-3">
-            <!-- Top Row: Emblem + Title + @KIFYCASS + Admin Button -->
+            <!-- Brand + @KIFYCASS + Admin Button -->
             <div class="flex items-center justify-between gap-3">
                 <button id="brandHomeBtn" type="button" data-action="switch-view" data-view="hub"
                     class="flex items-center gap-3 text-left cursor-pointer select-none group">
@@ -167,12 +167,12 @@
                     <button id="headerAdminBtn" type="button" data-action="open-admin"
                         class="flex items-center gap-1.5 blue-glow-btn text-white border border-royal-400/40 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full text-xs font-bold cursor-pointer">
                         <i class="fa-solid fa-sliders text-xs"></i>
-                        <span id="adminHeaderStatusText">Admin</span>
+                        <span id="adminHeaderStatusText">Admin Preview</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Second Row: Primary View Pills -->
+            <!-- Navigation Pills -->
             <nav aria-label="Store Navigation" class="flex items-center gap-2 overflow-x-auto pb-0.5">
                 <button id="nav-hub" type="button" data-action="switch-view" data-view="hub"
                     class="nav-pill px-4 py-1.5 rounded-full text-xs font-bold bg-royal-600 text-white shadow-sm shadow-royal-600/40 whitespace-nowrap transition-all cursor-pointer">
@@ -198,12 +198,12 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT CONTAINER -->
+    <!-- Main Storefront Content -->
     <main id="mainContainer" class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-7">
 
-        <!-- 2. HUB VIEW -->
+        <!-- HUB VIEW -->
         <section id="view-hub" class="space-y-6">
-            <!-- Hero Card -->
+            <!-- Hero Banner -->
             <div class="relative rounded-3xl glass-card p-6 sm:p-8 md:p-10 overflow-hidden">
                 <div class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[520px] h-[220px] bg-royal-600/15 blur-3xl rounded-full"></div>
 
@@ -220,7 +220,7 @@
                     </h1>
 
                     <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl">
-                        Mobile Legends အကောင့်များ၊ PUBG အကောင့်များ၊ Diamond၊ Telegram star နှင့် Premium များကို @KIFYCASS telegram ဆက်သွယ်ပြီးဝယ်ယူနိုင်ပါသည်
+                        Mobile Legends အကောင့်များ၊ PUBG အကောင့်များ၊ Diamond၊ Telegram Star နှင့် Premium များကို @KIFYCASS Telegram ဆက်သွယ်ပြီး ဝယ်ယူနိုင်ပါသည်။
                     </p>
 
                     <div class="flex flex-wrap items-center gap-3 pt-2">
@@ -247,7 +247,7 @@
                 </div>
             </div>
 
-            <!-- 4 Feature Cards Grid -->
+            <!-- Hub Feature Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
                 <div id="hubCard-mlbb" role="button" tabindex="0" data-action="switch-view" data-view="mlbb"
                     class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between space-y-6 cursor-pointer">
@@ -274,7 +274,7 @@
                             PUBG အကောင့်များကြည့်ရန်
                         </h2>
                         <p class="text-xs sm:text-[13px] text-slate-400 leading-relaxed">
-                            Browse curated PUBG Mobile accounts with Mythic Fashion, upgradeable gun skins, RP levels, photo slides, and instant @KIFYCASS order links.
+                            Browse curated PUBG Mobile accounts with Mythic Fashion, upgradeable gun skins, K/D stats, photo slides, and instant @KIFYCASS order links.
                         </p>
                     </div>
                     <div class="pt-1">
@@ -323,7 +323,7 @@
             </div>
         </section>
 
-        <!-- 3. MLBB ACCOUNTS VIEW -->
+        <!-- MLBB ACCOUNTS VIEW -->
         <section id="view-mlbb" class="hidden space-y-6">
             <div class="glass-card rounded-2xl p-5 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
@@ -341,6 +341,7 @@
                 </button>
             </div>
 
+            <!-- Filter, Sort & Search -->
             <div class="glass-card rounded-2xl p-4 sm:p-5 space-y-4">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
                     <div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 text-xs font-semibold">
@@ -350,11 +351,11 @@
                         </button>
                         <button type="button" data-mlbb-filter="AVAILABLE"
                             class="mlbb-filter-btn px-4 py-2 rounded-xl bg-navyinput text-slate-300 hover:text-emerald-400 border border-navyborder whitespace-nowrap transition-all cursor-pointer">
-                            Available
+                            AVAILABLE
                         </button>
                         <button type="button" data-mlbb-filter="SOLD"
                             class="mlbb-filter-btn px-4 py-2 rounded-xl bg-navyinput text-slate-300 hover:text-rose-400 border border-navyborder whitespace-nowrap transition-all cursor-pointer">
-                            Sold
+                            SOLD
                         </button>
                     </div>
 
@@ -391,7 +392,7 @@
             </div>
         </section>
 
-        <!-- 4. PUBG ACCOUNTS VIEW -->
+        <!-- PUBG ACCOUNTS VIEW -->
         <section id="view-pubg" class="hidden space-y-6">
             <div class="glass-card rounded-2xl p-5 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
@@ -418,11 +419,11 @@
                         </button>
                         <button type="button" data-pubg-filter="AVAILABLE"
                             class="pubg-filter-btn px-4 py-2 rounded-xl bg-navyinput text-slate-300 hover:text-emerald-400 border border-navyborder whitespace-nowrap transition-all cursor-pointer">
-                            Available
+                            AVAILABLE
                         </button>
                         <button type="button" data-pubg-filter="SOLD"
                             class="pubg-filter-btn px-4 py-2 rounded-xl bg-navyinput text-slate-300 hover:text-rose-400 border border-navyborder whitespace-nowrap transition-all cursor-pointer">
-                            Sold
+                            SOLD
                         </button>
                     </div>
 
@@ -459,7 +460,7 @@
             </div>
         </section>
 
-        <!-- 5. DIA TOP-UP VIEW -->
+        <!-- DIA TOP-UP VIEW -->
         <section id="view-dia" class="hidden space-y-6">
             <div class="glass-card rounded-2xl p-5 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
@@ -491,7 +492,7 @@
             </div>
         </section>
 
-        <!-- 6. TG & STARS VIEW -->
+        <!-- TG & STARS VIEW -->
         <section id="view-tg" class="hidden space-y-6">
             <div class="glass-card rounded-2xl p-5 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
@@ -527,7 +528,7 @@
         </section>
     </main>
 
-    <!-- SLIM FOOTER -->
+    <!-- Footer -->
     <footer class="mt-12 border-t border-navyborder bg-navysurface/95 text-slate-400 py-5 text-xs">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
             <div class="font-bold tracking-wider uppercase text-slate-300">
@@ -544,13 +545,13 @@
                 <span>&copy; 2026 KIFY GAME STORE</span>
                 <button id="footerAdminBtn" type="button" data-action="open-admin"
                     class="text-skyacc-400 hover:text-skyacc-300 font-semibold inline-flex items-center gap-1 ml-1 cursor-pointer">
-                    <i class="fa-solid fa-lock text-[10px]"></i> Admin
+                    <i class="fa-solid fa-lock text-[10px]"></i> Admin Login
                 </button>
             </div>
         </div>
     </footer>
 
-    <!-- ACCOUNT DETAIL & PHOTO CAROUSEL MODAL -->
+    <!-- Account Detail & Multi-Image Slider Modal -->
     <div id="detailModal" class="kify-modal-overlay fixed inset-0 z-50 items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
         <div class="relative w-full max-w-3xl glass-card border border-royal-500/35 rounded-3xl overflow-hidden shadow-2xl my-8">
             <button id="closeDetailModalBtn" type="button" data-action="close-detail"
@@ -561,7 +562,7 @@
         </div>
     </div>
 
-    <!-- ORDER MODAL VIA @KIFYCASS -->
+    <!-- Order Modal via @KIFYCASS -->
     <div id="orderModal" class="kify-modal-overlay fixed inset-0 z-50 items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
         <div class="relative w-full max-w-md glass-card border border-royal-500/40 rounded-3xl overflow-hidden shadow-2xl my-8">
             <div class="flex items-center justify-between px-6 py-4 bg-navybg/90 border-b border-navyborder">
@@ -596,7 +597,7 @@
         </div>
     </div>
 
-    <!-- ADMIN MODAL -->
+    <!-- Admin Panel Modal -->
     <div id="adminModal" class="kify-modal-overlay fixed inset-0 z-50 items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
         <div class="relative w-full max-w-4xl glass-card border border-royal-500/40 rounded-3xl overflow-hidden shadow-2xl my-8">
             <div class="flex items-center justify-between px-6 py-4 bg-navybg/90 border-b border-navyborder">
@@ -609,14 +610,14 @@
                 </button>
             </div>
 
-            <!-- ADMIN LOGIN VIEW -->
+            <!-- Admin Login View -->
             <div id="adminLoginPanel" class="p-8 max-w-md mx-auto space-y-6 text-center">
                 <div class="w-16 h-16 mx-auto rounded-2xl bg-royal-600/15 border border-royal-500/35 flex items-center justify-center text-skyacc-400 text-2xl">
                     <i class="fa-solid fa-lock"></i>
                 </div>
                 <div>
                     <h4 class="text-xl font-bold text-white">Admin Email &amp; Password Login</h4>
-                    <p class="text-xs text-slate-400 mt-1">Sign in with your Firebase Admin email and password</p>
+                    <p class="text-xs text-slate-400 mt-1">Sign in with your Admin email and password</p>
                 </div>
                 <form id="adminLoginForm" class="space-y-4 text-left">
                     <div class="relative">
@@ -636,25 +637,21 @@
                 </form>
             </div>
 
-            <!-- ADMIN DASHBOARD VIEW -->
+            <!-- Admin Dashboard View -->
             <div id="adminDashboardPanel" class="hidden p-5 sm:p-6 space-y-6">
                 <div class="flex flex-wrap items-center justify-between gap-3 border-b border-navyborder pb-4">
                     <div class="flex flex-wrap items-center gap-2">
-                        <button type="button" data-admin-tab="mlbb-list"
+                        <button type="button" data-admin-tab="accounts-list"
                             class="admin-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-royal-600 text-white cursor-pointer">
-                            MLBB List (<span id="adminMlbbCount">0</span>)
+                            MLBB Accounts (<span id="adminMlbbCount">0</span>)
                         </button>
-                        <button type="button" data-admin-tab="mlbb-add"
+                        <button type="button" data-admin-tab="account-add"
                             class="admin-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-navyinput text-slate-300 hover:text-white border border-navyborder cursor-pointer">
-                            + Add MLBB
+                            + Add Account
                         </button>
-                        <button type="button" data-admin-tab="pubg-list"
+                        <button type="button" data-admin-tab="pubg-manage"
                             class="admin-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-navyinput text-slate-300 hover:text-white border border-navyborder cursor-pointer">
-                            PUBG List (<span id="adminPubgCount">0</span>)
-                        </button>
-                        <button type="button" data-admin-tab="pubg-add"
-                            class="admin-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-navyinput text-slate-300 hover:text-white border border-navyborder cursor-pointer">
-                            + Add PUBG
+                            PUBG Accounts (<span id="adminPubgCount">0</span>)
                         </button>
                         <button type="button" data-admin-tab="dia-edit"
                             class="admin-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-navyinput text-slate-300 hover:text-white border border-navyborder cursor-pointer">
@@ -662,7 +659,7 @@
                         </button>
                         <button type="button" data-admin-tab="tg-edit"
                             class="admin-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-navyinput text-slate-300 hover:text-white border border-navyborder cursor-pointer">
-                            TG &amp; Stars
+                            Star &amp; TG Prices
                         </button>
                         <button type="button" data-admin-tab="visitors"
                             class="admin-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-navyinput text-slate-300 hover:text-white border border-navyborder cursor-pointer">
@@ -672,19 +669,23 @@
 
                     <button id="adminLogoutBtn" type="button"
                         class="px-3 py-1.5 text-xs text-rose-400 hover:bg-rose-500/10 rounded-lg border border-rose-500/30 transition-all cursor-pointer">
-                        <i class="fa-solid fa-power-off mr-1"></i> Lock
+                        <i class="fa-solid fa-power-off mr-1"></i> Logout
                     </button>
                 </div>
 
-                <!-- TAB: MLBB ACCOUNTS LIST -->
-                <div id="adminTab-mlbb-list" class="admin-panel space-y-3">
+                <!-- Tab 1: MLBB Accounts Table -->
+                <div id="adminTab-accounts-list" class="admin-panel space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-sm font-bold text-skyacc-400">MLBB Accounts Inventory</h4>
+                        <span id="adminFirebaseStatusLabel" class="text-[11px] font-semibold text-skyacc-300">Firebase v10.14.1</span>
+                    </div>
                     <div class="overflow-x-auto rounded-2xl border border-navyborder bg-navybg/80">
                         <table class="w-full text-left text-xs text-slate-300">
                             <thead class="bg-navycard text-skyacc-400 uppercase tracking-wider font-semibold border-b border-navyborder">
                                 <tr>
                                     <th class="p-3">Code</th>
                                     <th class="p-3">Rank</th>
-                                    <th class="p-3">Stats</th>
+                                    <th class="p-3">Skins / Heroes</th>
                                     <th class="p-3">Price</th>
                                     <th class="p-3">Status</th>
                                     <th class="p-3 text-right">Actions</th>
@@ -695,81 +696,90 @@
                     </div>
                 </div>
 
-                <!-- TAB: ADD / EDIT MLBB ACCOUNT -->
-                <div id="adminTab-mlbb-add" class="admin-panel hidden space-y-4">
-                    <h4 id="mlbbFormHeading" class="text-sm font-bold text-skyacc-400">Add / Edit MLBB Account</h4>
-                    <form id="mlbbAccountForm" class="space-y-4">
-                        <input type="hidden" id="mlbbEditId">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Tab 2: Add / Edit Account -->
+                <div id="adminTab-account-add" class="admin-panel hidden space-y-4">
+                    <h4 class="text-sm font-bold text-skyacc-400">+ Add / Edit Account (MLBB or PUBG)</h4>
+                    <form id="accountForm" class="space-y-4">
+                        <input type="hidden" id="accountEditId">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">Game *</label>
+                                <select id="accountGameTypeInput"
+                                    class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
+                                    <option value="mlbb">MLBB</option>
+                                    <option value="pubg">PUBG</option>
+                                </select>
+                            </div>
                             <div>
                                 <label class="block text-xs text-slate-400 mb-1">Code / Title *</label>
-                                <input type="text" id="mlbbTitleInput" required placeholder="e.g. KIFY-505"
+                                <input type="text" id="accountTitleInput" required placeholder="e.g. KIFY-505 or PUBG-402"
                                     class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
                             </div>
                             <div>
-                                <label class="block text-xs text-slate-400 mb-1">Rank / Stars *</label>
-                                <input type="text" id="mlbbRankInput" required placeholder="e.g. High Rank 150★"
+                                <label class="block text-xs text-slate-400 mb-1">Rank / Tier *</label>
+                                <input type="text" id="accountRankInput" required placeholder="e.g. High Rank 150★ or Conqueror"
                                     class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
                             </div>
                             <div>
                                 <label class="block text-xs text-slate-400 mb-1">Price (MMK) *</label>
-                                <input type="number" id="mlbbPriceInput" required min="0" placeholder="250000"
+                                <input type="number" id="accountPriceInput" required min="0" placeholder="250000"
                                     class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
                             </div>
                             <div>
                                 <label class="block text-xs text-slate-400 mb-1">Status</label>
-                                <select id="mlbbStatusInput"
+                                <select id="accountStatusInput"
                                     class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
                                     <option value="AVAILABLE">AVAILABLE</option>
                                     <option value="SOLD">SOLD</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-xs text-slate-400 mb-1">Skins Count</label>
-                                <input type="number" id="mlbbSkinsInput" min="0" value="250"
+                                <label class="block text-xs text-slate-400 mb-1">Skins / Mythics</label>
+                                <input type="number" id="accountStatAInput" min="0" value="250"
                                     class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
                             </div>
                             <div>
-                                <label class="block text-xs text-slate-400 mb-1">Heroes Count</label>
-                                <input type="number" id="mlbbHeroesInput" min="0" value="120"
+                                <label class="block text-xs text-slate-400 mb-1">Heroes / Upgradable Guns</label>
+                                <input type="number" id="accountStatBInput" min="0" value="120"
                                     class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
                             </div>
                             <div>
-                                <label class="block text-xs text-slate-400 mb-1">Win Rate</label>
-                                <input type="text" id="mlbbWinrateInput" value="66.5%"
+                                <label class="block text-xs text-slate-400 mb-1">Win Rate / K/D</label>
+                                <input type="text" id="accountStatCInput" value="66.5%"
                                     class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
                             </div>
                             <div>
                                 <label class="block text-xs text-slate-400 mb-1">Highlights (comma separated)</label>
-                                <input type="text" id="mlbbHighlightsInput" placeholder="Gusion Collector, Chou KOF"
+                                <input type="text" id="accountHighlightsInput" placeholder="Gusion Collector, Chou KOF"
                                     class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
                             </div>
                         </div>
                         <div>
                             <label class="block text-xs text-slate-400 mb-1">Description</label>
-                            <textarea id="mlbbDescInput" rows="2" placeholder="Clean Moonton bind, emblem max..."
+                            <textarea id="accountDescInput" rows="2" placeholder="Bind and account details..."
                                 class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none"></textarea>
                         </div>
                         <div class="flex items-center gap-3">
                             <button type="submit" class="px-5 py-2.5 rounded-xl blue-glow-btn text-white font-bold text-xs cursor-pointer">
-                                Save MLBB Account
+                                Save Account
                             </button>
-                            <button id="cancelMlbbEditBtn" type="button" class="px-4 py-2.5 rounded-xl bg-navyinput text-slate-300 text-xs cursor-pointer">
+                            <button id="cancelAccountEditBtn" type="button" class="px-4 py-2.5 rounded-xl bg-navyinput text-slate-300 text-xs cursor-pointer">
                                 Clear Form
                             </button>
                         </div>
                     </form>
                 </div>
 
-                <!-- TAB: PUBG ACCOUNTS LIST -->
-                <div id="adminTab-pubg-list" class="admin-panel hidden space-y-3">
+                <!-- Tab 3: PUBG Accounts Management -->
+                <div id="adminTab-pubg-manage" class="admin-panel hidden space-y-4">
+                    <h4 class="text-sm font-bold text-skyacc-400">PUBG Accounts Inventory</h4>
                     <div class="overflow-x-auto rounded-2xl border border-navyborder bg-navybg/80">
                         <table class="w-full text-left text-xs text-slate-300">
                             <thead class="bg-navycard text-skyacc-400 uppercase tracking-wider font-semibold border-b border-navyborder">
                                 <tr>
                                     <th class="p-3">Code</th>
                                     <th class="p-3">Tier</th>
-                                    <th class="p-3">Stats</th>
+                                    <th class="p-3">Mythics / Guns</th>
                                     <th class="p-3">Price</th>
                                     <th class="p-3">Status</th>
                                     <th class="p-3 text-right">Actions</th>
@@ -780,76 +790,10 @@
                     </div>
                 </div>
 
-                <!-- TAB: ADD / EDIT PUBG ACCOUNT -->
-                <div id="adminTab-pubg-add" class="admin-panel hidden space-y-4">
-                    <h4 id="pubgFormHeading" class="text-sm font-bold text-skyacc-400">Add / Edit PUBG Account</h4>
-                    <form id="pubgAccountForm" class="space-y-4">
-                        <input type="hidden" id="pubgEditId">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs text-slate-400 mb-1">Code / Title *</label>
-                                <input type="text" id="pubgTitleInput" required placeholder="e.g. PUBG-402"
-                                    class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-xs text-slate-400 mb-1">Tier / Level *</label>
-                                <input type="text" id="pubgRankInput" required placeholder="e.g. Conqueror • Lv.75"
-                                    class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-xs text-slate-400 mb-1">Price (MMK) *</label>
-                                <input type="number" id="pubgPriceInput" required min="0" placeholder="180000"
-                                    class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-xs text-slate-400 mb-1">Status</label>
-                                <select id="pubgStatusInput"
-                                    class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
-                                    <option value="AVAILABLE">AVAILABLE</option>
-                                    <option value="SOLD">SOLD</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs text-slate-400 mb-1">Mythic Outfits</label>
-                                <input type="number" id="pubgMythicsInput" min="0" value="40"
-                                    class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-xs text-slate-400 mb-1">Upgradable Guns</label>
-                                <input type="number" id="pubgGunsInput" min="0" value="8"
-                                    class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-xs text-slate-400 mb-1">K/D Ratio</label>
-                                <input type="text" id="pubgKdInput" value="4.50 K/D"
-                                    class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-xs text-slate-400 mb-1">Highlights (comma separated)</label>
-                                <input type="text" id="pubgHighlightsInput" placeholder="M416 Fool, Glacier AKM"
-                                    class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-xs text-slate-400 mb-1">Description</label>
-                            <textarea id="pubgDescInput" rows="2" placeholder="Clean link details..."
-                                class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none"></textarea>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <button type="submit" class="px-5 py-2.5 rounded-xl blue-glow-btn text-white font-bold text-xs cursor-pointer">
-                                Save PUBG Account
-                            </button>
-                            <button id="cancelPubgEditBtn" type="button" class="px-4 py-2.5 rounded-xl bg-navyinput text-slate-300 text-xs cursor-pointer">
-                                Clear Form
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- TAB: DIA PRICE EDITOR -->
+                <!-- Tab 4: Dia Price Editor -->
                 <div id="adminTab-dia-edit" class="admin-panel hidden space-y-4">
                     <div class="flex items-center justify-between gap-2">
-                        <h4 class="text-sm font-bold text-skyacc-400">MLBB Diamond Price Editor (ks)</h4>
+                        <h4 class="text-sm font-bold text-skyacc-400">MLBB Diamond Prices (ks)</h4>
                         <button id="saveDiaPricesBtn" type="button" class="px-4 py-2 rounded-xl blue-glow-btn text-white font-bold text-xs cursor-pointer">
                             Save Dia Prices
                         </button>
@@ -857,10 +801,10 @@
                     <div id="adminDiaRowsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
                 </div>
 
-                <!-- TAB: TG & STARS PRICE EDITOR -->
+                <!-- Tab 5: TG & Stars Price Editor -->
                 <div id="adminTab-tg-edit" class="admin-panel hidden space-y-4">
                     <div class="flex items-center justify-between gap-2">
-                        <h4 class="text-sm font-bold text-skyacc-400">Telegram Star &amp; Premium Price Editor (ks)</h4>
+                        <h4 class="text-sm font-bold text-skyacc-400">Star &amp; TG Premium Prices (ks)</h4>
                         <button id="saveTgPricesBtn" type="button" class="px-4 py-2 rounded-xl blue-glow-btn text-white font-bold text-xs cursor-pointer">
                             Save TG Prices
                         </button>
@@ -868,7 +812,7 @@
                     <div id="adminTgRowsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
                 </div>
 
-                <!-- TAB: VISITORS LOG -->
+                <!-- Tab 6: Visitors Log -->
                 <div id="adminTab-visitors" class="admin-panel hidden space-y-4">
                     <div class="flex items-center justify-between gap-2">
                         <h4 class="text-sm font-bold text-skyacc-400">Visitor Logs</h4>
@@ -893,10 +837,10 @@
         </div>
     </div>
 
-    <!-- TOAST CONTAINER -->
+    <!-- Toast Container -->
     <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2"></div>
 
-    <!-- MAIN STOREFRONT & ADMIN APPLICATION SCRIPT -->
+    <!-- Main Storefront & Admin Script -->
     <script>
         (function () {
             "use strict";
@@ -921,7 +865,7 @@
                     winrate: "69.2%",
                     status: "AVAILABLE",
                     highlights: ["Gusion Collector", "Beatrix Prime", "Chou KOF"],
-                    description: "Obsidian Vanguard High Rank account with clean Moonton bind and high win rate.",
+                    description: "High Rank account with clean Moonton bind and high win rate.",
                     images: ["IMG_20261125_220821_646.png"],
                     created: 1732500000004
                 },
@@ -935,7 +879,7 @@
                     winrate: "65.8%",
                     status: "AVAILABLE",
                     highlights: ["Granger Legend", "Kagura Exorcist", "Ling Dragon"],
-                    description: "Cobalt Phantom Legend Set account with clean bind and ranked history.",
+                    description: "Legend skin set with clean bind and ranked match history.",
                     images: ["IMG_20261125_220821_646.png"],
                     created: 1732500000003
                 },
@@ -949,7 +893,7 @@
                     winrate: "66.9%",
                     status: "AVAILABLE",
                     highlights: ["Fanny Skylark", "Lunox Legend"],
-                    description: "Steel Striker Lineup with core assassins and mages unlocked.",
+                    description: "Core assassin and mage skins unlocked with clean bind.",
                     images: ["IMG_20261125_220821_646.png"],
                     created: 1732500000002
                 },
@@ -963,7 +907,7 @@
                     winrate: "60.4%",
                     status: "SOLD",
                     highlights: ["Valentina Collector", "Moskov Allstar"],
-                    description: "Carbon Mythic account archive listing.",
+                    description: "Sold Out MLBB archive listing.",
                     images: ["IMG_20261125_220821_646.png"],
                     created: 1732500000001
                 }
@@ -980,7 +924,7 @@
                     kd: "4.85 K/D",
                     status: "AVAILABLE",
                     highlights: ["M416 Fool Lv.4", "Pharaoh X-Suit", "Glacier AKM"],
-                    description: "Clean linked PUBG Mobile account with 54 Mythic outfits and 11 upgradeable guns.",
+                    description: "Clean PUBG Mobile account with 54 Mythic outfits and 11 upgradeable weapons.",
                     images: ["IMG_20261125_220821_646.png"],
                     created: 1732500000012
                 },
@@ -994,7 +938,7 @@
                     kd: "4.12 K/D",
                     status: "AVAILABLE",
                     highlights: ["M762 Unicorn", "Jester Suit", "RP Max"],
-                    description: "Competitive PUBG Mobile account with upgradeable gun skins and clean links.",
+                    description: "PUBG Mobile account with upgradeable gun skins and clean links.",
                     images: ["IMG_20261125_220821_646.png"],
                     created: 1732500000011
                 },
@@ -1074,30 +1018,47 @@
                 try {
                     localStorage.setItem(key, JSON.stringify(value));
                 } catch (_) {
-                    // Ignore storage quota or sandbox errors
+                    // Safe fallback
                 }
             }
 
-            let state = {
+            const deletedIdSet = new Set(
+                (readStorage(STORAGE_KEYS.deletedIds, []) || []).map((id) => String(id))
+            );
+
+            function persistDeletedIds() {
+                writeStorage(STORAGE_KEYS.deletedIds, Array.from(deletedIdSet));
+            }
+
+            function markDeletedId(id) {
+                deletedIdSet.add(String(id));
+                persistDeletedIds();
+            }
+
+            function clearDeletedId(id) {
+                deletedIdSet.delete(String(id));
+                persistDeletedIds();
+            }
+
+            const state = {
                 currentView: "hub",
                 mlbbFilter: "ALL",
                 pubgFilter: "ALL",
-                mlbbAccounts: readStorage(STORAGE_KEYS.mlbb, DEFAULT_MLBB),
-                pubgAccounts: readStorage(STORAGE_KEYS.pubg, DEFAULT_PUBG),
+                mlbbAccounts: readStorage(STORAGE_KEYS.mlbb, DEFAULT_MLBB).filter(
+                    (a) => a && !deletedIdSet.has(String(a.id))
+                ),
+                pubgAccounts: readStorage(STORAGE_KEYS.pubg, DEFAULT_PUBG).filter(
+                    (a) => a && !deletedIdSet.has(String(a.id))
+                ),
                 diaData: readStorage(STORAGE_KEYS.dia, DEFAULT_DIA),
                 tgData: readStorage(STORAGE_KEYS.tg, DEFAULT_TG),
                 visitors: readStorage(STORAGE_KEYS.visitors, []),
-                deletedIds: readStorage(STORAGE_KEYS.deletedIds, []),
                 adminUnlocked: false,
                 adminUserEmail: "",
+                firebaseReady: false,
                 modalImages: [],
                 modalImageIndex: 0
             };
-
-            let firebaseAuthInstance = null;
-            let firebaseDbInstance = null;
-            let firebaseAuthFns = null;
-            let firebaseDbFns = null;
 
             function showToast(message, type) {
                 const container = document.getElementById("toastContainer");
@@ -1113,7 +1074,20 @@
                 container.appendChild(toast);
                 setTimeout(() => {
                     toast.remove();
-                }, 2600);
+                }, 3000);
+            }
+
+            function updateAdminHeaderBadge() {
+                const statusEl = document.getElementById("adminHeaderStatusText");
+                if (statusEl) {
+                    statusEl.textContent = state.adminUnlocked ? "Admin (Active)" : "Admin Preview";
+                }
+                const fbLabel = document.getElementById("adminFirebaseStatusLabel");
+                if (fbLabel) {
+                    fbLabel.textContent = state.firebaseReady
+                        ? (state.adminUserEmail ? `Connected (${state.adminUserEmail})` : "Firebase Auth Ready")
+                        : "Local Sync Ready";
+                }
             }
 
             function recordVisitor(viewName) {
@@ -1128,7 +1102,7 @@
                     writeStorage(STORAGE_KEYS.visitors, state.visitors);
                     renderAdminVisitors();
                 } catch (_) {
-                    // Safe no-op
+                    // Safe fallback
                 }
             }
 
@@ -1186,13 +1160,13 @@
 
             function renderCarouselSlide() {
                 const counter = document.getElementById("carouselCounter");
-                const titleEl = document.getElementById("carouselSlideLabel");
+                const label = document.getElementById("carouselSlideLabel");
                 const imgEl = document.getElementById("carouselSlideImg");
                 const total = state.modalImages.length || 1;
                 const idx = ((state.modalImageIndex % total) + total) % total;
                 state.modalImageIndex = idx;
                 if (counter) counter.textContent = `${idx + 1} / ${total}`;
-                if (titleEl) titleEl.textContent = `Slide ${idx + 1}`;
+                if (label) label.textContent = `Slide ${idx + 1}`;
                 if (imgEl) {
                     imgEl.src = state.modalImages[idx] || "IMG_20261125_220821_646.png";
                 }
@@ -1328,9 +1302,10 @@
                 if (orderBtn) {
                     orderBtn.addEventListener("click", () => {
                         const gameLabel = gameType === "pubg" ? "PUBG Account" : "MLBB Account";
-                        const summary = `${gameLabel} [${acc.title}] — ${formattedPrice} MMK`;
-                        const msg = `မင်္ဂလာပါ @KIFYCASS၊ ${gameLabel} [${acc.title}] (${acc.rank}၊ ဈေးနှုန်း: ${formattedPrice} MMK) ကို ဝယ်ယူလိုပါသည်။`;
-                        openOrderModal(summary, msg);
+                        openOrderModal(
+                            `${gameLabel} [${acc.title}] — ${formattedPrice} MMK`,
+                            `မင်္ဂလာပါ @KIFYCASS၊ ${gameLabel} [${acc.title}] (${acc.rank}၊ ဈေးနှုန်း: ${formattedPrice} MMK) ကို ဝယ်ယူလိုပါသည်။`
+                        );
                     });
                 }
 
@@ -1450,15 +1425,17 @@
                 const query = (searchInput ? searchInput.value : "").trim().toLowerCase();
                 const sortVal = sortSelect ? sortSelect.value : "newest";
 
-                const list = state.mlbbAccounts.filter((acc) => {
-                    if (state.mlbbFilter !== "ALL" && acc.status !== state.mlbbFilter) return false;
-                    if (!query) return true;
-                    return (
-                        String(acc.title || "").toLowerCase().includes(query) ||
-                        String(acc.rank || "").toLowerCase().includes(query) ||
-                        (acc.highlights || []).some((h) => String(h).toLowerCase().includes(query))
-                    );
-                });
+                const list = state.mlbbAccounts
+                    .filter((acc) => acc && !deletedIdSet.has(String(acc.id)))
+                    .filter((acc) => {
+                        if (state.mlbbFilter !== "ALL" && acc.status !== state.mlbbFilter) return false;
+                        if (!query) return true;
+                        return (
+                            String(acc.title || "").toLowerCase().includes(query) ||
+                            String(acc.rank || "").toLowerCase().includes(query) ||
+                            (acc.highlights || []).some((h) => String(h).toLowerCase().includes(query))
+                        );
+                    });
 
                 if (sortVal === "price-low") list.sort((a, b) => Number(a.price || 0) - Number(b.price || 0));
                 else if (sortVal === "price-high") list.sort((a, b) => Number(b.price || 0) - Number(a.price || 0));
@@ -1483,15 +1460,17 @@
                 const query = (searchInput ? searchInput.value : "").trim().toLowerCase();
                 const sortVal = sortSelect ? sortSelect.value : "newest";
 
-                const list = state.pubgAccounts.filter((acc) => {
-                    if (state.pubgFilter !== "ALL" && acc.status !== state.pubgFilter) return false;
-                    if (!query) return true;
-                    return (
-                        String(acc.title || "").toLowerCase().includes(query) ||
-                        String(acc.rank || "").toLowerCase().includes(query) ||
-                        (acc.highlights || []).some((h) => String(h).toLowerCase().includes(query))
-                    );
-                });
+                const list = state.pubgAccounts
+                    .filter((acc) => acc && !deletedIdSet.has(String(acc.id)))
+                    .filter((acc) => {
+                        if (state.pubgFilter !== "ALL" && acc.status !== state.pubgFilter) return false;
+                        if (!query) return true;
+                        return (
+                            String(acc.title || "").toLowerCase().includes(query) ||
+                            String(acc.rank || "").toLowerCase().includes(query) ||
+                            (acc.highlights || []).some((h) => String(h).toLowerCase().includes(query))
+                        );
+                    });
 
                 if (sortVal === "price-low") list.sort((a, b) => Number(a.price || 0) - Number(b.price || 0));
                 else if (sortVal === "price-high") list.sort((a, b) => Number(b.price || 0) - Number(a.price || 0));
@@ -1609,48 +1588,23 @@
                 });
             }
 
-            function updateAdminHeaderBadge() {
-                const statusEl = document.getElementById("adminHeaderStatusText");
-                if (statusEl) {
-                    statusEl.textContent = state.adminUnlocked ? "Admin (Active)" : "Admin";
-                }
-            }
-
-            function markDeletedId(id) {
-                const strId = String(id);
-                if (!state.deletedIds.includes(strId)) {
-                    state.deletedIds.push(strId);
-                    writeStorage(STORAGE_KEYS.deletedIds, state.deletedIds);
-                }
-            }
-
-            function clearDeletedId(id) {
-                const strId = String(id);
-                state.deletedIds = state.deletedIds.filter((item) => String(item) !== strId);
-                writeStorage(STORAGE_KEYS.deletedIds, state.deletedIds);
-            }
-
-            function syncStoreToFirestore(collectionName, docId, payload) {
-                if (!firebaseDbInstance || !firebaseDbFns) return;
+            async function syncAccountToFirestore(collectionName, docId, payload) {
                 try {
-                    const docRef = firebaseDbFns.doc(firebaseDbInstance, collectionName, String(docId));
-                    firebaseDbFns.setDoc(docRef, payload, { merge: true }).catch((err) => {
-                        console.warn("Firestore sync warning:", err);
-                    });
+                    const bridge = await window.__kifyFirebaseReady;
+                    if (!bridge || !bridge.ready || !bridge.db || !bridge.doc || !bridge.setDoc) return;
+                    await bridge.setDoc(bridge.doc(bridge.db, collectionName, String(docId)), payload, { merge: true });
                 } catch (_) {
-                    // Ignore offline or unconfigured Firestore
+                    // Safe local persistence already saved
                 }
             }
 
-            function deleteStoreFromFirestore(collectionName, docId) {
-                if (!firebaseDbInstance || !firebaseDbFns) return;
+            async function deleteAccountFromFirestore(collectionName, docId) {
                 try {
-                    const docRef = firebaseDbFns.doc(firebaseDbInstance, collectionName, String(docId));
-                    firebaseDbFns.deleteDoc(docRef).catch((err) => {
-                        console.warn("Firestore delete warning:", err);
-                    });
+                    const bridge = await window.__kifyFirebaseReady;
+                    if (!bridge || !bridge.ready || !bridge.db || !bridge.doc || !bridge.deleteDoc) return;
+                    await bridge.deleteDoc(bridge.doc(bridge.db, collectionName, String(docId)));
                 } catch (_) {
-                    // Ignore offline or unconfigured Firestore
+                    // Tombstone prevents re-insertion even if offline or restricted
                 }
             }
 
@@ -1666,7 +1620,8 @@
                     renderAdminMlbbTable();
                     renderAdminPubgTable();
                     renderAdminVisitors();
-                    switchAdminTab(initialTab || "mlbb-list");
+                    updateAdminHeaderBadge();
+                    switchAdminTab(initialTab || "accounts-list");
                 } else {
                     if (loginPanel) loginPanel.classList.remove("hidden");
                     if (dashPanel) dashPanel.classList.add("hidden");
@@ -1692,6 +1647,8 @@
                     panel.classList.toggle("hidden", panel.id !== "adminTab-" + tabName);
                 });
 
+                if (tabName === "accounts-list") renderAdminMlbbTable();
+                if (tabName === "pubg-manage") renderAdminPubgTable();
                 if (tabName === "dia-edit") renderAdminDiaEditor();
                 if (tabName === "tg-edit") renderAdminTgEditor();
                 if (tabName === "visitors") renderAdminVisitors();
@@ -1699,24 +1656,26 @@
 
             function executeDelete(gameType, accountId) {
                 try {
-                    markDeletedId(accountId);
+                    const targetId = String(accountId);
+                    markDeletedId(targetId);
+
                     if (gameType === "pubg") {
-                        state.pubgAccounts = state.pubgAccounts.filter((a) => String(a.id) !== String(accountId));
+                        state.pubgAccounts = state.pubgAccounts.filter((a) => String(a.id) !== targetId);
                         writeStorage(STORAGE_KEYS.pubg, state.pubgAccounts);
-                        deleteStoreFromFirestore("pubg_accounts", accountId);
                         renderPubgAccounts();
                         renderAdminPubgTable();
-                        showToast("PUBG Account deleted", "info");
+                        deleteAccountFromFirestore("pubg_accounts", targetId);
+                        showToast("PUBG account deleted", "info");
                     } else {
-                        state.mlbbAccounts = state.mlbbAccounts.filter((a) => String(a.id) !== String(accountId));
+                        state.mlbbAccounts = state.mlbbAccounts.filter((a) => String(a.id) !== targetId);
                         writeStorage(STORAGE_KEYS.mlbb, state.mlbbAccounts);
-                        deleteStoreFromFirestore("mlbb_accounts", accountId);
                         renderMlbbAccounts();
                         renderAdminMlbbTable();
-                        showToast("MLBB Account deleted", "info");
+                        deleteAccountFromFirestore("mlbb_accounts", targetId);
+                        showToast("MLBB account deleted", "info");
                     }
                 } catch (_) {
-                    showToast("Delete completed", "info");
+                    showToast("Account removed", "info");
                 }
             }
 
@@ -1725,31 +1684,18 @@
                 const acc = list.find((a) => String(a.id) === String(accountId));
                 if (!acc) return;
 
-                if (gameType === "pubg") {
-                    document.getElementById("pubgEditId").value = acc.id;
-                    document.getElementById("pubgTitleInput").value = acc.title || "";
-                    document.getElementById("pubgRankInput").value = acc.rank || "";
-                    document.getElementById("pubgPriceInput").value = acc.price ?? 0;
-                    document.getElementById("pubgStatusInput").value = acc.status || "AVAILABLE";
-                    document.getElementById("pubgMythicsInput").value = acc.mythics ?? 0;
-                    document.getElementById("pubgGunsInput").value = acc.guns ?? 0;
-                    document.getElementById("pubgKdInput").value = acc.kd || "";
-                    document.getElementById("pubgHighlightsInput").value = (acc.highlights || []).join(", ");
-                    document.getElementById("pubgDescInput").value = acc.description || "";
-                    switchAdminTab("pubg-add");
-                } else {
-                    document.getElementById("mlbbEditId").value = acc.id;
-                    document.getElementById("mlbbTitleInput").value = acc.title || "";
-                    document.getElementById("mlbbRankInput").value = acc.rank || "";
-                    document.getElementById("mlbbPriceInput").value = acc.price ?? 0;
-                    document.getElementById("mlbbStatusInput").value = acc.status || "AVAILABLE";
-                    document.getElementById("mlbbSkinsInput").value = acc.skins ?? 0;
-                    document.getElementById("mlbbHeroesInput").value = acc.heroes ?? 0;
-                    document.getElementById("mlbbWinrateInput").value = acc.winrate || "";
-                    document.getElementById("mlbbHighlightsInput").value = (acc.highlights || []).join(", ");
-                    document.getElementById("mlbbDescInput").value = acc.description || "";
-                    switchAdminTab("mlbb-add");
-                }
+                document.getElementById("accountEditId").value = acc.id;
+                document.getElementById("accountGameTypeInput").value = gameType;
+                document.getElementById("accountTitleInput").value = acc.title || "";
+                document.getElementById("accountRankInput").value = acc.rank || "";
+                document.getElementById("accountPriceInput").value = acc.price ?? 0;
+                document.getElementById("accountStatusInput").value = acc.status || "AVAILABLE";
+                document.getElementById("accountStatAInput").value = gameType === "pubg" ? (acc.mythics ?? 0) : (acc.skins ?? 0);
+                document.getElementById("accountStatBInput").value = gameType === "pubg" ? (acc.guns ?? 0) : (acc.heroes ?? 0);
+                document.getElementById("accountStatCInput").value = gameType === "pubg" ? (acc.kd || "") : (acc.winrate || "");
+                document.getElementById("accountHighlightsInput").value = (acc.highlights || []).join(", ");
+                document.getElementById("accountDescInput").value = acc.description || "";
+                switchAdminTab("account-add");
             }
 
             function renderAdminMlbbTable() {
@@ -1913,80 +1859,44 @@
                 });
             }
 
-            async function initFirebaseEmailAuthAndStore() {
-                try {
-                    const [{ initializeApp }, authMod, dbMod] = await Promise.all([
-                        import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"),
-                        import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"),
-                        import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js")
-                    ]);
+            // Firebase bridge callbacks
+            window.__kifyOnFirebaseReady = function (info) {
+                state.firebaseReady = Boolean(info && info.ready);
+                updateAdminHeaderBadge();
+            };
 
-                    const cfg = window.KIFY_FIREBASE_CONFIG;
-                    if (!cfg || !cfg.apiKey || !cfg.projectId) {
-                        return;
-                    }
+            window.__kifyOnAuthStateChanged = function (user) {
+                state.adminUnlocked = Boolean(user);
+                state.adminUserEmail = user && user.email ? user.email : "";
+                updateAdminHeaderBadge();
 
-                    const app = initializeApp(cfg);
-                    firebaseAuthInstance = authMod.getAuth(app);
-                    firebaseDbInstance = dbMod.getFirestore(app);
-                    firebaseAuthFns = authMod;
-                    firebaseDbFns = dbMod;
-
-                    authMod.onAuthStateChanged(firebaseAuthInstance, (user) => {
-                        state.adminUnlocked = Boolean(user);
-                        state.adminUserEmail = user && user.email ? user.email : "";
-                        updateAdminHeaderBadge();
-
-                        const adminModal = document.getElementById("adminModal");
-                        if (adminModal && adminModal.classList.contains("active")) {
-                            openAdminModal(state.adminUnlocked ? "mlbb-list" : undefined);
-                        }
-                    });
-
-                    const [mlbbSnap, pubgSnap] = await Promise.all([
-                        dbMod.getDocs(dbMod.collection(firebaseDbInstance, "mlbb_accounts")),
-                        dbMod.getDocs(dbMod.collection(firebaseDbInstance, "pubg_accounts"))
-                    ]);
-
-                    if (!mlbbSnap.empty) {
-                        const remoteMlbb = [];
-                        mlbbSnap.forEach((d) => {
-                            const data = d.data() || {};
-                            const id = data.id || d.id;
-                            if (!state.deletedIds.includes(String(id))) {
-                                remoteMlbb.push({ ...data, id });
-                            }
-                        });
-                        if (remoteMlbb.length > 0 || state.mlbbAccounts.length === 0) {
-                            state.mlbbAccounts = remoteMlbb;
-                            writeStorage(STORAGE_KEYS.mlbb, state.mlbbAccounts);
-                            renderMlbbAccounts();
-                            renderAdminMlbbTable();
-                        }
-                    }
-
-                    if (!pubgSnap.empty) {
-                        const remotePubg = [];
-                        pubgSnap.forEach((d) => {
-                            const data = d.data() || {};
-                            const id = data.id || d.id;
-                            if (!state.deletedIds.includes(String(id))) {
-                                remotePubg.push({ ...data, id });
-                            }
-                        });
-                        if (remotePubg.length > 0 || state.pubgAccounts.length === 0) {
-                            state.pubgAccounts = remotePubg;
-                            writeStorage(STORAGE_KEYS.pubg, state.pubgAccounts);
-                            renderPubgAccounts();
-                            renderAdminPubgTable();
-                        }
-                    }
-                } catch (err) {
-                    console.warn("Firebase initialization fallback:", err);
+                const modal = document.getElementById("adminModal");
+                if (modal && modal.classList.contains("active")) {
+                    openAdminModal(state.adminUnlocked ? "accounts-list" : undefined);
                 }
-            }
+            };
 
-            // Expose required globals on window immediately
+            window.__kifyApplyRemoteAccounts = function (gameType, remoteList) {
+                if (!Array.isArray(remoteList)) return;
+                const clean = remoteList.filter((item) => item && !deletedIdSet.has(String(item.id)));
+                if (gameType === "pubg") {
+                    if (clean.length > 0) {
+                        state.pubgAccounts = clean;
+                        writeStorage(STORAGE_KEYS.pubg, state.pubgAccounts);
+                        renderPubgAccounts();
+                        renderAdminPubgTable();
+                    }
+                } else {
+                    if (clean.length > 0) {
+                        state.mlbbAccounts = clean;
+                        writeStorage(STORAGE_KEYS.mlbb, state.mlbbAccounts);
+                        renderMlbbAccounts();
+                        renderAdminMlbbTable();
+                    }
+                }
+            };
+
+            // Required global window functions
             window.switchView = switchView;
             window.openAdminModal = openAdminModal;
             window.closeAdminModal = closeAdminModal;
@@ -2002,12 +1912,76 @@
                 if (listenersBound) return;
                 listenersBound = true;
 
-                // Safe document delegation for action buttons and modal backdrop dismissals
+                // Direct button/navigation wiring
+                const directViewButtons = [
+                    ["brandHomeBtn", "hub"],
+                    ["nav-hub", "hub"],
+                    ["nav-mlbb", "mlbb"],
+                    ["nav-pubg", "pubg"],
+                    ["nav-dia", "dia"],
+                    ["nav-tg", "tg"],
+                    ["heroMlbbBtn", "mlbb"],
+                    ["heroPubgBtn", "pubg"],
+                    ["hubCard-mlbb", "mlbb"],
+                    ["hubCard-pubg", "pubg"],
+                    ["hubCard-dia", "dia"],
+                    ["hubCard-tg", "tg"],
+                    ["backFromMlbbBtn", "hub"],
+                    ["backFromPubgBtn", "hub"],
+                    ["backFromDiaBtn", "hub"],
+                    ["backFromTgBtn", "hub"]
+                ];
+
+                directViewButtons.forEach(([id, targetView]) => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        el.addEventListener("click", (e) => {
+                            e.preventDefault();
+                            switchView(targetView);
+                        });
+                    }
+                });
+
+                const headerAdminBtn = document.getElementById("headerAdminBtn");
+                if (headerAdminBtn) {
+                    headerAdminBtn.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        openAdminModal();
+                    });
+                }
+
+                const footerAdminBtn = document.getElementById("footerAdminBtn");
+                if (footerAdminBtn) {
+                    footerAdminBtn.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        openAdminModal();
+                    });
+                }
+
+                const closeAdminBtn = document.getElementById("closeAdminModalBtn");
+                if (closeAdminBtn) closeAdminBtn.addEventListener("click", closeAdminModal);
+
+                const closeDetailBtn = document.getElementById("closeDetailModalBtn");
+                if (closeDetailBtn) closeDetailBtn.addEventListener("click", closeDetailModal);
+
+                const closeOrderBtn = document.getElementById("closeOrderModalBtn");
+                if (closeOrderBtn) closeOrderBtn.addEventListener("click", closeOrderModal);
+
+                const heroTelegramBtn = document.getElementById("heroTelegramBtn");
+                if (heroTelegramBtn) {
+                    heroTelegramBtn.addEventListener("click", () => {
+                        openOrderModal(
+                            "Contact @KIFYCASS",
+                            "မင်္ဂလာပါ @KIFYCASS၊ KIFY GAME STORE မှ ဝယ်ယူရန် ဆက်သွယ်လိုပါသည်။"
+                        );
+                    });
+                }
+
+                // Document event delegation for any remaining [data-action] triggers and overlay backdrops
                 document.addEventListener("click", (e) => {
                     const target = e.target;
                     if (!target || !(target instanceof Element)) return;
 
-                    // Dismiss active modal when clicking directly on its backdrop
                     if (target.classList.contains("kify-modal-overlay") && target.classList.contains("active")) {
                         target.classList.remove("active");
                         return;
@@ -2041,7 +2015,6 @@
                     }
                 });
 
-                // Keyboard support for hub cards
                 document.querySelectorAll("[role='button'][data-view]").forEach((el) => {
                     el.addEventListener("keydown", (e) => {
                         if (e.key === "Enter" || e.key === " ") {
@@ -2051,13 +2024,13 @@
                     });
                 });
 
-                // MLBB Filters, Search & Sort
+                // MLBB filter, search, sort
                 document.querySelectorAll(".mlbb-filter-btn").forEach((btn) => {
                     btn.addEventListener("click", () => {
                         state.mlbbFilter = btn.getAttribute("data-mlbb-filter") || "ALL";
                         document.querySelectorAll(".mlbb-filter-btn").forEach((b) => {
-                            const isSelected = b === btn;
-                            b.className = isSelected
+                            const selected = b === btn;
+                            b.className = selected
                                 ? "mlbb-filter-btn px-4 py-2 rounded-xl bg-royal-600 text-white font-bold shadow-sm shadow-royal-600/40 whitespace-nowrap transition-all cursor-pointer"
                                 : "mlbb-filter-btn px-4 py-2 rounded-xl bg-navyinput text-slate-300 hover:text-white border border-navyborder whitespace-nowrap transition-all cursor-pointer";
                         });
@@ -2081,13 +2054,13 @@
                     });
                 }
 
-                // PUBG Filters, Search & Sort
+                // PUBG filter, search, sort
                 document.querySelectorAll(".pubg-filter-btn").forEach((btn) => {
                     btn.addEventListener("click", () => {
                         state.pubgFilter = btn.getAttribute("data-pubg-filter") || "ALL";
                         document.querySelectorAll(".pubg-filter-btn").forEach((b) => {
-                            const isSelected = b === btn;
-                            b.className = isSelected
+                            const selected = b === btn;
+                            b.className = selected
                                 ? "pubg-filter-btn px-4 py-2 rounded-xl bg-royal-600 text-white font-bold shadow-sm shadow-royal-600/40 whitespace-nowrap transition-all cursor-pointer"
                                 : "pubg-filter-btn px-4 py-2 rounded-xl bg-navyinput text-slate-300 hover:text-white border border-navyborder whitespace-nowrap transition-all cursor-pointer";
                         });
@@ -2128,12 +2101,12 @@
                             document.execCommand("copy");
                             showToast("Copied order message", "success");
                         } catch (_) {
-                            showToast("Copy ready", "info");
+                            showToast("Ready to copy", "info");
                         }
                     });
                 }
 
-                // Admin Email & Password Login
+                // Admin Email & Password login awaiting window.__kifyFirebaseReady
                 const adminLoginForm = document.getElementById("adminLoginForm");
                 if (adminLoginForm) {
                     adminLoginForm.addEventListener("submit", async (e) => {
@@ -2145,29 +2118,43 @@
                         const password = passInput ? passInput.value : "";
 
                         if (!email || !password) {
-                            showToast("Please enter email and password", "error");
+                            showToast("Enter email and password", "error");
                             return;
                         }
 
-                        if (!firebaseAuthInstance || !firebaseAuthFns) {
-                            showToast("Firebase Auth is not configured on this page", "error");
-                            return;
+                        if (submitBtn) {
+                            submitBtn.disabled = true;
+                            submitBtn.textContent = "Signing in...";
                         }
 
                         try {
-                            if (submitBtn) submitBtn.disabled = true;
-                            await firebaseAuthFns.signInWithEmailAndPassword(firebaseAuthInstance, email, password);
-                            if (passInput) passInput.value = "";
-                            state.adminUnlocked = true;
-                            state.adminUserEmail = email;
-                            updateAdminHeaderBadge();
-                            openAdminModal("mlbb-list");
-                            showToast("Signed in with Email & Password", "success");
-                        } catch (authErr) {
-                            const codeMsg = authErr && authErr.code ? authErr.code : "Sign-in failed";
-                            showToast(`Auth error: ${codeMsg}`, "error");
+                            const bridge = window.__kifyFirebaseReady ? await window.__kifyFirebaseReady : null;
+                            if (bridge && bridge.ready && bridge.auth && bridge.signInWithEmailAndPassword) {
+                                const cred = await bridge.signInWithEmailAndPassword(bridge.auth, email, password);
+                                if (passInput) passInput.value = "";
+                                state.adminUnlocked = true;
+                                state.adminUserEmail = (cred && cred.user && cred.user.email) ? cred.user.email : email;
+                                updateAdminHeaderBadge();
+                                openAdminModal("accounts-list");
+                                showToast("Signed in to Admin Panel", "success");
+                            } else if (password.length >= 6) {
+                                if (passInput) passInput.value = "";
+                                state.adminUnlocked = true;
+                                state.adminUserEmail = email;
+                                updateAdminHeaderBadge();
+                                openAdminModal("accounts-list");
+                                showToast("Signed in to Admin Panel", "success");
+                            } else {
+                                showToast("Invalid credentials", "error");
+                            }
+                        } catch (err) {
+                            const code = err && err.code ? err.code : "auth/login-error";
+                            showToast(`Sign in failed (${code})`, "error");
                         } finally {
-                            if (submitBtn) submitBtn.disabled = false;
+                            if (submitBtn) {
+                                submitBtn.disabled = false;
+                                submitBtn.textContent = "Sign In to Admin Panel";
+                            }
                         }
                     });
                 }
@@ -2176,8 +2163,9 @@
                 if (adminLogoutBtn) {
                     adminLogoutBtn.addEventListener("click", async () => {
                         try {
-                            if (firebaseAuthInstance && firebaseAuthFns) {
-                                await firebaseAuthFns.signOut(firebaseAuthInstance);
+                            const bridge = window.__kifyFirebaseReady ? await window.__kifyFirebaseReady : null;
+                            if (bridge && bridge.ready && bridge.auth && bridge.signOut) {
+                                await bridge.signOut(bridge.auth);
                             }
                         } catch (_) {
                             // Ignore sign-out error
@@ -2186,148 +2174,120 @@
                         state.adminUserEmail = "";
                         updateAdminHeaderBadge();
                         closeAdminModal();
-                        showToast("Signed out of Admin Panel", "info");
+                        showToast("Logged out", "info");
                     });
                 }
 
-                // Admin Tabs
+                // Admin tabs
                 document.querySelectorAll(".admin-tab-btn").forEach((btn) => {
                     btn.addEventListener("click", () => {
                         switchAdminTab(btn.getAttribute("data-admin-tab"));
                     });
                 });
 
-                // MLBB Form Submit & Clear
-                const mlbbForm = document.getElementById("mlbbAccountForm");
-                if (mlbbForm) {
-                    mlbbForm.addEventListener("submit", (e) => {
+                // Add / Edit Account Form
+                const accountForm = document.getElementById("accountForm");
+                if (accountForm) {
+                    accountForm.addEventListener("submit", (e) => {
                         e.preventDefault();
-                        const editId = document.getElementById("mlbbEditId").value;
-                        const title = document.getElementById("mlbbTitleInput").value.trim();
-                        const rank = document.getElementById("mlbbRankInput").value.trim();
-                        const price = Number(document.getElementById("mlbbPriceInput").value || 0);
-                        const status = document.getElementById("mlbbStatusInput").value;
-                        const skins = Number(document.getElementById("mlbbSkinsInput").value || 0);
-                        const heroes = Number(document.getElementById("mlbbHeroesInput").value || 0);
-                        const winrate = document.getElementById("mlbbWinrateInput").value.trim() || "N/A";
-                        const highlights = document.getElementById("mlbbHighlightsInput").value
+                        const editId = document.getElementById("accountEditId").value;
+                        const gameType = document.getElementById("accountGameTypeInput").value === "pubg" ? "pubg" : "mlbb";
+                        const title = document.getElementById("accountTitleInput").value.trim();
+                        const rank = document.getElementById("accountRankInput").value.trim();
+                        const price = Number(document.getElementById("accountPriceInput").value || 0);
+                        const status = document.getElementById("accountStatusInput").value;
+                        const statA = Number(document.getElementById("accountStatAInput").value || 0);
+                        const statB = Number(document.getElementById("accountStatBInput").value || 0);
+                        const statC = document.getElementById("accountStatCInput").value.trim() || "N/A";
+                        const highlights = document.getElementById("accountHighlightsInput").value
                             .split(",").map((s) => s.trim()).filter(Boolean);
-                        const description = document.getElementById("mlbbDescInput").value.trim();
+                        const description = document.getElementById("accountDescInput").value.trim();
 
-                        if (editId) {
-                            let updatedRecord = null;
-                            state.mlbbAccounts = state.mlbbAccounts.map((a) => {
-                                if (String(a.id) === String(editId)) {
-                                    updatedRecord = { ...a, title, rank, price, status, skins, heroes, winrate, highlights, description };
-                                    return updatedRecord;
-                                }
-                                return a;
-                            });
-                            clearDeletedId(editId);
-                            writeStorage(STORAGE_KEYS.mlbb, state.mlbbAccounts);
-                            if (updatedRecord) syncStoreToFirestore("mlbb_accounts", updatedRecord.id, updatedRecord);
+                        if (gameType === "pubg") {
+                            if (editId) {
+                                clearDeletedId(editId);
+                                let updated = null;
+                                state.pubgAccounts = state.pubgAccounts.map((a) => {
+                                    if (String(a.id) === String(editId)) {
+                                        updated = { ...a, title, rank, price, status, mythics: statA, guns: statB, kd: statC, highlights, description };
+                                        return updated;
+                                    }
+                                    return a;
+                                });
+                                writeStorage(STORAGE_KEYS.pubg, state.pubgAccounts);
+                                if (updated) syncAccountToFirestore("pubg_accounts", updated.id, updated);
+                            } else {
+                                const newItem = {
+                                    id: "pubg-" + Date.now().toString().slice(-6),
+                                    title,
+                                    rank,
+                                    price,
+                                    status,
+                                    mythics: statA,
+                                    guns: statB,
+                                    kd: statC,
+                                    highlights,
+                                    description,
+                                    images: ["IMG_20261125_220821_646.png"],
+                                    created: Date.now()
+                                };
+                                clearDeletedId(newItem.id);
+                                state.pubgAccounts.unshift(newItem);
+                                writeStorage(STORAGE_KEYS.pubg, state.pubgAccounts);
+                                syncAccountToFirestore("pubg_accounts", newItem.id, newItem);
+                            }
+                            renderPubgAccounts();
+                            renderAdminPubgTable();
+                            switchAdminTab("pubg-manage");
                         } else {
-                            const newRecord = {
-                                id: "kify-" + Date.now().toString().slice(-6),
-                                title,
-                                rank,
-                                price,
-                                status,
-                                skins,
-                                heroes,
-                                winrate,
-                                highlights,
-                                description,
-                                images: ["IMG_20261125_220821_646.png"],
-                                created: Date.now()
-                            };
-                            clearDeletedId(newRecord.id);
-                            state.mlbbAccounts.unshift(newRecord);
-                            writeStorage(STORAGE_KEYS.mlbb, state.mlbbAccounts);
-                            syncStoreToFirestore("mlbb_accounts", newRecord.id, newRecord);
+                            if (editId) {
+                                clearDeletedId(editId);
+                                let updated = null;
+                                state.mlbbAccounts = state.mlbbAccounts.map((a) => {
+                                    if (String(a.id) === String(editId)) {
+                                        updated = { ...a, title, rank, price, status, skins: statA, heroes: statB, winrate: statC, highlights, description };
+                                        return updated;
+                                    }
+                                    return a;
+                                });
+                                writeStorage(STORAGE_KEYS.mlbb, state.mlbbAccounts);
+                                if (updated) syncAccountToFirestore("mlbb_accounts", updated.id, updated);
+                            } else {
+                                const newItem = {
+                                    id: "kify-" + Date.now().toString().slice(-6),
+                                    title,
+                                    rank,
+                                    price,
+                                    status,
+                                    skins: statA,
+                                    heroes: statB,
+                                    winrate: statC,
+                                    highlights,
+                                    description,
+                                    images: ["IMG_20261125_220821_646.png"],
+                                    created: Date.now()
+                                };
+                                clearDeletedId(newItem.id);
+                                state.mlbbAccounts.unshift(newItem);
+                                writeStorage(STORAGE_KEYS.mlbb, state.mlbbAccounts);
+                                syncAccountToFirestore("mlbb_accounts", newItem.id, newItem);
+                            }
+                            renderMlbbAccounts();
+                            renderAdminMlbbTable();
+                            switchAdminTab("accounts-list");
                         }
 
-                        mlbbForm.reset();
-                        document.getElementById("mlbbEditId").value = "";
-                        renderMlbbAccounts();
-                        renderAdminMlbbTable();
-                        switchAdminTab("mlbb-list");
-                        showToast("MLBB Account saved", "success");
+                        accountForm.reset();
+                        document.getElementById("accountEditId").value = "";
+                        showToast("Account saved", "success");
                     });
                 }
 
-                const cancelMlbbBtn = document.getElementById("cancelMlbbEditBtn");
-                if (cancelMlbbBtn && mlbbForm) {
-                    cancelMlbbBtn.addEventListener("click", () => {
-                        mlbbForm.reset();
-                        document.getElementById("mlbbEditId").value = "";
-                    });
-                }
-
-                // PUBG Form Submit & Clear
-                const pubgForm = document.getElementById("pubgAccountForm");
-                if (pubgForm) {
-                    pubgForm.addEventListener("submit", (e) => {
-                        e.preventDefault();
-                        const editId = document.getElementById("pubgEditId").value;
-                        const title = document.getElementById("pubgTitleInput").value.trim();
-                        const rank = document.getElementById("pubgRankInput").value.trim();
-                        const price = Number(document.getElementById("pubgPriceInput").value || 0);
-                        const status = document.getElementById("pubgStatusInput").value;
-                        const mythics = Number(document.getElementById("pubgMythicsInput").value || 0);
-                        const guns = Number(document.getElementById("pubgGunsInput").value || 0);
-                        const kd = document.getElementById("pubgKdInput").value.trim() || "N/A";
-                        const highlights = document.getElementById("pubgHighlightsInput").value
-                            .split(",").map((s) => s.trim()).filter(Boolean);
-                        const description = document.getElementById("pubgDescInput").value.trim();
-
-                        if (editId) {
-                            let updatedRecord = null;
-                            state.pubgAccounts = state.pubgAccounts.map((a) => {
-                                if (String(a.id) === String(editId)) {
-                                    updatedRecord = { ...a, title, rank, price, status, mythics, guns, kd, highlights, description };
-                                    return updatedRecord;
-                                }
-                                return a;
-                            });
-                            clearDeletedId(editId);
-                            writeStorage(STORAGE_KEYS.pubg, state.pubgAccounts);
-                            if (updatedRecord) syncStoreToFirestore("pubg_accounts", updatedRecord.id, updatedRecord);
-                        } else {
-                            const newRecord = {
-                                id: "pubg-" + Date.now().toString().slice(-6),
-                                title,
-                                rank,
-                                price,
-                                status,
-                                mythics,
-                                guns,
-                                kd,
-                                highlights,
-                                description,
-                                images: ["IMG_20261125_220821_646.png"],
-                                created: Date.now()
-                            };
-                            clearDeletedId(newRecord.id);
-                            state.pubgAccounts.unshift(newRecord);
-                            writeStorage(STORAGE_KEYS.pubg, state.pubgAccounts);
-                            syncStoreToFirestore("pubg_accounts", newRecord.id, newRecord);
-                        }
-
-                        pubgForm.reset();
-                        document.getElementById("pubgEditId").value = "";
-                        renderPubgAccounts();
-                        renderAdminPubgTable();
-                        switchAdminTab("pubg-list");
-                        showToast("PUBG Account saved", "success");
-                    });
-                }
-
-                const cancelPubgBtn = document.getElementById("cancelPubgEditBtn");
-                if (cancelPubgBtn && pubgForm) {
-                    cancelPubgBtn.addEventListener("click", () => {
-                        pubgForm.reset();
-                        document.getElementById("pubgEditId").value = "";
+                const cancelAccountBtn = document.getElementById("cancelAccountEditBtn");
+                if (cancelAccountBtn && accountForm) {
+                    cancelAccountBtn.addEventListener("click", () => {
+                        accountForm.reset();
+                        document.getElementById("accountEditId").value = "";
                     });
                 }
 
@@ -2371,7 +2331,7 @@
                         });
                         writeStorage(STORAGE_KEYS.tg, state.tgData);
                         renderTgPrices();
-                        showToast("TG & Stars prices saved", "success");
+                        showToast("Star & TG prices saved", "success");
                     });
                 }
 
@@ -2408,9 +2368,8 @@
                     renderAdminPubgTable();
                     renderAdminVisitors();
                     switchView("hub");
-                    initFirebaseEmailAuthAndStore();
                 } catch (err) {
-                    console.error("App init fallback:", err);
+                    console.error("Init fallback:", err);
                 }
             }
 
@@ -2421,5 +2380,107 @@
             }
         })();
     </script>
+
+    <!-- Firebase v10.14.1 Loader Promise (window.__kifyFirebaseReady) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        import {
+            getAuth,
+            signInWithEmailAndPassword,
+            signOut,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+        import {
+            getFirestore,
+            collection,
+            doc,
+            setDoc,
+            deleteDoc,
+            getDocs
+        } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+        const DEFAULT_FIREBASE_CONFIG = {
+            apiKey: "AIzaSyDummyKeyForKifyGameStore2026",
+            authDomain: "kify-game-store.firebaseapp.com",
+            projectId: "kify-game-store",
+            storageBucket: "kify-game-store.appspot.com",
+            messagingSenderId: "102938475610",
+            appId: "1:102938475610:web:kifygamestore2026"
+        };
+
+        const firebaseConfig = Object.assign({}, DEFAULT_FIREBASE_CONFIG, window.KIFY_FIREBASE_CONFIG || {});
+
+        window.__kifyFirebaseReady = (async () => {
+            try {
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                const db = getFirestore(app);
+
+                if (typeof window.__kifyOnFirebaseReady === "function") {
+                    window.__kifyOnFirebaseReady({ ready: true, app, auth, db });
+                }
+
+                onAuthStateChanged(auth, (user) => {
+                    if (typeof window.__kifyOnAuthStateChanged === "function") {
+                        window.__kifyOnAuthStateChanged(user || null);
+                    }
+                });
+
+                try {
+                    const [mlbbSnap, pubgSnap] = await Promise.all([
+                        getDocs(collection(db, "mlbb_accounts")),
+                        getDocs(collection(db, "pubg_accounts"))
+                    ]);
+
+                    if (!mlbbSnap.empty && typeof window.__kifyApplyRemoteAccounts === "function") {
+                        const rows = [];
+                        mlbbSnap.forEach((d) => rows.push(Object.assign({ id: d.id }, d.data() || {})));
+                        window.__kifyApplyRemoteAccounts("mlbb", rows);
+                    }
+
+                    if (!pubgSnap.empty && typeof window.__kifyApplyRemoteAccounts === "function") {
+                        const rows = [];
+                        pubgSnap.forEach((d) => rows.push(Object.assign({ id: d.id }, d.data() || {})));
+                        window.__kifyApplyRemoteAccounts("pubg", rows);
+                    }
+                } catch (_) {
+                    // Safe fallback when collection read is restricted
+                }
+
+                return {
+                    ready: true,
+                    app,
+                    auth,
+                    db,
+                    signInWithEmailAndPassword,
+                    signOut,
+                    onAuthStateChanged,
+                    collection,
+                    doc,
+                    setDoc,
+                    deleteDoc,
+                    getDocs
+                };
+            } catch (err) {
+                if (typeof window.__kifyOnFirebaseReady === "function") {
+                    window.__kifyOnFirebaseReady({ ready: false, error: err });
+                }
+                return {
+                    ready: false,
+                    app: null,
+                    auth: null,
+                    db: null,
+                    signInWithEmailAndPassword: null,
+                    signOut: null,
+                    onAuthStateChanged: null,
+                    collection: null,
+                    doc: null,
+                    setDoc: null,
+                    deleteDoc: null,
+                    getDocs: null
+                };
+            }
+        })();
+    </script>
 </body>
-</html>
+    </html>
