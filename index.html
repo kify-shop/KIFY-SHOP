@@ -1,1 +1,2624 @@
+<!DOCTYPE html>
+<html lang="my" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIFY GAME SHOP - MLBB VIP Account Center</title>
+    <link rel="icon" type="image/jpeg" href="IMG_20261123_150211_100.jpg">
+    <link rel="apple-touch-icon" href="IMG_20261123_150211_100.jpg">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Pyidaungsu & Inter & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Padauk:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            glow: '#ffd700',
+                            accent: '#e6c666'
+                        },
+                        darkbg: '#0a0b0e',
+                        darkcard: '#12141d',
+                        darkborder: '#232736',
+                        darkinput: '#1a1d2b'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Padauk', 'sans-serif'],
+                        display: ['Montserrat', 'Padauk', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #08090c;
+            color: #e2e8f0;
+            font-family: 'Plus Jakarta Sans', 'Padauk', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Gold Gradient Effects */
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fff2a3 0%, #f59e0b 50%, #b45309 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #fbbf24 0%, #d97706 60%, #78350f 100%);
+        }
+
+        .gold-gradient-btn {
+            background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 50%, #d97706 100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .gold-gradient-btn:hover {
+            background: linear-gradient(135deg, #ffe082 0%, #fbbf24 50%, #b45309 100%);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+
+        .gold-border-glow {
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.1);
+        }
+        .gold-border-glow:hover {
+            border-color: rgba(251, 191, 36, 0.7);
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.25);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d0f17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d97706;
+            border-radius: 4px;
+        }
+
+        .glass-panel {
+            background: rgba(18, 20, 29, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Coin Emblem Animation */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(251, 191, 36, 0.8); }
+        }
+
+        .coin-glow {
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        @keyframes heroFloatShimmer {
+            0%, 100% {
+                transform: translateY(0px);
+                filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.25));
+            }
+            50% {
+                transform: translateY(-6px);
+                filter: drop-shadow(0 0 18px rgba(251, 191, 36, 0.55));
+            }
+        }
+
+        @keyframes goldShineSweep {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hero-vip-float {
+            background: linear-gradient(110deg, #b45309 0%, #f59e0b 25%, #fff7b2 50%, #fbbf24 75%, #b45309 100%);
+            background-size: 220% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: heroFloatShimmer 3.2s ease-in-out infinite, goldShineSweep 4.5s linear infinite;
+            will-change: transform, filter, background-position;
+        }
+
+        @keyframes borderLightOrbit {
+            0% {
+                --border-angle: 0deg;
+            }
+            100% {
+                --border-angle: 360deg;
+            }
+        }
+
+        @property --border-angle {
+            syntax: "<angle>";
+            inherits: true;
+            initial-value: 0deg;
+        }
+
+        .hero-light-border {
+            position: relative;
+            z-index: 1;
+            border: 1.5px solid transparent;
+            background:
+                linear-gradient(90deg, rgba(18, 20, 29, 0.96) 0%, rgba(10, 11, 14, 0.96) 55%, rgba(69, 26, 3, 0.55) 100%) padding-box,
+                conic-gradient(
+                    from var(--border-angle, 0deg),
+                    rgba(245, 158, 11, 0.14) 0deg,
+                    rgba(251, 191, 36, 0.25) 45deg,
+                    rgba(255, 247, 178, 0.95) 85deg,
+                    rgba(251, 191, 36, 0.85) 115deg,
+                    rgba(245, 158, 11, 0.15) 165deg,
+                    rgba(180, 83, 9, 0.12) 260deg,
+                    rgba(255, 242, 163, 0.75) 315deg,
+                    rgba(245, 158, 11, 0.14) 360deg
+                ) border-box;
+            animation: borderLightOrbit 4.5s linear infinite;
+            box-shadow: 0 0 22px rgba(245, 158, 11, 0.14);
+        }
+
+        .hero-light-border::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            background: conic-gradient(
+                from var(--border-angle, 0deg),
+                transparent 0deg,
+                transparent 65deg,
+                rgba(255, 247, 178, 0.5) 95deg,
+                transparent 130deg,
+                transparent 295deg,
+                rgba(251, 191, 36, 0.35) 320deg,
+                transparent 360deg
+            );
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 2px;
+            filter: blur(5px);
+            pointer-events: none;
+            z-index: -1;
+            animation: borderLightOrbit 4.5s linear infinite;
+        }
+
+        @keyframes splashCardFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .splash-entry-card {
+            animation: splashCardFloat 3.6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-amber-500/20 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- BRAND LOGO WITH UPLOADED IMAGE -->
+            <div class="flex items-center gap-3 cursor-pointer" onclick="showEntryGateway()">
+                <div class="relative w-12 h-12 rounded-full overflow-hidden coin-glow flex-shrink-0 border border-amber-400/60 bg-darkbg">
+                    <img src="IMG_20261123_150211_100.jpg" alt="KIFY GAME SHOP Logo" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold tracking-wider gold-gradient-text flex items-center gap-1.5 font-display">
+                        KIFY GAME SHOP
+                    </h1>
+                </div>
+            </div>
+
+            <!-- SEARCH BAR (DESKTOP) -->
+            <div class="hidden md:flex flex-1 max-w-md mx-4 relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-amber-500/70 text-sm"></i>
+                <input type="text" id="searchInputDesktop" onkeyup="filterAccounts()" placeholder="Account Code, High Rank, Star, Skin ရှာဖွေပါ..." 
+                    class="w-full bg-darkinput/90 border border-darkborder focus:border-amber-500 text-sm rounded-full pl-10 pr-4 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-all">
+            </div>
+
+            <!-- ACTIONS -->
+            <div class="flex items-center gap-2.5">
+                <a href="https://t.me/KIFYCASS" target="_blank" rel="noopener noreferrer" 
+                    class="hidden sm:flex items-center gap-2 bg-sky-600/20 hover:bg-sky-600/30 text-sky-400 border border-sky-500/30 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all">
+                    <i class="fa-brands fa-telegram text-base text-sky-400"></i>
+                    <span>Telegram Contact</span>
+                </a>
+
+                <button id="headerAdminBtn" onclick="openAdminModal()" 
+                    class="hidden items-center gap-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all">
+                    <i class="fa-solid fa-user-shield text-sm"></i>
+                    <span id="adminBtnText">Admin Panel</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- SEARCH BAR (MOBILE) -->
+        <div class="md:hidden px-4 pb-3">
+            <div class="relative w-full">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-amber-500/70 text-sm"></i>
+                <input type="text" id="searchInputMobile" onkeyup="filterAccountsMobile()" placeholder="Account Code, High Rank, Star, Skin ရှာရန်..." 
+                    class="w-full bg-darkinput border border-darkborder focus:border-amber-500 text-sm rounded-full pl-10 pr-4 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-amber-500">
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+
+        <!-- ENTRY GATEWAY / SPLASH VIEW -->
+        <section id="entryGateway" class="py-6 sm:py-10 flex flex-col items-center justify-center gap-6">
+            <!-- Card 1: Mobile Legend Accounts -->
+            <div class="splash-entry-card w-full max-w-2xl rounded-3xl hero-light-border p-6 sm:p-8 text-center space-y-6">
+                <div class="relative w-full h-52 sm:h-64 rounded-2xl overflow-hidden border border-amber-500/40 bg-darkbg shadow-xl">
+                    <img id="mlbbSplashImg" src="53129ee050d008e49b174d49e2e488e3.jpg" alt="Mobile Legends Account Banner"
+                        onerror="if(!this.dataset.f1){this.dataset.f1=1;this.src='1000001942_2.jpg';}else if(!this.dataset.f2){this.dataset.f2=1;this.src='IMG_20261123_150211_100.jpg';}"
+                        class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none"></div>
+                    <span class="absolute bottom-3 left-3 bg-amber-500/20 text-amber-300 border border-amber-400/40 text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-sm">
+                        <i class="fa-solid fa-gamepad mr-1"></i> MOBILE LEGENDS VIP CENTER
+                    </span>
+                </div>
+
+                <div class="space-y-2">
+                    <h2 class="text-xl sm:text-2xl font-extrabold hero-vip-float font-display">
+                        Mobile Legend အကောင့်များကြည့်ရန်
+                    </h2>
+                    <p class="text-xs sm:text-sm text-gray-400">
+                        ရောင်းချရန် အသင့်ရှိသော Account စာရင်းများကို ကြည့်ရှုရန် အောက်ပါခလုတ်ကို နှိပ်ပါ
+                    </p>
+                </div>
+
+                <div class="flex items-center justify-center pt-1">
+                    <button type="button" onclick="enterStorefront()"
+                        class="w-full sm:w-auto px-6 py-3.5 rounded-2xl gold-gradient-btn text-black font-extrabold text-sm shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                        <span>Mobile Legend အကောင့်များကြည့်ရန်</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Row of 2 Cards: MLBB Dia Prices & Star + TG Premium Prices -->
+            <div class="w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Card 2: MLBB Dia Prices -->
+                <div class="splash-entry-card w-full rounded-3xl hero-light-border p-5 sm:p-6 text-center space-y-5 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden border border-amber-500/40 bg-darkbg shadow-xl">
+                            <img id="diaSplashImg" src="IMG_20261124_210316.jpg?v=3" alt="MLBB Diamond Top-Up Banner"
+                                onerror="if(!this.dataset.f1){this.dataset.f1=1;this.src='1000001941_2.jpg';}else if(!this.dataset.f2){this.dataset.f2=1;this.src='IMG_20261123_150211_100.jpg';}"
+                                class="w-full h-full object-cover object-top">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none"></div>
+                            <span class="absolute bottom-2.5 left-2.5 bg-amber-500/20 text-amber-300 border border-amber-400/40 text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-sm">
+                                <i class="fa-regular fa-gem mr-1"></i> MLBB DIAMOND TOP-UP
+                            </span>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <h3 class="text-lg sm:text-xl font-extrabold hero-vip-float font-display">
+                                MLBB Diamond ဈေးနှုန်းများ
+                            </h3>
+                            <p class="text-xs text-gray-400">
+                                Weekly Pass နှင့် Diamond Package ဈေးနှုန်းများကို ကြည့်ရှုရန်
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-center pt-1">
+                        <button type="button" onclick="openDiaPricesView()"
+                            class="w-full px-5 py-3 rounded-2xl gold-gradient-btn text-black font-extrabold text-xs sm:text-sm shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                            <i class="fa-regular fa-gem"></i>
+                            <span>Mlbb Dia ဈေးကြည့်ရန်</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3: Star & TG Premium Prices -->
+                <div class="splash-entry-card w-full rounded-3xl hero-light-border p-5 sm:p-6 text-center space-y-5 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden border border-amber-500/40 bg-darkbg shadow-xl">
+                            <img id="tgSplashImg" src="Glossy Telegram Cosmic Icons.png" alt="Glossy Telegram Cosmic Icons"
+                                onerror="if(!this.dataset.f1){this.dataset.f1=1;this.src='Glossy%20Telegram%20Cosmic%20Icons.png';}else if(!this.dataset.f2){this.dataset.f2=1;this.src='Glossy%20Telegram%20Cosmic%20Icons.jpg';}else if(!this.dataset.f3){this.dataset.f3=1;this.src='IMG_20261123_150211_100.jpg';}"
+                                class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none"></div>
+                            <span class="absolute bottom-2.5 left-2.5 bg-sky-500/20 text-sky-300 border border-sky-400/40 text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-sm">
+                                <i class="fa-brands fa-telegram mr-1"></i> STAR &amp; TG PREMIUM
+                            </span>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <h3 class="text-lg sm:text-xl font-extrabold hero-vip-float font-display">
+                                Star နှင့် TG Premium ဈေးနှုန်းများ
+                            </h3>
+                            <p class="text-xs text-gray-400">
+                                Telegram Star နှင့် Gift Plan ဈေးနှုန်းများကို ကြည့်ရှုရန်
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-center pt-1">
+                        <button type="button" onclick="openTgStarPremiumView()"
+                            class="w-full px-5 py-3 rounded-2xl gold-gradient-btn text-black font-extrabold text-xs sm:text-sm shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-star"></i>
+                            <span>Star နှင့် TG Premium ဈေးကြည့်ရန်</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MLBB DIA PRICES VIEW -->
+        <section id="diaPricesSection" class="hidden space-y-6">
+            <div class="relative rounded-3xl overflow-hidden hero-light-border p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="inline-flex items-center gap-1.5 text-[11px] font-bold px-3 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 mb-2">
+                            <i class="fa-regular fa-gem"></i> MLBB DIAMOND TOP-UP LIST
+                        </span>
+                        <h2 class="text-xl sm:text-2xl font-extrabold hero-vip-float font-display">
+                            MLBB Dia ဈေးနှုန်းများ
+                        </h2>
+                        <p class="text-xs sm:text-sm text-gray-400 mt-1">
+                            ဝယ်ယူလိုသော Package / Diamond ပမာဏကို နှိပ်ပြီး Telegram မှ တိုက်ရိုက် ဝယ်ယူနိုင်ပါသည်
+                        </p>
+                    </div>
+                    <button type="button" onclick="showEntryGateway()"
+                        class="self-start sm:self-auto px-4 py-2.5 rounded-xl bg-darkinput hover:bg-amber-500/15 text-amber-300 border border-amber-500/40 text-xs font-bold flex items-center gap-2 cursor-pointer transition-all">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>အစစာမျက်နှာသို့</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- TOP BUNDLES -->
+            <div id="diaBundlesGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Dynamically rendered -->
+            </div>
+
+            <!-- COMPACT SIDE-BY-SIDE GRID CARDS FOR DIAMOND PACKAGES -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                <div class="rounded-2xl bg-darkcard border border-amber-500/35 overflow-hidden shadow-xl">
+                    <div class="px-4 py-3 bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-transparent border-b border-darkborder flex items-center justify-between">
+                        <span class="text-xs font-extrabold text-amber-300 uppercase tracking-wider">
+                            <i class="fa-regular fa-gem mr-1.5"></i> Standard Packages
+                        </span>
+                        <span class="text-[11px] text-gray-400">MMK (ကျပ်)</span>
+                    </div>
+                    <div id="diaLeftList" class="p-3 grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                        <!-- Dynamically rendered -->
+                    </div>
+                </div>
+
+                <div class="rounded-2xl bg-darkcard border border-amber-500/35 overflow-hidden shadow-xl">
+                    <div class="px-4 py-3 bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-transparent border-b border-darkborder flex items-center justify-between">
+                        <span class="text-xs font-extrabold text-amber-300 uppercase tracking-wider">
+                            <i class="fa-regular fa-gem mr-1.5"></i> High Packages
+                        </span>
+                        <span class="text-[11px] text-gray-400">MMK (ကျပ်)</span>
+                    </div>
+                    <div id="diaRightList" class="p-3 grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                        <!-- Dynamically rendered -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STAR & TG PREMIUM PRICES VIEW -->
+        <section id="tgStarPremiumSection" class="hidden space-y-6">
+            <div class="relative rounded-3xl overflow-hidden hero-light-border p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="inline-flex items-center gap-1.5 text-[11px] font-bold px-3 py-1 rounded-full bg-sky-500/15 text-sky-300 border border-sky-500/30 mb-2">
+                            <i class="fa-brands fa-telegram"></i> TELEGRAM STAR &amp; PREMIUM LIST
+                        </span>
+                        <h2 class="text-xl sm:text-2xl font-extrabold hero-vip-float font-display">
+                            Star နှင့် TG Premium ဈေးနှုန်းများ
+                        </h2>
+                        <p class="text-xs sm:text-sm text-gray-400 mt-1">
+                            ဝယ်ယူလိုသော Telegram Star သို့မဟုတ် Premium Plan ကို နှိပ်ပြီး Telegram မှ တိုက်ရိုက် ဝယ်ယူနိုင်ပါသည်
+                        </p>
+                    </div>
+                    <button type="button" onclick="showEntryGateway()"
+                        class="self-start sm:self-auto px-4 py-2.5 rounded-xl bg-darkinput hover:bg-amber-500/15 text-amber-300 border border-amber-500/40 text-xs font-bold flex items-center gap-2 cursor-pointer transition-all">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>အစစာမျက်နှာသို့</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- TELEGRAM PREMIUM GIFT PLANS -->
+            <div id="tgPremiumGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Dynamically rendered -->
+            </div>
+
+            <!-- TELEGRAM STAR PACKAGES -->
+            <div class="rounded-2xl bg-darkcard border border-amber-500/35 overflow-hidden shadow-xl">
+                <div class="px-4 py-3 bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-transparent border-b border-darkborder flex items-center justify-between">
+                    <span class="text-xs font-extrabold text-amber-300 uppercase tracking-wider">
+                        <i class="fa-solid fa-star mr-1.5"></i> Telegram Star Zay Packages
+                    </span>
+                    <span class="text-[11px] text-gray-400">MMK (ကျပ်)</span>
+                </div>
+                <div id="tgStarList" class="p-3 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5">
+                    <!-- Dynamically rendered -->
+                </div>
+            </div>
+        </section>
+
+        <!-- STOREFRONT VIEW (HIDDEN UNTIL CLICKED) -->
+        <div id="storefrontContent" class="hidden space-y-8">
+
+        <!-- HERO BANNER WITH BACK TO ENTRY GATEWAY BUTTON -->
+        <div class="relative rounded-3xl overflow-hidden hero-light-border p-6 sm:p-8 md:p-10">
+            <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="max-w-3xl">
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-extrabold leading-relaxed hero-vip-float font-display">
+                        KIFY GAME SHOP မှ ရောင်းချပေးသောအကောင့်များကို စိတ်ချယုံကြည်စွာ ဝယ်ယူနိုင်ပါသည်
+                    </h2>
+                </div>
+                <button type="button" onclick="showEntryGateway()"
+                    class="self-start sm:self-center flex-shrink-0 px-4 py-2.5 rounded-xl bg-darkinput hover:bg-amber-500/15 text-amber-300 border border-amber-500/45 text-xs font-bold flex items-center gap-2 cursor-pointer transition-all">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>အစစာမျက်နှာသို့</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- FILTER & SORT CONTROLS -->
+        <section class="space-y-4">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                
+                <!-- High Rank Category Tabs -->
+                <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none text-xs font-semibold">
+                    <button onclick="setFilter('ALL')" id="tab-ALL" class="filter-btn px-4 py-2.5 rounded-xl bg-amber-500 text-black font-bold border border-amber-400 shadow-md transition-all whitespace-nowrap">
+                        <i class="fa-solid fa-layer-group mr-1.5"></i> အားလုံး (All)
+                    </button>
+                    <button onclick="setFilter('High Rank')" id="tab-HighRank" class="filter-btn px-4 py-2.5 rounded-xl bg-darkcard text-gray-300 hover:text-white border border-darkborder hover:border-amber-500/50 transition-all whitespace-nowrap">
+                        <i class="fa-solid fa-crown text-amber-400 mr-1.5"></i> High Rank
+                    </button>
+                    <button onclick="setFilter('AVAILABLE_ONLY')" id="tab-Available" class="filter-btn px-4 py-2.5 rounded-xl bg-darkcard text-gray-300 hover:text-emerald-400 border border-darkborder hover:border-emerald-500/50 transition-all whitespace-nowrap">
+                        <i class="fa-solid fa-circle-check text-emerald-500 mr-1.5"></i> ဝယ်ယူနိုင်သည်များ (Available)
+                    </button>
+                </div>
+
+                <!-- Sort Selector -->
+                <div class="flex items-center gap-2 text-xs self-end md:self-auto">
+                    <span class="text-gray-400">စီမည်:</span>
+                    <select id="sortSelect" onchange="filterAccounts()" class="bg-darkcard border border-darkborder text-gray-200 rounded-xl px-3 py-2 focus:outline-none focus:border-amber-500">
+                        <option value="newest">အသစ်ဆုံး (Newest First)</option>
+                        <option value="price-low">ဈေးနှုန်း: နည်းမှ အများ</option>
+                        <option value="price-high">ဈေးနှုန်း: အများမှ နည်း</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACCOUNT CARDS GRID -->
+        <section id="accountGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="col-span-full text-center py-12 text-gray-400 text-xs">
+                <i class="fa-solid fa-spinner fa-spin text-amber-400 text-lg mr-2"></i> Accounts စာရင်း ရယူနေပါသည်...
+            </div>
+        </section>
+
+        <!-- EMPTY STATE -->
+        <div id="emptyState" class="hidden text-center py-16 space-y-3 bg-darkcard/50 rounded-3xl border border-darkborder">
+            <div class="w-16 h-16 mx-auto rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500 text-2xl">
+                <i class="fa-solid fa-ghost"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-200">Account မရှိသေးပါ (No Accounts)</h3>
+            <p class="text-xs text-gray-400">Admin Panel မှ Account အသစ်တင်ပြီး ကြည့်ရှုနိုင်ပါသည်။</p>
+            <button onclick="resetFilters()" class="px-4 py-2 rounded-xl bg-amber-500/20 text-amber-400 text-xs font-semibold border border-amber-500/30 hover:bg-amber-500/30 transition-all">
+                မူလအတိုင်း ပြန်ကြည့်မည်
+            </button>
+        </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-16 bg-darkcard border-t border-darkborder text-gray-400 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-amber-400/60">
+                        <img src="IMG_20261123_150211_100.jpg" alt="KIFY GAME SHOP Logo" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white gold-gradient-text">KIFY GAME SHOP</h4>
+                        <p class="text-xs text-gray-400">Most Trusted Mobile Legends Account Store in Myanmar</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-6 text-sm">
+                    <a href="https://t.me/KIFYCASS" target="_blank" class="hover:text-amber-400 transition-colors flex items-center gap-1.5">
+                        <i class="fa-brands fa-telegram text-sky-400"></i> Telegram VIP
+                    </a>
+                    <a id="footerAdminLink" href="javascript:void(0)" onclick="openAdminModal()" class="hidden hover:text-amber-400 transition-colors items-center gap-1.5">
+                        <i class="fa-solid fa-lock text-amber-400"></i> Admin Panel
+                    </a>
+                </div>
+            </div>
+            <hr class="border-darkborder">
+            <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-2">
+                <p>&copy; 2026 KIFY GAME SHOP. All rights reserved.</p>
+                <p class="flex items-center gap-1">Designed for MLBB Gamers <i class="fa-solid fa-heart text-amber-500"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ACCOUNT DETAILS MODAL -->
+    <div id="accountModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
+        <div class="relative w-full max-w-3xl bg-darkcard border border-amber-500/40 rounded-3xl overflow-hidden shadow-2xl my-8">
+            <button onclick="closeModal('accountModal')" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/60 hover:bg-amber-500 hover:text-black text-white flex items-center justify-center transition-all border border-amber-500/30">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="accountModalBody" class="p-6 sm:p-8 space-y-6">
+                <!-- Modal content dynamically injected -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN AUTH & DASHBOARD MODAL -->
+    <div id="adminModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-darkcard border border-amber-500/50 rounded-3xl overflow-hidden shadow-2xl my-8">
+            <div class="flex items-center justify-between px-6 py-4 bg-darkbg border-b border-darkborder">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-amber-500 text-lg"></i>
+                    <h3 class="text-base font-bold text-white">KIFY GAME SHOP Admin Management</h3>
+                </div>
+                <button onclick="closeModal('adminModal')" class="text-gray-400 hover:text-white text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- LOGIN VIEW -->
+            <div id="adminLoginView" class="p-8 max-w-md mx-auto space-y-6 text-center">
+                <div class="w-16 h-16 mx-auto rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold text-white">Admin Panel သို့ဝင်ရောက်ရန်</h4>
+                    <p class="text-xs text-gray-400 mt-1">Firebase Admin Email နှင့် Password ဖြင့် ဝင်ရောက်ပါ</p>
+                </div>
+                <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-left">
+                    <div class="relative">
+                        <i class="fa-solid fa-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                        <input type="email" id="adminEmailInput" required placeholder="Admin Email ထည့်ပါ..." 
+                            class="w-full bg-darkinput border border-darkborder focus:border-amber-500 text-sm rounded-xl pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-amber-500">
+                    </div>
+                    <div class="relative">
+                        <i class="fa-solid fa-key absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                        <input type="password" id="adminPasswordInput" required placeholder="Admin Password ထည့်ပါ..." 
+                            class="w-full bg-darkinput border border-darkborder focus:border-amber-500 text-sm rounded-xl pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-amber-500">
+                    </div>
+                    <button type="submit" id="adminLoginBtn" class="w-full py-3 rounded-xl gold-gradient-btn text-black font-extrabold text-sm shadow-lg">
+                        Login ဝင်မည် <i class="fa-solid fa-arrow-right-to-bracket ml-1.5"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- DASHBOARD VIEW (AFTER AUTH) -->
+            <div id="adminDashboardView" class="hidden p-6 space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-darkborder pb-4">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="showAdminTab('list')" id="adminTab-list" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 text-black">
+                            <i class="fa-solid fa-list mr-1.5"></i> Accounts စာရင်း
+                        </button>
+                        <button onclick="showAdminTab('add')" id="adminTab-add" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-darkinput text-gray-300 hover:text-white border border-darkborder">
+                            <i class="fa-solid fa-plus mr-1.5"></i> Account အသစ်ထည့်မည်
+                        </button>
+                        <button onclick="showAdminTab('dia')" id="adminTab-dia" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-darkinput text-gray-300 hover:text-white border border-darkborder">
+                            <i class="fa-regular fa-gem mr-1.5"></i> Dia ဈေးပြင်ရန်
+                        </button>
+                        <button onclick="showAdminTab('tg')" id="adminTab-tg" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-darkinput text-gray-300 hover:text-white border border-darkborder">
+                            <i class="fa-solid fa-star mr-1.5"></i> Star &amp; TG ဈေးပြင်ရန်
+                        </button>
+                        <button onclick="showAdminTab('visitors')" id="adminTab-visitors" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-darkinput text-gray-300 hover:text-white border border-darkborder">
+                            <i class="fa-solid fa-eye mr-1.5"></i> Visitors (<span id="adminVisitorBadgeCount">0</span>)
+                        </button>
+                        <button onclick="showAdminTab('settings')" id="adminTab-settings" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-darkinput text-gray-300 hover:text-white border border-darkborder">
+                            <i class="fa-solid fa-gear mr-1.5"></i> Account Info
+                        </button>
+                    </div>
+                    <button onclick="handleAdminLogout()" class="px-3 py-1.5 text-xs text-red-400 hover:bg-red-500/10 rounded-lg border border-red-500/30 transition-all">
+                        <i class="fa-solid fa-power-off mr-1"></i> Logout
+                    </button>
+                </div>
+
+                <!-- TAB 1: ACCOUNTS MANAGEMENT TABLE -->
+                <div id="adminSection-list" class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-sm font-bold text-gray-200">တင်ထားသော MLBB Account များ (စုစုပေါင်း: <span id="adminTotalCount">0</span>)</h4>
+                    </div>
+
+                    <div class="overflow-x-auto rounded-2xl border border-darkborder bg-darkbg">
+                        <table class="w-full text-left text-xs text-gray-300">
+                            <thead class="bg-darkcard text-amber-400 uppercase tracking-wider font-semibold border-b border-darkborder">
+                                <tr>
+                                    <th class="p-3">ပုံ</th>
+                                    <th class="p-3">Title / Code</th>
+                                    <th class="p-3">High Rank / Star</th>
+                                    <th class="p-3">Skins / Heroes</th>
+                                    <th class="p-3">ဈေးနှုန်း</th>
+                                    <th class="p-3">အခြေအနေ</th>
+                                    <th class="p-3 text-right">လုပ်ဆောင်ချက်</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminAccountTable" class="divide-y divide-darkborder">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TAB 2: ADD / EDIT ACCOUNT FORM -->
+                <div id="adminSection-add" class="hidden space-y-6">
+                    <h4 id="formHeaderTitle" class="text-sm font-bold text-amber-400 flex items-center gap-2">
+                        <i class="fa-solid fa-square-plus"></i> MLBB Account အသစ်တင်မည်
+                    </h4>
+
+                    <form onsubmit="handleSaveAccount(event)" class="space-y-4">
+                        <input type="hidden" id="editAccountId">
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">Account Title / Code *</label>
+                                <input type="text" id="accTitle" required placeholder="ဥပမာ- Kify0001" 
+                                    class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">High Rank / Star အရေအတွက် *</label>
+                                <input type="text" id="accRank" required placeholder="ဥပမာ- 120★ သို့မဟုတ် High Rank 85★" 
+                                    class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">ဈေးနှုန်း (MMK/ကျပ်) *</label>
+                                <input type="number" id="accPrice" required placeholder="ဥပမာ- 180000" 
+                                    class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">Skins အရေအတွက် *</label>
+                                <input type="number" id="accSkins" required placeholder="ဥပမာ- 285" 
+                                    class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">Heroes အရေအတွက် *</label>
+                                <input type="number" id="accHeroes" required placeholder="ဥပမာ- 120" 
+                                    class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">Win Rate (%)</label>
+                                <input type="text" id="accWinrate" placeholder="ဥပမာ- 65.4%" 
+                                    class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">Telegram Contact Link/Username</label>
+                                <input type="text" id="accTelegram" value="KIFYCASS" placeholder="KIFYCASS" 
+                                    class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">အခြေအနေ (Status)</label>
+                                <select id="accStatus" class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                                    <option value="AVAILABLE">ဝယ်ယူနိုင်သည် (Available)</option>
+                                    <option value="SOLD">ရောင်းပြီး (Sold Out)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Rare Skins / Highlights (ကော်မာဖြင့်ခြားပါ)</label>
+                            <input type="text" id="accHighlights" placeholder="ဥပမာ- Gusion Collector, Lesley Legend, Chou KOF, Beatrix Prime" 
+                                class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Account အကြောင်း အသေးစိတ်ဖော်ပြချက်</label>
+                            <textarea id="accDesc" rows="3" placeholder="Moonton All Unbind/ Clean Account, Emblem Max 6, Epic 15 ခုပါ..." 
+                                class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none"></textarea>
+                        </div>
+
+                        <!-- IMAGE UPLOADER -->
+                        <div class="space-y-2 border-t border-darkborder pt-3">
+                            <label class="block text-xs font-bold text-amber-400">Account ဓာတ်ပုံများ တင်ရန် (Image Upload)</label>
+                            <div class="flex items-center gap-4">
+                                <label class="cursor-pointer bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2">
+                                    <i class="fa-solid fa-cloud-arrow-up text-sm"></i>
+                                    <span>ပုံရွေးချယ်ပါ (Select Photos)</span>
+                                    <input type="file" id="imageInput" accept="image/*" multiple onchange="handleImageUpload(event)" class="hidden">
+                                </label>
+                                <span class="text-[11px] text-gray-400">ရွေးချယ်သည့် အစဉ်လိုက်အတိုင်း ထည့်သွင်းပေးပါမည်။</span>
+                            </div>
+
+                            <div id="imagePreviewContainer" class="flex flex-wrap gap-3 mt-3 min-h-[60px] p-2 bg-darkbg border border-darkborder rounded-xl">
+                                <p id="noImageHint" class="text-xs text-gray-500 self-center mx-auto">ပုံမရွေးရသေးပါ</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 pt-4">
+                            <button type="submit" id="saveAccountBtn" class="px-6 py-2.5 rounded-xl gold-gradient-btn text-black font-extrabold text-xs">
+                                <i class="fa-solid fa-floppy-disk mr-1"></i> သိမ်းဆည်းမည် (Save Listing)
+                            </button>
+                            <button type="button" onclick="cancelEditForm()" class="px-4 py-2.5 rounded-xl bg-gray-800 text-gray-300 text-xs hover:bg-gray-700">
+                                မလုပ်တော့ပါ
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- TAB 2.5: DIA PRICE EDITOR -->
+                <div id="adminSection-dia" class="hidden space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-darkborder pb-3">
+                        <div>
+                            <h4 class="text-sm font-bold text-amber-400 flex items-center gap-2">
+                                <i class="fa-regular fa-gem"></i> Dia ဈေးပြင်ရန် (MLBB Diamond &amp; Pass Prices)
+                            </h4>
+                            <p class="text-xs text-gray-400 mt-0.5">
+                                Item နာမည်/ပမာဏ နှင့် ဈေးနှုန်း နှစ်ခုလုံးကို ကြိုက်သလို ပြင်ဆင်နိုင်ပြီး အကွက်အသစ်များလည်း ထပ်ထည့်နိုင်ပါသည်
+                            </p>
+                        </div>
+                        <button type="button" onclick="handleSaveDiaPrices()"
+                            class="px-5 py-2.5 rounded-xl gold-gradient-btn text-black font-extrabold text-xs shadow-md flex items-center gap-2 self-start sm:self-auto cursor-pointer">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            <span>Dia ဈေးများ သိမ်းမည်</span>
+                        </button>
+                    </div>
+
+                    <form id="diaPriceEditorForm" onsubmit="event.preventDefault(); handleSaveDiaPrices();" class="space-y-6">
+                        <!-- Editable Bundles -->
+                        <div class="space-y-2.5">
+                            <div class="flex items-center justify-between gap-2">
+                                <p class="text-xs font-bold text-amber-300">Pass &amp; Bundles များ</p>
+                                <button type="button" onclick="addEditableBundleRow()"
+                                    class="px-3 py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/40 text-[11px] font-bold flex items-center gap-1.5 cursor-pointer transition-all">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span>Bundle အသစ်ထည့်မည်</span>
+                                </button>
+                            </div>
+                            <div id="adminDiaBundleInputs" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <!-- Dynamic editable bundle rows -->
+                            </div>
+                        </div>
+
+                        <!-- Editable Diamond Packages -->
+                        <div class="space-y-2.5">
+                            <div class="flex items-center justify-between gap-2">
+                                <p class="text-xs font-bold text-amber-300">Diamond Packages များ</p>
+                                <button type="button" onclick="addEditableDiamondRow()"
+                                    class="px-3 py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/40 text-[11px] font-bold flex items-center gap-1.5 cursor-pointer transition-all">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span>Dia Package အသစ်ထည့်မည်</span>
+                                </button>
+                            </div>
+                            <div id="adminDiaPackageInputs" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <!-- Dynamic editable diamond rows -->
+                            </div>
+                        </div>
+
+                        <div class="pt-2 flex items-center justify-end gap-3 border-t border-darkborder">
+                            <button type="submit"
+                                class="px-6 py-2.5 rounded-xl gold-gradient-btn text-black font-extrabold text-xs shadow-md flex items-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-floppy-disk"></i>
+                                <span>Dia ဈေးများ သိမ်းမည်</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- TAB 2.6: STAR & TG PREMIUM PRICE EDITOR -->
+                <div id="adminSection-tg" class="hidden space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-darkborder pb-3">
+                        <div>
+                            <h4 class="text-sm font-bold text-amber-400 flex items-center gap-2">
+                                <i class="fa-solid fa-star"></i> Star &amp; TG ဈေးပြင်ရန် (Telegram Star &amp; Premium Prices)
+                            </h4>
+                            <p class="text-xs text-gray-400 mt-0.5">
+                                Telegram Star နှင့် Premium Gift Plan ဈေးနှုန်းများကို ပြင်ဆင်နိုင်ပြီး အသစ်ထပ်ထည့်နိုင်ပါသည်
+                            </p>
+                        </div>
+                        <button type="button" onclick="handleSaveTgPrices()"
+                            class="px-5 py-2.5 rounded-xl gold-gradient-btn text-black font-extrabold text-xs shadow-md flex items-center gap-2 self-start sm:self-auto cursor-pointer">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            <span>Star &amp; TG ဈေးများ သိမ်းမည်</span>
+                        </button>
+                    </div>
+
+                    <form id="tgPriceEditorForm" onsubmit="event.preventDefault(); handleSaveTgPrices();" class="space-y-6">
+                        <!-- Editable TG Premium Gift Plans -->
+                        <div class="space-y-2.5">
+                            <div class="flex items-center justify-between gap-2">
+                                <p class="text-xs font-bold text-amber-300">Telegram Premium (Gift Plan) များ</p>
+                                <button type="button" onclick="addEditableTgPremiumRow()"
+                                    class="px-3 py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/40 text-[11px] font-bold flex items-center gap-1.5 cursor-pointer transition-all">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span>Premium Plan အသစ်ထည့်မည်</span>
+                                </button>
+                            </div>
+                            <div id="adminTgPremiumInputs" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <!-- Dynamic editable TG premium rows -->
+                            </div>
+                        </div>
+
+                        <!-- Editable Telegram Star Packages -->
+                        <div class="space-y-2.5">
+                            <div class="flex items-center justify-between gap-2">
+                                <p class="text-xs font-bold text-amber-300">Telegram Star Packages များ</p>
+                                <button type="button" onclick="addEditableTgStarRow()"
+                                    class="px-3 py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/40 text-[11px] font-bold flex items-center gap-1.5 cursor-pointer transition-all">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span>Star Package အသစ်ထည့်မည်</span>
+                                </button>
+                            </div>
+                            <div id="adminTgStarInputs" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <!-- Dynamic editable TG star rows -->
+                            </div>
+                        </div>
+
+                        <div class="pt-2 flex items-center justify-end gap-3 border-t border-darkborder">
+                            <button type="submit"
+                                class="px-6 py-2.5 rounded-xl gold-gradient-btn text-black font-extrabold text-xs shadow-md flex items-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-floppy-disk"></i>
+                                <span>Star &amp; TG ဈေးများ သိမ်းမည်</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- TAB 2.8: VISITOR LOGS (ADMIN ONLY) -->
+                <div id="adminSection-visitors" class="hidden space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-darkborder pb-3">
+                        <div>
+                            <h4 class="text-sm font-bold text-amber-400 flex items-center gap-2">
+                                <i class="fa-solid fa-eye"></i> Website ဝင်ကြည့်သူ မှတ်တမ်းများ (Admin Only)
+                            </h4>
+                            <p class="text-xs text-gray-400 mt-0.5">
+                                စုစုပေါင်း Visit: <span id="visitorTotalCount" class="text-amber-300 font-bold">0</span> | ယနေ့ Visit: <span id="visitorTodayCount" class="text-emerald-400 font-bold">0</span>
+                            </p>
+                        </div>
+                        <button type="button" onclick="clearVisitorLogs()"
+                            class="px-3.5 py-2 rounded-xl bg-red-500/15 hover:bg-red-500/25 text-red-400 border border-red-500/35 text-xs font-bold flex items-center gap-1.5 cursor-pointer transition-all">
+                            <i class="fa-solid fa-trash-can"></i>
+                            <span>မှတ်တမ်းများ ရှင်းမည်</span>
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto rounded-2xl border border-darkborder bg-darkbg">
+                        <table class="w-full text-left text-xs text-gray-300">
+                            <thead class="bg-darkcard text-amber-400 uppercase tracking-wider font-semibold border-b border-darkborder">
+                                <tr>
+                                    <th class="p-3">အချိန်</th>
+                                    <th class="p-3">စက် / Browser</th>
+                                    <th class="p-3">Screen / View</th>
+                                    <th class="p-3">Referer</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminVisitorTable" class="divide-y divide-darkborder">
+                                <tr><td colspan="4" class="text-center py-6 text-gray-500">မှတ်တမ်း ရယူနေပါသည်...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TAB 3: SETTINGS (FIREBASE AUTH INFO) -->
+                <div id="adminSection-settings" class="hidden space-y-4 max-w-lg">
+                    <h4 class="text-sm font-bold text-amber-400">Firebase Authentication Status</h4>
+                    <div class="bg-darkbg border border-darkborder rounded-2xl p-4 space-y-2 text-xs text-gray-300">
+                        <p>လက်ရှိ ဝင်ရောက်ထားသော Admin: <span id="currentAdminEmailDisplay" class="text-amber-400 font-bold">-</span></p>
+                        <p class="text-gray-400 leading-relaxed">Password ပြောင်းလဲလိုပါက Firebase Console &gt; Authentication &gt; Users ထဲမှ ပြောင်းနိုင်သလို၊ အောက်ပါ ခလုတ်ဖြင့် Password Reset Link ကို Email သို့ ပို့နိုင်ပါသည်။</p>
+                        <button type="button" onclick="sendAdminPasswordReset()" class="mt-2 px-4 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 font-bold text-xs">
+                            <i class="fa-solid fa-paper-plane mr-1"></i> Password Reset Email ပို့မည်
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- FIREBASE SDK (MODULE) & APP LOGIC -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        import {
+            getFirestore,
+            collection,
+            doc,
+            getDoc,
+            getDocs,
+            setDoc,
+            addDoc,
+            updateDoc,
+            deleteDoc,
+            onSnapshot,
+            query,
+            orderBy,
+            limit
+        } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+        import {
+            getAuth,
+            signInWithEmailAndPassword,
+            signOut,
+            onAuthStateChanged,
+            sendPasswordResetEmail
+        } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAnBYPz6lQqbizaU1p2nG9bxQff_eEMm0I",
+            authDomain: "rina-game-shop.firebaseapp.com",
+            projectId: "kify-game-shop",
+            storageBucket: "rina-game-shop.appspot.com",
+            messagingSenderId: "000000000000",
+            appId: "1:000000000000:web:rina-game-shop"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        const accountsCol = collection(db, "mlbb_accounts");
+        const visitsCol = collection(db, "visit_logs");
+
+        const ADMIN_ACCESS_KEY = "rina2026";
+        let visitorLogs = [];
+        let visitorUnsubscribe = null;
+
+        function detectDeviceSummary(ua) {
+            const s = String(ua || "");
+            let os = "Unknown OS";
+            if (/Android/i.test(s)) os = "Android";
+            else if (/iPhone|iPad|iPod/i.test(s)) os = "iOS";
+            else if (/Windows/i.test(s)) os = "Windows";
+            else if (/Mac OS/i.test(s)) os = "macOS";
+            else if (/Linux/i.test(s)) os = "Linux";
+
+            let browser = "Browser";
+            if (/Edg\//i.test(s)) browser = "Edge";
+            else if (/OPR\//i.test(s) || /Opera/i.test(s)) browser = "Opera";
+            else if (/Chrome\//i.test(s)) browser = "Chrome";
+            else if (/Safari\//i.test(s)) browser = "Safari";
+            else if (/Firefox\//i.test(s)) browser = "Firefox";
+
+            return `${os} • ${browser}`;
+        }
+
+        async function recordPageVisit() {
+            try {
+                if (hasSecretAdminAccess()) return;
+                const sessionKey = "rina_visit_recorded_v1";
+                if (sessionStorage.getItem(sessionKey)) return;
+                sessionStorage.setItem(sessionKey, "1");
+
+                const ua = navigator.userAgent || "";
+                const ref = document.referrer ? document.referrer.slice(0, 120) : "Direct";
+                await addDoc(visitsCol, {
+                    timestamp: Date.now(),
+                    device: detectDeviceSummary(ua),
+                    screen: `${window.innerWidth}x${window.innerHeight}`,
+                    referer: ref,
+                    path: window.location.pathname || "/"
+                });
+            } catch (_) {
+                // Silent fail if rules block or offline
+            }
+        }
+
+        function startVisitorLogsSync() {
+            if (!currentAdminUser) return;
+            if (visitorUnsubscribe) return;
+            const q = query(visitsCol, orderBy("timestamp", "desc"), limit(100));
+            visitorUnsubscribe = onSnapshot(q, (snap) => {
+                const rows = [];
+                snap.forEach((d) => rows.push({ id: d.id, ...d.data() }));
+                visitorLogs = rows;
+                renderVisitorLogs();
+            }, () => {
+                renderVisitorLogs();
+            });
+        }
+
+        function stopVisitorLogsSync() {
+            if (visitorUnsubscribe) {
+                visitorUnsubscribe();
+                visitorUnsubscribe = null;
+            }
+            visitorLogs = [];
+            renderVisitorLogs();
+        }
+
+        function renderVisitorLogs() {
+            const tbody = document.getElementById("adminVisitorTable");
+            const totalEl = document.getElementById("visitorTotalCount");
+            const todayEl = document.getElementById("visitorTodayCount");
+            const badgeEl = document.getElementById("adminVisitorBadgeCount");
+
+            if (badgeEl) badgeEl.innerText = visitorLogs.length;
+            if (totalEl) totalEl.innerText = visitorLogs.length;
+
+            const startOfToday = new Date();
+            startOfToday.setHours(0, 0, 0, 0);
+            const todayTs = startOfToday.getTime();
+            const todayCount = visitorLogs.filter((v) => (v.timestamp || 0) >= todayTs).length;
+            if (todayEl) todayEl.innerText = todayCount;
+
+            if (!tbody) return;
+            if (!currentAdminUser) {
+                tbody.innerHTML = `<tr><td colspan="4" class="text-center py-6 text-gray-500">Admin Login ဝင်ပြီးမှ ကြည့်နိုင်ပါသည်</td></tr>`;
+                return;
+            }
+            if (visitorLogs.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="text-center py-6 text-gray-500">Visitor မှတ်တမ်း မရှိသေးပါ</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = visitorLogs.map((v) => {
+                const dt = v.timestamp ? new Date(v.timestamp).toLocaleString("en-GB", { hour12: true }) : "-";
+                const dev = String(v.device || "Unknown").replace(/</g, "&lt;");
+                const scr = String(v.screen || "-").replace(/</g, "&lt;");
+                const ref = String(v.referer || "Direct").replace(/</g, "&lt;");
+                return `
+                    <tr class="hover:bg-darkcard/50 transition-colors">
+                        <td class="p-3 text-gray-300 whitespace-nowrap">${dt}</td>
+                        <td class="p-3 font-semibold text-amber-300">${dev}</td>
+                        <td class="p-3 text-gray-400 whitespace-nowrap">${scr}</td>
+                        <td class="p-3 text-gray-400 max-w-[180px] truncate">${ref}</td>
+                    </tr>
+                `;
+            }).join("");
+        }
+
+        window.clearVisitorLogs = async function() {
+            if (!currentAdminUser) return;
+            try {
+                const snap = await getDocs(visitsCol);
+                const deletes = [];
+                snap.forEach((d) => deletes.push(deleteDoc(doc(db, "visit_logs", d.id))));
+                await Promise.all(deletes);
+                showToast("Visitor မှတ်တမ်းများ ရှင်းပြီးပါပြီ", "info");
+            } catch (err) {
+                console.error(err);
+                showToast("ရှင်းမရပါ။ Firestore Rules စစ်ဆေးပါ။", "error");
+            }
+        };
+
+        function hasSecretAdminAccess() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const queryKey = params.get("admin");
+                const hashVal = (window.location.hash || "").replace(/^#/, "");
+                return queryKey === ADMIN_ACCESS_KEY || hashVal === `admin-${ADMIN_ACCESS_KEY}` || hashVal === ADMIN_ACCESS_KEY;
+            } catch (_) {
+                return false;
+            }
+        }
+
+        function updateAdminVisibility() {
+            const canSeeAdmin = hasSecretAdminAccess();
+            const headerBtn = document.getElementById("headerAdminBtn");
+            const footerLink = document.getElementById("footerAdminLink");
+            const adminModal = document.getElementById("adminModal");
+
+            if (headerBtn) {
+                headerBtn.classList.toggle("hidden", !canSeeAdmin);
+                headerBtn.classList.toggle("flex", canSeeAdmin);
+            }
+            if (footerLink) {
+                footerLink.classList.toggle("hidden", !canSeeAdmin);
+                footerLink.classList.toggle("flex", canSeeAdmin);
+            }
+            if (!canSeeAdmin && adminModal && !adminModal.classList.contains("hidden")) {
+                adminModal.classList.add("hidden");
+            }
+        }
+
+        const DEFAULT_DIA_DATA = {
+            bundles: [
+                { id: 'b-weekly-pass', label: 'Weekly Pass', price: 9000 },
+                { id: 'b-weekly-elite', label: 'Weekly Elite Bundle', price: 5000 },
+                { id: 'b-monthly-epic', label: 'Monthly Epic Bundle', price: 22100 }
+            ],
+            packages: [
+                { id: 'd-86', amount: '86', price: 6500, section: 'left' },
+                { id: 'd-172', amount: '172', price: 16000, section: 'left' },
+                { id: 'd-257', amount: '257', price: 20300, section: 'left' },
+                { id: 'd-343', amount: '343', price: 26800, section: 'left' },
+                { id: 'd-429', amount: '429', price: 36300, section: 'left' },
+                { id: 'd-514', amount: '514', price: 40600, section: 'left' },
+                { id: 'd-600', amount: '600', price: 47100, section: 'left' },
+                { id: 'd-706', amount: '706', price: 51000, section: 'left' },
+                { id: 'd-878', amount: '878', price: 67000, section: 'left' },
+                { id: 'd-963', amount: '963', price: 71300, section: 'right' },
+                { id: 'd-1049', amount: '1049', price: 77800, section: 'right' },
+                { id: 'd-1135', amount: '1135', price: 87300, section: 'right' },
+                { id: 'd-1220', amount: '1220', price: 91600, section: 'right' },
+                { id: 'd-1412', amount: '1412', price: 102000, section: 'right' },
+                { id: 'd-2195', amount: '2195', price: 151300, section: 'right' },
+                { id: 'd-3688', amount: '3688', price: 256000, section: 'right' },
+                { id: 'd-5532', amount: '5532', price: 386000, section: 'right' },
+                { id: 'd-9288', amount: '9288', price: 631200, section: 'right' }
+            ]
+        };
+
+        const DEFAULT_TG_DATA = {
+            premium: [
+                { id: 'tgp-3m', label: '3 Months (Gift plan)', price: 62000 },
+                { id: 'tgp-6m', label: '6 Months (Gift plan)', price: 84000 },
+                { id: 'tgp-1y', label: '1 Year (Gift Plan)', price: 146000 }
+            ],
+            stars: [
+                { id: 'tgs-50', amount: '50', price: 3800 },
+                { id: 'tgs-100', amount: '100', price: 7600 },
+                { id: 'tgs-150', amount: '150', price: 11400 },
+                { id: 'tgs-200', amount: '200', price: 15200 },
+                { id: 'tgs-250', amount: '250', price: 19000 },
+                { id: 'tgs-300', amount: '300', price: 22800 },
+                { id: 'tgs-500', amount: '500', price: 38000 },
+                { id: 'tgs-1000', amount: '1000', price: 76000 }
+            ]
+        };
+
+        function cloneDefaultDiaData() {
+            return {
+                bundles: DEFAULT_DIA_DATA.bundles.map(b => ({ ...b })),
+                packages: DEFAULT_DIA_DATA.packages.map(p => ({ ...p }))
+            };
+        }
+
+        function cloneDefaultTgData() {
+            return {
+                premium: DEFAULT_TG_DATA.premium.map(p => ({ ...p })),
+                stars: DEFAULT_TG_DATA.stars.map(s => ({ ...s }))
+            };
+        }
+
+        let diaData = cloneDefaultDiaData();
+        let draftDiaData = cloneDefaultDiaData();
+        const diaPricesDocRef = doc(db, "store_settings", "mlbb_dia_prices");
+
+        let tgData = cloneDefaultTgData();
+        let draftTgData = cloneDefaultTgData();
+        const tgPricesDocRef = doc(db, "store_settings", "tg_star_premium_prices");
+
+        let accounts = [];
+        let activeFilter = 'ALL';
+        let currentAdminUser = null;
+        let uploadedImagesBase64 = [];
+        let currentModalImages = [];
+        let activeModalImageIndex = 0;
+
+        function cleanTelegramUsername(raw) {
+            return (raw || 'KIFYCASS').replace(/^@/, '').replace(/^https?:\/\/t\.me\//i, '').trim() || 'KIFYCASS';
+        }
+
+        function formatHighRankLabel(rawRank) {
+            const trimmed = (rawRank || '').trim();
+            if (!trimmed) return 'High Rank';
+            if (/high\s*rank/i.test(trimmed)) return trimmed;
+            return `High Rank ${trimmed}`;
+        }
+
+        function compressSingleFile(file) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width;
+                        let height = img.height;
+
+                        const maxDim = 760;
+                        if (width > maxDim || height > maxDim) {
+                            if (width > height) {
+                                height = Math.round((height * maxDim) / width);
+                                width = maxDim;
+                            } else {
+                                width = Math.round((width * maxDim) / height);
+                                height = maxDim;
+                            }
+                        }
+
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        resolve(canvas.toDataURL('image/jpeg', 0.72));
+                    };
+                    img.onerror = () => resolve(event.target.result);
+                    img.src = event.target.result;
+                };
+                reader.onerror = () => resolve(null);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function fitImagesWithinFirestoreLimit(imgList, maxBytes = 950000) {
+            const result = [];
+            let totalBytes = 0;
+            for (const item of imgList) {
+                const len = typeof item === 'string' ? item.length : 0;
+                if (result.length > 0 && totalBytes + len > maxBytes) break;
+                result.push(item);
+                totalBytes += len;
+            }
+            return result;
+        }
+
+        function initFirestoreSync() {
+            onSnapshot(accountsCol, (querySnapshot) => {
+                const list = [];
+                querySnapshot.forEach((docSnap) => {
+                    const data = docSnap.data();
+                    list.push({ id: docSnap.id, ...data });
+                });
+                accounts = list;
+                renderAccounts();
+                if (currentAdminUser) {
+                    renderAdminTable();
+                }
+            }, (error) => {
+                console.error("Firestore listener error:", error);
+                showToast('Firestore Rules ကို စစ်ဆေးပါ (Read ခွင့်ပြုထားရန်)', 'error');
+            });
+        }
+
+        function initAuthSync() {
+            onAuthStateChanged(auth, (user) => {
+                currentAdminUser = user;
+                const adminBtnText = document.getElementById('adminBtnText');
+                const emailDisplay = document.getElementById('currentAdminEmailDisplay');
+
+                if (user) {
+                    if (adminBtnText) adminBtnText.innerText = "Admin (Active)";
+                    if (emailDisplay) emailDisplay.innerText = user.email || 'Authenticated Admin';
+                    document.getElementById('adminLoginView').classList.add('hidden');
+                    document.getElementById('adminDashboardView').classList.remove('hidden');
+                    renderAdminTable();
+                    resetDraftFromDiaData();
+                    renderAdminDiaEditor();
+                    resetDraftFromTgData();
+                    renderAdminTgEditor();
+                    startVisitorLogsSync();
+                } else {
+                    stopVisitorLogsSync();
+                    if (adminBtnText) adminBtnText.innerText = "Admin Panel";
+                    if (emailDisplay) emailDisplay.innerText = "-";
+                    document.getElementById('adminLoginView').classList.remove('hidden');
+                    document.getElementById('adminDashboardView').classList.add('hidden');
+                }
+                updateAdminVisibility();
+            });
+        }
+
+        function normalizeDiaData(raw) {
+            if (!raw || typeof raw !== 'object') {
+                return cloneDefaultDiaData();
+            }
+
+            let bundles = [];
+            if (Array.isArray(raw.bundles)) {
+                bundles = raw.bundles.map((b, idx) => ({
+                    id: b.id || `bundle-${idx}-${Date.now()}`,
+                    label: String(b.label ?? '').trim(),
+                    price: Number(b.price ?? 0)
+                }));
+            } else if (raw.bundles && typeof raw.bundles === 'object') {
+                const mapLabels = {
+                    weekly_pass: 'Weekly Pass',
+                    weekly_elite_bundle: 'Weekly Elite Bundle',
+                    monthly_epic_bundle: 'Monthly Epic Bundle'
+                };
+                bundles = Object.entries(raw.bundles).map(([k, v], idx) => ({
+                    id: `bundle-${k}-${idx}`,
+                    label: mapLabels[k] || k,
+                    price: Number(v ?? 0)
+                }));
+            }
+
+            let packages = [];
+            if (Array.isArray(raw.packages)) {
+                packages = raw.packages.map((p, idx) => ({
+                    id: p.id || `pkg-${idx}-${Date.now()}`,
+                    amount: String(p.amount ?? '').trim(),
+                    price: Number(p.price ?? 0),
+                    section: p.section === 'right' ? 'right' : 'left'
+                }));
+            } else if (raw.diamonds && typeof raw.diamonds === 'object') {
+                const entries = Object.entries(raw.diamonds);
+                const mid = Math.ceil(entries.length / 2);
+                packages = entries.map(([amt, prc], idx) => ({
+                    id: `pkg-${amt}-${idx}`,
+                    amount: String(amt).trim(),
+                    price: Number(prc ?? 0),
+                    section: idx < mid ? 'left' : 'right'
+                }));
+            }
+
+            return {
+                bundles: bundles.length > 0 ? bundles : cloneDefaultDiaData().bundles,
+                packages: packages.length > 0 ? packages : cloneDefaultDiaData().packages
+            };
+        }
+
+        function normalizeTgData(raw) {
+            if (!raw || typeof raw !== 'object') {
+                return cloneDefaultTgData();
+            }
+
+            const premium = Array.isArray(raw.premium)
+                ? raw.premium.map((p, idx) => ({
+                    id: p.id || `tgp-${idx}-${Date.now()}`,
+                    label: String(p.label ?? '').trim(),
+                    price: Number(p.price ?? 0)
+                }))
+                : cloneDefaultTgData().premium;
+
+            const stars = Array.isArray(raw.stars)
+                ? raw.stars.map((s, idx) => ({
+                    id: s.id || `tgs-${idx}-${Date.now()}`,
+                    amount: String(s.amount ?? '').trim(),
+                    price: Number(s.price ?? 0)
+                }))
+                : cloneDefaultTgData().stars;
+
+            return {
+                premium: premium.length > 0 ? premium : cloneDefaultTgData().premium,
+                stars: stars.length > 0 ? stars : cloneDefaultTgData().stars
+            };
+        }
+
+        function resetDraftFromDiaData() {
+            draftDiaData = {
+                bundles: diaData.bundles.map(b => ({ ...b })),
+                packages: diaData.packages.map(p => ({ ...p }))
+            };
+        }
+
+        function resetDraftFromTgData() {
+            draftTgData = {
+                premium: tgData.premium.map(p => ({ ...p })),
+                stars: tgData.stars.map(s => ({ ...s }))
+            };
+        }
+
+        function renderDiaPricesView() {
+            const bundlesGrid = document.getElementById('diaBundlesGrid');
+            const leftList = document.getElementById('diaLeftList');
+            const rightList = document.getElementById('diaRightList');
+            if (!bundlesGrid || !leftList || !rightList) return;
+
+            bundlesGrid.innerHTML = diaData.bundles.map((item) => {
+                const labelText = item.label || 'Bundle';
+                const priceVal = Number(item.price || 0);
+                const formatted = priceVal.toLocaleString();
+                const tgMsg = encodeURIComponent(` MLBB ${labelText} (ဈေးနှုန်း: ${formatted} Ks) ဝယ်ချင်လို့ပါ။`);
+                return `
+                    <a href="https://t.me/KIFYCASS?text=${tgMsg}" target="_blank" rel="noopener noreferrer"
+                        class="group rounded-2xl bg-darkcard border border-amber-500/40 hover:border-amber-400 p-4 flex items-center gap-3 shadow-lg transition-all">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-300 flex-shrink-0">
+                            <i class="fa-regular fa-gem text-base"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <p class="text-xs sm:text-sm font-extrabold text-white group-hover:text-amber-300 transition-colors truncate">${labelText}</p>
+                            <p class="text-xs sm:text-sm text-amber-400 font-extrabold mt-0.5">${formatted} ks</p>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+
+            const buildBox = (pkg) => {
+                const amtText = pkg.amount || 'Dia';
+                const priceVal = Number(pkg.price || 0);
+                const formatted = priceVal.toLocaleString();
+                const tgMsg = encodeURIComponent(`မင်္ဂလာပါ @KIFYCASS၊ MLBB ${amtText} Diamonds (ဈေးနှုန်း: ${formatted} Ks) ဝယ်ယူလိုပါသည်။`);
+                return `
+                    <a href="https://t.me/KIFYCASS?text=${tgMsg}" target="_blank" rel="noopener noreferrer"
+                        class="rounded-xl bg-darkbg hover:bg-amber-500/10 border border-darkborder hover:border-amber-500/50 px-3 py-2.5 flex items-center justify-between gap-2 transition-all">
+                        <span class="text-xs sm:text-sm font-extrabold text-white tracking-wide flex items-center gap-1.5">
+                            <i class="fa-regular fa-gem text-amber-400 text-xs"></i>
+                            <span>${amtText}</span>
+                        </span>
+                        <span class="text-xs sm:text-sm font-extrabold text-amber-400 whitespace-nowrap">${formatted} ks</span>
+                    </a>
+                `;
+            };
+
+            const leftPkgs = diaData.packages.filter(p => p.section !== 'right');
+            const rightPkgs = diaData.packages.filter(p => p.section === 'right');
+
+            leftList.innerHTML = leftPkgs.map(buildBox).join('');
+            rightList.innerHTML = rightPkgs.map(buildBox).join('');
+        }
+
+        function renderTgStarPremiumView() {
+            const premiumGrid = document.getElementById('tgPremiumGrid');
+            const starList = document.getElementById('tgStarList');
+            if (!premiumGrid || !starList) return;
+
+            premiumGrid.innerHTML = tgData.premium.map((item) => {
+                const labelText = item.label || 'Telegram Premium';
+                const priceVal = Number(item.price || 0);
+                const formatted = priceVal.toLocaleString();
+                const tgMsg = encodeURIComponent(`မင်္ဂလာပါ @KIFYCASS၊ Telegram Premium ${labelText} (ဈေးနှုန်း: ${formatted} Ks) ဝယ်ယူလိုပါသည်။`);
+                return `
+                    <a href="https://t.me/KIFYCASS?text=${tgMsg}" target="_blank" rel="noopener noreferrer"
+                        class="group rounded-2xl bg-darkcard border border-amber-500/40 hover:border-amber-400 p-4 flex items-center gap-3 shadow-lg transition-all">
+                        <div class="w-10 h-10 rounded-xl bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-300 flex-shrink-0">
+                            <i class="fa-brands fa-telegram text-lg"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <p class="text-xs sm:text-sm font-extrabold text-white group-hover:text-amber-300 transition-colors truncate">${labelText}</p>
+                            <p class="text-xs sm:text-sm text-amber-400 font-extrabold mt-0.5">${formatted} ks</p>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+
+            starList.innerHTML = tgData.stars.map((st) => {
+                const amtText = st.amount || 'Star';
+                const priceVal = Number(st.price || 0);
+                const formatted = priceVal.toLocaleString();
+                const tgMsg = encodeURIComponent(`မင်္ဂလာပါ @KIFYCASS၊ Telegram Star ${amtText} (ဈေးနှုန်း: ${formatted} Ks) ဝယ်ယူလိုပါသည်။`);
+                return `
+                    <a href="https://t.me/KIFYCASS?text=${tgMsg}" target="_blank" rel="noopener noreferrer"
+                        class="rounded-xl bg-darkbg hover:bg-amber-500/10 border border-darkborder hover:border-amber-500/50 px-3 py-2.5 flex items-center justify-between gap-2 transition-all">
+                        <span class="text-xs sm:text-sm font-extrabold text-white tracking-wide flex items-center gap-1.5">
+                            <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+                            <span>${amtText}</span>
+                        </span>
+                        <span class="text-xs sm:text-sm font-extrabold text-amber-400 whitespace-nowrap">${formatted} ks</span>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        function syncDraftInputsFromDom() {
+            draftDiaData.bundles.forEach((b) => {
+                const labelEl = document.getElementById(`diaBundleLabel-${b.id}`);
+                const priceEl = document.getElementById(`diaBundlePrice-${b.id}`);
+                if (labelEl) b.label = labelEl.value;
+                if (priceEl) b.price = priceEl.value;
+            });
+
+            draftDiaData.packages.forEach((p) => {
+                const amtEl = document.getElementById(`diaPkgAmount-${p.id}`);
+                const priceEl = document.getElementById(`diaPkgPrice-${p.id}`);
+                if (amtEl) p.amount = amtEl.value;
+                if (priceEl) p.price = priceEl.value;
+            });
+        }
+
+        function syncTgDraftInputsFromDom() {
+            draftTgData.premium.forEach((p) => {
+                const labelEl = document.getElementById(`tgPremiumLabel-${p.id}`);
+                const priceEl = document.getElementById(`tgPremiumPrice-${p.id}`);
+                if (labelEl) p.label = labelEl.value;
+                if (priceEl) p.price = priceEl.value;
+            });
+
+            draftTgData.stars.forEach((s) => {
+                const amtEl = document.getElementById(`tgStarAmount-${s.id}`);
+                const priceEl = document.getElementById(`tgStarPrice-${s.id}`);
+                if (amtEl) s.amount = amtEl.value;
+                if (priceEl) s.price = priceEl.value;
+            });
+        }
+
+        function renderAdminDiaEditor() {
+            const bundleContainer = document.getElementById('adminDiaBundleInputs');
+            const diaContainer = document.getElementById('adminDiaPackageInputs');
+            if (!bundleContainer || !diaContainer) return;
+
+            bundleContainer.innerHTML = draftDiaData.bundles.map((item) => `
+                <div class="bg-darkbg border border-darkborder rounded-xl p-3 flex items-center gap-2">
+                    <div class="flex-1 min-w-0 space-y-1.5">
+                        <input type="text" id="diaBundleLabel-${item.id}" value="${String(item.label).replace(/"/g, '&quot;')}" placeholder="Bundle အမည် (ဥပမာ- Weekly Pass)" required
+                            class="w-full bg-darkinput border border-darkborder focus:border-amber-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-white focus:outline-none">
+                        <div class="flex items-center gap-1.5">
+                            <input type="number" min="0" step="1" id="diaBundlePrice-${item.id}" value="${Number(item.price || 0)}" placeholder="ဈေးနှုန်း" required
+                                class="w-full bg-darkinput border border-darkborder focus:border-amber-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-amber-300 focus:outline-none">
+                            <span class="text-[11px] font-bold text-gray-400 flex-shrink-0">ks</span>
+                        </div>
+                    </div>
+                    <button type="button" onclick="removeEditableBundleRow('${item.id}')" title="ဖျက်ရန်"
+                        class="self-stretch px-2.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs cursor-pointer transition-all">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            diaContainer.innerHTML = draftDiaData.packages.map((pkg) => `
+                <div class="bg-darkbg border border-darkborder rounded-xl p-2.5 flex items-center gap-2">
+                    <div class="w-24 flex-shrink-0 flex items-center gap-1 bg-darkinput border border-darkborder rounded-lg px-2 py-1.5">
+                        <i class="fa-regular fa-gem text-amber-400 text-xs"></i>
+                        <input type="text" id="diaPkgAmount-${pkg.id}" value="${String(pkg.amount).replace(/"/g, '&quot;')}" placeholder="Dia" required
+                            class="w-full bg-transparent text-xs font-extrabold text-white focus:outline-none">
+                    </div>
+                    <div class="flex-1 flex items-center gap-1 min-w-0">
+                        <input type="number" min="0" step="1" id="diaPkgPrice-${pkg.id}" value="${Number(pkg.price || 0)}" placeholder="ဈေးနှုန်း" required
+                            class="w-full bg-darkinput border border-darkborder focus:border-amber-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-amber-300 text-right focus:outline-none">
+                        <span class="text-[11px] font-bold text-gray-400 flex-shrink-0">ks</span>
+                    </div>
+                    <button type="button" onclick="removeEditableDiamondRow('${pkg.id}')" title="ဖျက်ရန်"
+                        class="p-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs cursor-pointer transition-all flex-shrink-0">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function renderAdminTgEditor() {
+            const premiumContainer = document.getElementById('adminTgPremiumInputs');
+            const starContainer = document.getElementById('adminTgStarInputs');
+            if (!premiumContainer || !starContainer) return;
+
+            premiumContainer.innerHTML = draftTgData.premium.map((item) => `
+                <div class="bg-darkbg border border-darkborder rounded-xl p-3 flex items-center gap-2">
+                    <div class="flex-1 min-w-0 space-y-1.5">
+                        <input type="text" id="tgPremiumLabel-${item.id}" value="${String(item.label).replace(/"/g, '&quot;')}" placeholder="Plan အမည် (ဥပမာ- 3 Months (Gift plan))" required
+                            class="w-full bg-darkinput border border-darkborder focus:border-amber-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-white focus:outline-none">
+                        <div class="flex items-center gap-1.5">
+                            <input type="number" min="0" step="1" id="tgPremiumPrice-${item.id}" value="${Number(item.price || 0)}" placeholder="ဈေးနှုန်း" required
+                                class="w-full bg-darkinput border border-darkborder focus:border-amber-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-amber-300 focus:outline-none">
+                            <span class="text-[11px] font-bold text-gray-400 flex-shrink-0">ks</span>
+                        </div>
+                    </div>
+                    <button type="button" onclick="removeEditableTgPremiumRow('${item.id}')" title="ဖျက်ရန်"
+                        class="self-stretch px-2.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs cursor-pointer transition-all">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            starContainer.innerHTML = draftTgData.stars.map((st) => `
+                <div class="bg-darkbg border border-darkborder rounded-xl p-2.5 flex items-center gap-2">
+                    <div class="w-24 flex-shrink-0 flex items-center gap-1 bg-darkinput border border-darkborder rounded-lg px-2 py-1.5">
+                        <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+                        <input type="text" id="tgStarAmount-${st.id}" value="${String(st.amount).replace(/"/g, '&quot;')}" placeholder="Star" required
+                            class="w-full bg-transparent text-xs font-extrabold text-white focus:outline-none">
+                    </div>
+                    <div class="flex-1 flex items-center gap-1 min-w-0">
+                        <input type="number" min="0" step="1" id="tgStarPrice-${st.id}" value="${Number(st.price || 0)}" placeholder="ဈေးနှုန်း" required
+                            class="w-full bg-darkinput border border-darkborder focus:border-amber-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-amber-300 text-right focus:outline-none">
+                        <span class="text-[11px] font-bold text-gray-400 flex-shrink-0">ks</span>
+                    </div>
+                    <button type="button" onclick="removeEditableTgStarRow('${st.id}')" title="ဖျက်ရန်"
+                        class="p-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs cursor-pointer transition-all flex-shrink-0">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        window.addEditableBundleRow = function() {
+            syncDraftInputsFromDom();
+            draftDiaData.bundles.push({
+                id: 'bundle-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
+                label: '',
+                price: 0
+            });
+            renderAdminDiaEditor();
+        };
+
+        window.removeEditableBundleRow = function(id) {
+            syncDraftInputsFromDom();
+            draftDiaData.bundles = draftDiaData.bundles.filter(b => b.id !== id);
+            renderAdminDiaEditor();
+        };
+
+        window.addEditableDiamondRow = function() {
+            syncDraftInputsFromDom();
+            const nextSection = draftDiaData.packages.length % 2 === 0 ? 'left' : 'right';
+            draftDiaData.packages.push({
+                id: 'pkg-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
+                amount: '',
+                price: 0,
+                section: nextSection
+            });
+            renderAdminDiaEditor();
+        };
+
+        window.removeEditableDiamondRow = function(id) {
+            syncDraftInputsFromDom();
+            draftDiaData.packages = draftDiaData.packages.filter(p => p.id !== id);
+            renderAdminDiaEditor();
+        };
+
+        window.addEditableTgPremiumRow = function() {
+            syncTgDraftInputsFromDom();
+            draftTgData.premium.push({
+                id: 'tgp-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
+                label: '',
+                price: 0
+            });
+            renderAdminTgEditor();
+        };
+
+        window.removeEditableTgPremiumRow = function(id) {
+            syncTgDraftInputsFromDom();
+            draftTgData.premium = draftTgData.premium.filter(p => p.id !== id);
+            renderAdminTgEditor();
+        };
+
+        window.addEditableTgStarRow = function() {
+            syncTgDraftInputsFromDom();
+            draftTgData.stars.push({
+                id: 'tgs-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
+                amount: '',
+                price: 0
+            });
+            renderAdminTgEditor();
+        };
+
+        window.removeEditableTgStarRow = function(id) {
+            syncTgDraftInputsFromDom();
+            draftTgData.stars = draftTgData.stars.filter(s => s.id !== id);
+            renderAdminTgEditor();
+        };
+
+        function initDiaPricesSync() {
+            onSnapshot(diaPricesDocRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    diaData = normalizeDiaData(docSnap.data());
+                } else {
+                    diaData = cloneDefaultDiaData();
+                }
+                renderDiaPricesView();
+                if (currentAdminUser) {
+                    resetDraftFromDiaData();
+                    renderAdminDiaEditor();
+                }
+            }, (error) => {
+                console.error("Dia prices listener error:", error);
+                renderDiaPricesView();
+            });
+        }
+
+        function initTgPricesSync() {
+            onSnapshot(tgPricesDocRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    tgData = normalizeTgData(docSnap.data());
+                } else {
+                    tgData = cloneDefaultTgData();
+                }
+                renderTgStarPremiumView();
+                if (currentAdminUser) {
+                    resetDraftFromTgData();
+                    renderAdminTgEditor();
+                }
+            }, (error) => {
+                console.error("TG prices listener error:", error);
+                renderTgStarPremiumView();
+            });
+        }
+
+        window.openDiaPricesView = function() {
+            const gateway = document.getElementById('entryGateway');
+            const storefront = document.getElementById('storefrontContent');
+            const diaSection = document.getElementById('diaPricesSection');
+            const tgSection = document.getElementById('tgStarPremiumSection');
+            if (gateway) gateway.classList.add('hidden');
+            if (storefront) storefront.classList.add('hidden');
+            if (tgSection) tgSection.classList.add('hidden');
+            if (diaSection) diaSection.classList.remove('hidden');
+            renderDiaPricesView();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        window.openTgStarPremiumView = function() {
+            const gateway = document.getElementById('entryGateway');
+            const storefront = document.getElementById('storefrontContent');
+            const diaSection = document.getElementById('diaPricesSection');
+            const tgSection = document.getElementById('tgStarPremiumSection');
+            if (gateway) gateway.classList.add('hidden');
+            if (storefront) storefront.classList.add('hidden');
+            if (diaSection) diaSection.classList.add('hidden');
+            if (tgSection) tgSection.classList.remove('hidden');
+            renderTgStarPremiumView();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        window.handleSaveDiaPrices = async function() {
+            if (!currentAdminUser) {
+                showToast('Admin Login အရင်ဝင်ပါ', 'error');
+                return;
+            }
+
+            syncDraftInputsFromDom();
+
+            const cleanedBundles = [];
+            for (const b of draftDiaData.bundles) {
+                const labelVal = String(b.label || '').trim();
+                const priceVal = Number(b.price);
+                if (!labelVal) {
+                    showToast('Bundle အမည် ထည့်သွင်းပါ', 'error');
+                    return;
+                }
+                if (Number.isNaN(priceVal) || priceVal < 0) {
+                    showToast(`${labelVal} ဈေးနှုန်း မှန်ကန်စွာ ထည့်ပါ`, 'error');
+                    return;
+                }
+                cleanedBundles.push({
+                    id: b.id,
+                    label: labelVal,
+                    price: Math.round(priceVal)
+                });
+            }
+
+            const cleanedPackages = [];
+            for (const p of draftDiaData.packages) {
+                const amtVal = String(p.amount || '').trim();
+                const priceVal = Number(p.price);
+                if (!amtVal) {
+                    showToast('Dia ပမာဏ ထည့်သွင်းပါ', 'error');
+                    return;
+                }
+                if (Number.isNaN(priceVal) || priceVal < 0) {
+                    showToast(`${amtVal} Dia ဈေးနှုန်း မှန်ကန်စွာ ထည့်ပါ`, 'error');
+                    return;
+                }
+                cleanedPackages.push({
+                    id: p.id,
+                    amount: amtVal,
+                    price: Math.round(priceVal),
+                    section: p.section === 'right' ? 'right' : 'left'
+                });
+            }
+
+            const payload = {
+                bundles: cleanedBundles,
+                packages: cleanedPackages,
+                updatedAt: Date.now()
+            };
+
+            try {
+                await setDoc(diaPricesDocRef, payload);
+                diaData = normalizeDiaData(payload);
+                resetDraftFromDiaData();
+                renderDiaPricesView();
+                renderAdminDiaEditor();
+                showToast('MLBB Dia ဈေးနှုန်းများ သိမ်းဆည်းပြီးပါပြီ', 'success');
+            } catch (err) {
+                console.error("Save dia prices error:", err);
+                showToast('Dia ဈေးသိမ်းမရပါ။ Firestore Rules စစ်ဆေးပါ။', 'error');
+            }
+        };
+
+        window.handleSaveTgPrices = async function() {
+            if (!currentAdminUser) {
+                showToast('Admin Login အရင်ဝင်ပါ', 'error');
+                return;
+            }
+
+            syncTgDraftInputsFromDom();
+
+            const cleanedPremium = [];
+            for (const p of draftTgData.premium) {
+                const labelVal = String(p.label || '').trim();
+                const priceVal = Number(p.price);
+                if (!labelVal) {
+                    showToast('Premium Plan အမည် ထည့်သွင်းပါ', 'error');
+                    return;
+                }
+                if (Number.isNaN(priceVal) || priceVal < 0) {
+                    showToast(`${labelVal} ဈေးနှုန်း မှန်ကန်စွာ ထည့်ပါ`, 'error');
+                    return;
+                }
+                cleanedPremium.push({
+                    id: p.id,
+                    label: labelVal,
+                    price: Math.round(priceVal)
+                });
+            }
+
+            const cleanedStars = [];
+            for (const s of draftTgData.stars) {
+                const amtVal = String(s.amount || '').trim();
+                const priceVal = Number(s.price);
+                if (!amtVal) {
+                    showToast('Star ပမာဏ ထည့်သွင်းပါ', 'error');
+                    return;
+                }
+                if (Number.isNaN(priceVal) || priceVal < 0) {
+                    showToast(`${amtVal} Star ဈေးနှုန်း မှန်ကန်စွာ ထည့်ပါ`, 'error');
+                    return;
+                }
+                cleanedStars.push({
+                    id: s.id,
+                    amount: amtVal,
+                    price: Math.round(priceVal)
+                });
+            }
+
+            const payload = {
+                premium: cleanedPremium,
+                stars: cleanedStars,
+                updatedAt: Date.now()
+            };
+
+            try {
+                await setDoc(tgPricesDocRef, payload);
+                tgData = normalizeTgData(payload);
+                resetDraftFromTgData();
+                renderTgStarPremiumView();
+                renderAdminTgEditor();
+                showToast('Star နှင့် TG Premium ဈေးနှုန်းများ သိမ်းဆည်းပြီးပါပြီ', 'success');
+            } catch (err) {
+                console.error("Save TG prices error:", err);
+                showToast('Star & TG ဈေးသိမ်းမရပါ။ Firestore Rules စစ်ဆေးပါ။', 'error');
+            }
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            updateAdminVisibility();
+            recordPageVisit();
+            renderDiaPricesView();
+            renderTgStarPremiumView();
+            initFirestoreSync();
+            initDiaPricesSync();
+            initTgPricesSync();
+            initAuthSync();
+        });
+
+        window.addEventListener('hashchange', updateAdminVisibility);
+
+        window.renderAccounts = function() {
+            const grid = document.getElementById('accountGrid');
+            const emptyState = document.getElementById('emptyState');
+            
+            const searchVal = (document.getElementById('searchInputDesktop').value || document.getElementById('searchInputMobile').value || '').toLowerCase().trim();
+            const sortVal = document.getElementById('sortSelect').value;
+
+            let filtered = accounts.filter(acc => {
+                const rankLabel = formatHighRankLabel(acc.rank);
+                if (activeFilter === 'AVAILABLE_ONLY' && acc.status !== 'AVAILABLE') return false;
+                if (activeFilter === 'High Rank' && !/high\s*rank/i.test(rankLabel)) return false;
+
+                if (searchVal) {
+                    const titleMatch = (acc.title || '').toLowerCase().includes(searchVal);
+                    const rankMatch = rankLabel.toLowerCase().includes(searchVal);
+                    const highlightMatch = (acc.highlights || []).some(h => h.toLowerCase().includes(searchVal));
+                    return titleMatch || rankMatch || highlightMatch;
+                }
+                return true;
+            });
+
+            if (sortVal === 'price-low') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (sortVal === 'price-high') {
+                filtered.sort((a, b) => b.price - a.price);
+            } else {
+                filtered.sort((a, b) => (b.created || 0) - (a.created || 0));
+            }
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            grid.innerHTML = filtered.map(acc => {
+                const isSold = acc.status === 'SOLD';
+                const mainImg = (acc.images && acc.images.length > 0) 
+                    ? acc.images[0] 
+                    : 'https://placehold.co/600x350/12141d/f59e0b?text=KIFY+GAME+SHOP';
+
+                const rankBadgeColor = 'bg-amber-500/20 text-amber-400 border-amber-500/30';
+                const rankLabel = formatHighRankLabel(acc.rank);
+                const formattedPrice = Number(acc.price).toLocaleString();
+
+                return `
+                    <div class="group bg-darkcard border border-darkborder hover:border-amber-500/50 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 shadow-lg hover:shadow-amber-500/10 flex flex-col">
+                        <div class="relative h-48 sm:h-52 bg-darkbg overflow-hidden cursor-pointer" onclick="openAccountDetails('${acc.id}')">
+                            <img src="${mainImg}" alt="${acc.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            
+                            <div class="absolute top-3 left-3 z-10 flex gap-2">
+                                ${isSold 
+                                    ? `<span class="bg-red-600/90 text-white text-[10px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider backdrop-blur-sm"><i class="fa-solid fa-ban mr-1"></i> Sold Out</span>`
+                                    : `<span class="bg-emerald-500/90 text-black text-[10px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider backdrop-blur-sm"><i class="fa-solid fa-check mr-1"></i> Available</span>`
+                                }
+                            </div>
+
+                            <div class="absolute top-3 right-3 z-10">
+                                <span class="${rankBadgeColor} border text-[11px] font-bold px-2.5 py-1 rounded-lg backdrop-blur-sm">
+                                    ${rankLabel}
+                                </span>
+                            </div>
+
+                            <div class="absolute bottom-3 right-3 z-10 bg-black/70 text-gray-300 text-[10px] font-semibold px-2 py-0.5 rounded-md backdrop-blur-sm flex items-center gap-1">
+                                <i class="fa-solid fa-image"></i> ${acc.images ? acc.images.length : 1}
+                            </div>
+                        </div>
+
+                        <div class="p-4 sm:p-5 flex-grow flex flex-col justify-between space-y-4">
+                            <div class="space-y-2">
+                                <h3 class="text-sm sm:text-base font-bold text-white group-hover:text-amber-400 transition-colors line-clamp-1 cursor-pointer" onclick="openAccountDetails('${acc.id}')">
+                                    ${acc.title}
+                                </h3>
+
+                                <div class="grid grid-cols-3 gap-1 bg-darkbg p-2 rounded-xl text-center text-xs border border-darkborder">
+                                    <div>
+                                        <p class="text-[10px] text-gray-400 uppercase">Skins</p>
+                                        <p class="font-extrabold text-amber-400">${acc.skins}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-gray-400 uppercase">Heroes</p>
+                                        <p class="font-extrabold text-gray-200">${acc.heroes}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-gray-400 uppercase">Win Rate</p>
+                                        <p class="font-extrabold text-emerald-400">${acc.winrate || 'N/A'}</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-wrap gap-1.5 pt-1">
+                                    ${(acc.highlights || []).slice(0, 3).map(hl => `
+                                        <span class="bg-amber-500/10 text-amber-300 text-[10px] px-2 py-0.5 rounded-md border border-amber-500/20 font-medium">
+                                            <i class="fa-solid fa-gem text-[9px] mr-1 text-amber-400"></i>${hl}
+                                        </span>
+                                    `).join('')}
+                                </div>
+                            </div>
+
+                            <div class="pt-3 border-t border-darkborder flex items-center justify-between gap-2">
+                                <div>
+                                    <p class="text-[10px] text-gray-400 uppercase font-medium">ဈေးနှုန်း (Price)</p>
+                                    <p class="text-base sm:text-lg font-black text-amber-400 gold-gradient-text">${formattedPrice} <span class="text-xs font-bold text-amber-500">MMK</span></p>
+                                </div>
+
+                                <button onclick="openAccountDetails('${acc.id}')" 
+                                    class="px-3.5 py-2 rounded-xl ${isSold ? 'bg-gray-800 text-gray-400 cursor-not-allowed' : 'gold-gradient-btn text-black font-extrabold'} text-xs shadow-md transition-all flex items-center gap-1.5">
+                                    <span>${isSold ? 'အသေးစိတ်' : 'info အစုံကြည့်ရန်'}</span>
+                                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        };
+
+        window.setFilter = function(filterType) {
+            activeFilter = filterType;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = 'filter-btn px-4 py-2.5 rounded-xl bg-darkcard text-gray-300 hover:text-white border border-darkborder hover:border-amber-500/50 transition-all whitespace-nowrap';
+            });
+
+            let activeBtnId = 'tab-ALL';
+            if (filterType === 'High Rank') activeBtnId = 'tab-HighRank';
+            if (filterType === 'AVAILABLE_ONLY') activeBtnId = 'tab-Available';
+
+            const activeBtn = document.getElementById(activeBtnId);
+            if (activeBtn) {
+                activeBtn.className = 'filter-btn px-4 py-2.5 rounded-xl bg-amber-500 text-black font-bold border border-amber-400 shadow-md transition-all whitespace-nowrap';
+            }
+
+            renderAccounts();
+        };
+
+        window.filterAccounts = function() { renderAccounts(); };
+        window.filterAccountsMobile = function() { renderAccounts(); };
+
+        window.enterStorefront = function() {
+            const gateway = document.getElementById('entryGateway');
+            const storefront = document.getElementById('storefrontContent');
+            const diaSection = document.getElementById('diaPricesSection');
+            const tgSection = document.getElementById('tgStarPremiumSection');
+            if (gateway) gateway.classList.add('hidden');
+            if (diaSection) diaSection.classList.add('hidden');
+            if (tgSection) tgSection.classList.add('hidden');
+            if (storefront) storefront.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        window.showEntryGateway = function() {
+            const gateway = document.getElementById('entryGateway');
+            const storefront = document.getElementById('storefrontContent');
+            const diaSection = document.getElementById('diaPricesSection');
+            const tgSection = document.getElementById('tgStarPremiumSection');
+            if (storefront) storefront.classList.add('hidden');
+            if (diaSection) diaSection.classList.add('hidden');
+            if (tgSection) tgSection.classList.add('hidden');
+            if (gateway) gateway.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        window.resetFilters = function() {
+            document.getElementById('searchInputDesktop').value = '';
+            document.getElementById('searchInputMobile').value = '';
+            document.getElementById('sortSelect').value = 'newest';
+            setFilter('ALL');
+            enterStorefront();
+        };
+
+        window.openAccountDetails = function(id) {
+            const acc = accounts.find(a => a.id === id);
+            if (!acc) return;
+
+            currentModalImages = acc.images && acc.images.length > 0 ? acc.images : ['https://placehold.co/600x350/12141d/f59e0b?text=KIFY+GAME+SHOP'];
+            activeModalImageIndex = 0;
+
+            const isSold = acc.status === 'SOLD';
+            const rankLabel = formatHighRankLabel(acc.rank);
+            const formattedPrice = Number(acc.price).toLocaleString();
+            const telegramUser = cleanTelegramUsername(acc.telegram);
+            
+            const tgMessage = encodeURIComponent(`မင်္ဂလာပါ @KIFYCASS၊ Account [${acc.title}] (${rankLabel}၊ ဈေးနှုန်း: ${formattedPrice} MMK) ကို ဝယ်ယူလိုပါသည်။`);
+            const tgLink = `https://t.me/${telegramUser}?text=${tgMessage}`;
+
+            const modalBody = document.getElementById('accountModalBody');
+            modalBody.innerHTML = `
+                <div class="space-y-3">
+                    <div class="relative h-64 sm:h-80 w-full bg-black rounded-2xl overflow-hidden border border-darkborder">
+                        <img id="mainModalImg" src="${currentModalImages[0]}" class="w-full h-full object-contain">
+                        
+                        ${currentModalImages.length > 1 ? `
+                            <button onclick="prevModalImg()" class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 text-amber-400 hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button onclick="nextModalImg()" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 text-amber-400 hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        ` : ''}
+
+                        <div class="absolute bottom-3 left-3 bg-black/70 text-gray-300 text-xs px-2.5 py-1 rounded-lg border border-white/10">
+                            <span id="imgCounter">1</span> / ${currentModalImages.length} ဓာတ်ပုံ
+                        </div>
+                    </div>
+
+                    ${currentModalImages.length > 1 ? `
+                        <div class="flex items-center gap-2 overflow-x-auto pb-1">
+                            ${currentModalImages.map((img, idx) => `
+                                <img src="${img}" onclick="setModalImg(${idx})" id="thumb-${idx}" 
+                                    class="w-16 h-12 object-cover rounded-lg border-2 cursor-pointer transition-all ${idx === 0 ? 'border-amber-500 opacity-100' : 'border-transparent opacity-60 hover:opacity-100'}">
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-darkborder pb-4">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">${rankLabel}</span>
+                                ${isSold 
+                                    ? `<span class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-red-600/20 text-red-400 border border-red-500/30">Sold Out</span>`
+                                    : `<span class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Available</span>`}
+                            </div>
+                            <h2 class="text-lg sm:text-xl font-bold text-white">${acc.title}</h2>
+                        </div>
+                        <div class="text-left sm:text-right">
+                            <p class="text-xs text-gray-400">ဝယ်ယူမည့် ဈေးနှုန်း</p>
+                            <p class="text-xl sm:text-2xl font-black text-amber-400 gold-gradient-text">${formattedPrice} <span class="text-xs font-bold text-amber-500">MMK</span></p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-darkbg p-3.5 rounded-2xl border border-darkborder text-xs">
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-shirt text-amber-400 text-lg"></i>
+                            <div>
+                                <p class="text-[10px] text-gray-400">Skins အရေအတွက်</p>
+                                <p class="font-bold text-white">${acc.skins} Skins</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-users text-amber-400 text-lg"></i>
+                            <div>
+                                <p class="text-[10px] text-gray-400">Heroes အရေအတွက်</p>
+                                <p class="font-bold text-white">${acc.heroes} Heroes</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-chart-line text-emerald-400 text-lg"></i>
+                            <div>
+                                <p class="text-[10px] text-gray-400">Win Rate</p>
+                                <p class="font-bold text-emerald-400">${acc.winrate || 'N/A'}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-shield-halved text-amber-400 text-lg"></i>
+                            <div>
+                                <p class="text-[10px] text-gray-400">ချိတ်ဆက်မှု</p>
+                                <p class="font-bold text-gray-200">Moonton Clean</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <h4 class="text-xs font-bold text-gray-300 flex items-center gap-1.5">
+                            <i class="fa-solid fa-crown text-amber-400"></i> ပါဝင်သော Rare Skin Highlights
+                        </h4>
+                        <div class="flex flex-wrap gap-1.5">
+                            ${(acc.highlights || []).map(hl => `
+                                <span class="bg-amber-500/15 text-amber-300 text-xs px-2.5 py-1 rounded-lg border border-amber-500/30 font-medium">
+                                    🌟 ${hl}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="space-y-1 text-xs text-gray-300 bg-darkbg p-3.5 rounded-xl border border-darkborder leading-relaxed">
+                        <p class="font-semibold text-amber-400">အသေးစိတ် အချက်အလက်များ:</p>
+                        <p>${acc.description || 'အသေးစိတ်အချက်အလက်များကို Admin Telegram တွင် တိုက်ရိုက်မေးမြန်းနိုင်ပါသည်။'}</p>
+                    </div>
+
+                    <div class="pt-2 flex flex-col sm:flex-row items-center gap-3">
+                        ${isSold ? `
+                            <button disabled class="w-full py-3.5 rounded-xl bg-gray-800 text-gray-400 font-bold text-sm cursor-not-allowed">
+                                ဤ Account ကို ရောင်းချပြီးပါပြီ (Sold Out)
+                            </button>
+                        ` : `
+                            <a href="${tgLink}" target="_blank" rel="noopener noreferrer" 
+                                class="w-full py-3.5 rounded-xl gold-gradient-btn text-black font-extrabold text-sm text-center shadow-lg flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-telegram text-base"></i>
+                                <span>Telegram ဖြင့် တိုက်ရိုက် ဝယ်ယူမည်</span>
+                            </a>
+                        `}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('accountModal').classList.remove('hidden');
+        };
+
+        window.setModalImg = function(index) {
+            activeModalImageIndex = index;
+            document.getElementById('mainModalImg').src = currentModalImages[index];
+            document.getElementById('imgCounter').innerText = index + 1;
+            currentModalImages.forEach((_, idx) => {
+                const thumb = document.getElementById(`thumb-${idx}`);
+                if (thumb) {
+                    if (idx === index) {
+                        thumb.className = "w-16 h-12 object-cover rounded-lg border-2 border-amber-500 opacity-100 cursor-pointer transition-all";
+                    } else {
+                        thumb.className = "w-16 h-12 object-cover rounded-lg border-2 border-transparent opacity-60 hover:opacity-100 cursor-pointer transition-all";
+                    }
+                }
+            });
+        };
+
+        window.prevModalImg = function() {
+            let newIndex = activeModalImageIndex - 1;
+            if (newIndex < 0) newIndex = currentModalImages.length - 1;
+            setModalImg(newIndex);
+        };
+
+        window.nextModalImg = function() {
+            let newIndex = activeModalImageIndex + 1;
+            if (newIndex >= currentModalImages.length) newIndex = 0;
+            setModalImg(newIndex);
+        };
+
+        window.closeModal = function(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        };
+
+        window.openAdminModal = function() {
+            if (!hasSecretAdminAccess()) {
+                return;
+            }
+            const modal = document.getElementById('adminModal');
+            modal.classList.remove('hidden');
+
+            if (currentAdminUser) {
+                document.getElementById('adminLoginView').classList.add('hidden');
+                document.getElementById('adminDashboardView').classList.remove('hidden');
+                renderAdminTable();
+                resetDraftFromDiaData();
+                renderAdminDiaEditor();
+                resetDraftFromTgData();
+                renderAdminTgEditor();
+                startVisitorLogsSync();
+            } else {
+                document.getElementById('adminLoginView').classList.remove('hidden');
+                document.getElementById('adminDashboardView').classList.add('hidden');
+            }
+        };
+
+        window.handleAdminLogin = async function(e) {
+            e.preventDefault();
+            const email = document.getElementById('adminEmailInput').value.trim();
+            const password = document.getElementById('adminPasswordInput').value;
+            const loginBtn = document.getElementById('adminLoginBtn');
+
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1.5"></i> စစ်ဆေးနေပါသည်...`;
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                document.getElementById('adminEmailInput').value = '';
+                document.getElementById('adminPasswordInput').value = '';
+                showToast('Firebase Admin Login အောင်မြင်ပါသည်', 'success');
+            } catch (err) {
+                console.error("Auth login error:", err);
+                showToast('Email သို့မဟုတ် Password မှားယွင်းနေပါသည်', 'error');
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = `Login ဝင်မည် <i class="fa-solid fa-arrow-right-to-bracket ml-1.5"></i>`;
+            }
+        };
+
+        window.handleAdminLogout = async function() {
+            try {
+                await signOut(auth);
+                closeModal('adminModal');
+                updateAdminVisibility();
+                showToast('Logout လုပ်ဆောင်ပြီးပါပြီ', 'info');
+            } catch (err) {
+                console.error("Logout error:", err);
+                showToast('Logout လုပ်ရာတွင် အမှားရှိနေပါသည်', 'error');
+            }
+        };
+
+        window.sendAdminPasswordReset = async function() {
+            const targetEmail = currentAdminUser && currentAdminUser.email ? currentAdminUser.email : '';
+            if (!targetEmail) {
+                showToast('Admin Email မတွေ့ပါ', 'error');
+                return;
+            }
+            try {
+                await sendPasswordResetEmail(auth, targetEmail);
+                showToast(`Reset Link ကို ${targetEmail} သို့ ပို့ပြီးပါပြီ`, 'success');
+            } catch (err) {
+                console.error("Reset email error:", err);
+                showToast('Reset Email ပို့ရာတွင် အမှားရှိနေပါသည်', 'error');
+            }
+        };
+
+        window.showAdminTab = function(tabName) {
+            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+                btn.className = 'admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-darkinput text-gray-300 hover:text-white border border-darkborder';
+            });
+
+            document.getElementById(`adminTab-${tabName}`).className = 'admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 text-black';
+
+            document.getElementById('adminSection-list').classList.add('hidden');
+            document.getElementById('adminSection-add').classList.add('hidden');
+            document.getElementById('adminSection-dia').classList.add('hidden');
+            document.getElementById('adminSection-tg').classList.add('hidden');
+            document.getElementById('adminSection-visitors').classList.add('hidden');
+            document.getElementById('adminSection-settings').classList.add('hidden');
+
+            document.getElementById(`adminSection-${tabName}`).classList.remove('hidden');
+
+            if (tabName === 'list') renderAdminTable();
+            if (tabName === 'dia') {
+                resetDraftFromDiaData();
+                renderAdminDiaEditor();
+            }
+            if (tabName === 'tg') {
+                resetDraftFromTgData();
+                renderAdminTgEditor();
+            }
+            if (tabName === 'visitors') {
+                startVisitorLogsSync();
+                renderVisitorLogs();
+            }
+        };
+
+        window.renderAdminTable = function() {
+            const tbody = document.getElementById('adminAccountTable');
+            document.getElementById('adminTotalCount').innerText = accounts.length;
+
+            if (accounts.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-6 text-gray-500">တင်ထားသော Account မရှိသေးပါ</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = accounts.map(acc => {
+                const img = (acc.images && acc.images.length > 0) ? acc.images[0] : 'https://placehold.co/100x60/12141d/f59e0b?text=KIFY';
+                const isSold = acc.status === 'SOLD';
+                const rankLabel = formatHighRankLabel(acc.rank);
+
+                return `
+                    <tr class="hover:bg-darkcard/50 transition-colors">
+                        <td class="p-3">
+                            <img src="${img}" class="w-12 h-9 object-cover rounded-md border border-darkborder">
+                        </td>
+                        <td class="p-3 font-semibold text-white max-w-[150px] truncate">${acc.title}</td>
+                        <td class="p-3"><span class="bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded text-[11px] font-bold">${rankLabel}</span></td>
+                        <td class="p-3 text-gray-300">${acc.skins} Skins / ${acc.heroes} Heroes</td>
+                        <td class="p-3 font-bold text-amber-400">${Number(acc.price).toLocaleString()} Ks</td>
+                        <td class="p-3">
+                            <button onclick="toggleAccountStatus('${acc.id}')" 
+                                class="px-2 py-1 rounded text-[10px] font-bold uppercase transition-all ${isSold ? 'bg-red-500/20 text-red-400 border border-red-500/30' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'}">
+                                ${isSold ? 'SOLD' : 'AVAILABLE'}
+                            </button>
+                        </td>
+                        <td class="p-3 text-right space-x-2">
+                            <button onclick="editAccount('${acc.id}')" class="text-amber-400 hover:text-amber-300 p-1" title="Edit">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <button onclick="confirmDeleteAccount('${acc.id}')" class="text-red-400 hover:text-red-300 p-1" title="Delete">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        };
+
+        window.toggleAccountStatus = async function(id) {
+            if (!currentAdminUser) {
+                showToast('Admin Login အရင်ဝင်ပါ', 'error');
+                return;
+            }
+            const acc = accounts.find(a => a.id === id);
+            if (!acc) return;
+
+            const nextStatus = acc.status === 'AVAILABLE' ? 'SOLD' : 'AVAILABLE';
+            try {
+                await updateDoc(doc(db, "mlbb_accounts", id), { status: nextStatus });
+                showToast(`အခြေအနေကို ${nextStatus} သို့ ပြောင်းလဲပြီးပါပြီ`, 'success');
+            } catch (err) {
+                console.error(err);
+                showToast('Update လုပ်ရာတွင် အမှားရှိနေပါသည် (Firestore Rules စစ်ဆေးပါ)', 'error');
+            }
+        };
+
+        window.handleImageUpload = async function(e) {
+            const files = Array.from(e.target.files);
+            if (!files || files.length === 0) return;
+
+            for (const file of files) {
+                const compressedBase64 = await compressSingleFile(file);
+                if (compressedBase64) {
+                    uploadedImagesBase64.push(compressedBase64);
+                }
+            }
+            e.target.value = '';
+            renderImagePreviews();
+        };
+
+        window.renderImagePreviews = function() {
+            const container = document.getElementById('imagePreviewContainer');
+            if (uploadedImagesBase64.length === 0) {
+                container.innerHTML = `<p id="noImageHint" class="text-xs text-gray-500 self-center mx-auto">ပုံမရွေးရသေးပါ</p>`;
+                return;
+            }
+
+            container.innerHTML = uploadedImagesBase64.map((img, idx) => `
+                <div class="relative group w-16 h-16 rounded-lg overflow-hidden border border-amber-500/40">
+                    <img src="${img}" class="w-full h-full object-cover">
+                    <span class="absolute bottom-0.5 left-0.5 bg-black/75 text-amber-300 text-[9px] font-bold px-1 rounded">${idx + 1}</span>
+                    <button type="button" onclick="removeUploadedImage(${idx})" 
+                        class="absolute top-0.5 right-0.5 bg-red-600 text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] shadow">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            `).join('');
+        };
+
+        window.removeUploadedImage = function(idx) {
+            uploadedImagesBase64.splice(idx, 1);
+            renderImagePreviews();
+        };
+
+        window.handleSaveAccount = async function(e) {
+            e.preventDefault();
+            if (!currentAdminUser) {
+                showToast('Admin Login အရင်ဝင်ပါ', 'error');
+                return;
+            }
+
+            const saveBtn = document.getElementById('saveAccountBtn');
+            if (saveBtn) {
+                saveBtn.disabled = true;
+                saveBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1"></i> သိမ်းဆည်းနေပါသည်...`;
+            }
+
+            const editId = document.getElementById('editAccountId').value;
+            const title = document.getElementById('accTitle').value.trim();
+            const rank = formatHighRankLabel(document.getElementById('accRank').value);
+            const price = parseFloat(document.getElementById('accPrice').value);
+            const skins = parseInt(document.getElementById('accSkins').value);
+            const heroes = parseInt(document.getElementById('accHeroes').value);
+            const winrate = document.getElementById('accWinrate').value.trim();
+            const telegram = cleanTelegramUsername(document.getElementById('accTelegram').value);
+            const status = document.getElementById('accStatus').value;
+            const highlightsRaw = document.getElementById('accHighlights').value;
+            const description = document.getElementById('accDesc').value.trim();
+
+            const highlights = highlightsRaw.split(',').map(s => s.trim()).filter(Boolean);
+            const rawImages = uploadedImagesBase64.length > 0 ? [...uploadedImagesBase64] : ['https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'];
+            const safeImages = fitImagesWithinFirestoreLimit(rawImages);
+            if (safeImages.length < rawImages.length) {
+                showToast(`ပုံ ${rawImages.length} ပုံထဲမှ ${safeImages.length} ပုံကို Firestore limit အတွင်း သိမ်းပေးလိုက်ပါသည်`, 'info');
+            }
+
+            try {
+                if (editId) {
+                    const existing = accounts.find(a => a.id === editId);
+                    const payload = {
+                        title, rank, price, skins, heroes, winrate, telegram, status, highlights, description,
+                        images: uploadedImagesBase64.length > 0 ? safeImages : (existing ? existing.images : [])
+                    };
+                    await updateDoc(doc(db, "mlbb_accounts", editId), payload);
+                    showToast('Account ကို ပြင်ဆင်ပြီးပါပြီ', 'success');
+                } else {
+                    const newId = 'kify-' + Date.now().toString().slice(-6);
+                    const newAcc = {
+                        id: newId,
+                        title, rank, price, skins, heroes, winrate, telegram, status, highlights, description,
+                        images: safeImages,
+                        created: Date.now()
+                    };
+                    await setDoc(doc(db, "mlbb_accounts", newId), newAcc);
+                    showToast('Account အသစ် တင်ပြီးပါပြီ', 'success');
+                }
+
+                cancelEditForm();
+                showAdminTab('list');
+            } catch (err) {
+                console.error("Save account error:", err);
+                const code = (err && err.code) ? String(err.code) : '';
+                const errMsg = (err && err.message) ? String(err.message) : '';
+                if (code === 'permission-denied' || /permission-denied|insufficient permissions/i.test(errMsg)) {
+                    showToast('Firestore Rules တွင် Authenticated Admin ခွင့်ပြုထားကြောင်း စစ်ဆေးပါ။', 'error');
+                } else if (code === 'resource-exhausted' || code === 'invalid-argument' || /exceeds the maximum allowed size|too large|resource-exhausted/i.test(errMsg)) {
+                    showToast('ပုံများ size ကြီးလွန်းနေပါသည်။ ပုံအရေအတွက် လျှော့ပြီး ထပ်သိမ်းပါ။', 'error');
+                } else {
+                    showToast(`သိမ်းမရပါ (${code || 'error'}): ${errMsg.slice(0, 80)}`, 'error');
+                }
+            } finally {
+                if (saveBtn) {
+                    saveBtn.disabled = false;
+                    saveBtn.innerHTML = `<i class="fa-solid fa-floppy-disk mr-1"></i> သိမ်းဆည်းမည် (Save Listing)`;
+                }
+            }
+        };
+
+        window.editAccount = function(id) {
+            const acc = accounts.find(a => a.id === id);
+            if (!acc) return;
+
+            document.getElementById('editAccountId').value = acc.id;
+            document.getElementById('accTitle').value = acc.title;
+            document.getElementById('accRank').value = acc.rank || '';
+            document.getElementById('accPrice').value = acc.price;
+            document.getElementById('accSkins').value = acc.skins;
+            document.getElementById('accHeroes').value = acc.heroes;
+            document.getElementById('accWinrate').value = acc.winrate || '';
+            document.getElementById('accTelegram').value = cleanTelegramUsername(acc.telegram);
+            document.getElementById('accStatus').value = acc.status;
+            document.getElementById('accHighlights').value = (acc.highlights || []).join(', ');
+            document.getElementById('accDesc').value = acc.description || '';
+
+            uploadedImagesBase64 = acc.images ? [...acc.images] : [];
+            renderImagePreviews();
+
+            document.getElementById('formHeaderTitle').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Account ကို ပြင်ဆင်မည် (#${acc.id})`;
+            showAdminTab('add');
+        };
+
+        window.cancelEditForm = function() {
+            document.getElementById('editAccountId').value = '';
+            document.getElementById('accTitle').value = '';
+            document.getElementById('accRank').value = '';
+            document.getElementById('accPrice').value = '';
+            document.getElementById('accSkins').value = '';
+            document.getElementById('accHeroes').value = '';
+            document.getElementById('accWinrate').value = '';
+            document.getElementById('accTelegram').value = 'KIFYCASS';
+            document.getElementById('accHighlights').value = '';
+            document.getElementById('accDesc').value = '';
+            uploadedImagesBase64 = [];
+            renderImagePreviews();
+            document.getElementById('formHeaderTitle').innerHTML = `<i class="fa-solid fa-square-plus"></i> MLBB Account အသစ်တင်မည်`;
+        };
+
+        window.confirmDeleteAccount = function(id) {
+            const acc = accounts.find(a => a.id === id);
+            if (!acc) return;
+
+            const toast = document.createElement('div');
+            toast.className = 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm';
+            toast.id = 'deleteModalConfirm';
+            toast.innerHTML = `
+                <div class="bg-darkcard border border-red-500/50 p-6 rounded-2xl max-w-sm w-full space-y-4 text-center shadow-2xl">
+                    <div class="w-12 h-12 mx-auto rounded-full bg-red-500/20 text-red-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-bold text-white">ဖျက်ပစ်ရန် သေချာပါသလား?</h4>
+                        <p class="text-xs text-gray-400 mt-1">${acc.title} ကို စာရင်းမှ ဖျက်ပစ်ပါမည်။</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="executeDelete('${acc.id}')" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs">
+                            ဖျက်မည်
+                        </button>
+                        <button onclick="document.getElementById('deleteModalConfirm').remove()" class="flex-1 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs">
+                            မဖျက်တော့ပါ
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(toast);
+        };
+
+        window.executeDelete = async function(id) {
+            if (!currentAdminUser) {
+                showToast('Admin Login အရင်ဝင်ပါ', 'error');
+                return;
+            }
+            try {
+                await deleteDoc(doc(db, "mlbb_accounts", id));
+                const modal = document.getElementById('deleteModalConfirm');
+                if (modal) modal.remove();
+                showToast('Account ကို ဖျက်ပစ်ပြီးပါပြီ', 'info');
+            } catch (err) {
+                console.error(err);
+                showToast('ဖျက်မရပါ။ Firestore Rules စစ်ဆေးပါ။', 'error');
+            }
+        };
+
+        window.showToast = function(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            
+            let bgStyle = 'bg-darkcard border-amber-500/40 text-amber-300';
+            let icon = 'fa-circle-info text-amber-400';
+
+            if (type === 'success') {
+                bgStyle = 'bg-darkcard border-emerald-500/50 text-emerald-300';
+                icon = 'fa-circle-check text-emerald-400';
+            } else if (type === 'error') {
+                bgStyle = 'bg-darkcard border-red-500/50 text-red-300';
+                icon = 'fa-circle-xmark text-red-400';
+            }
+
+            toast.className = `flex items-center gap-2.5 px-4 py-3 rounded-xl border shadow-xl text-xs font-semibold ${bgStyle} transform transition-all duration-300 translate-y-2 opacity-0 pointer-events-auto`;
+            toast.innerHTML = `<i class="fa-solid ${icon} text-sm"></i> <span>${message}</span>`;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        };
+    </script>
+</body>
+</html>
 
