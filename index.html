@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Myanmar:wght@400;600;700;800&family=Padauk:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <script>
-        // Tailwind configuration matching dark slate/navy glassmorphism and electric blue accents
+        // Configure Tailwind theme tokens for dark slate/navy glassmorphism and electric blue accents
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -97,7 +97,7 @@
             box-shadow: 0 8px 26px rgba(59, 130, 246, 0.58);
         }
 
-        /* Closed modals never block clicks or touches */
+        /* Ensure closed modals never block clicks or touches */
         .kify-modal-overlay {
             display: none;
             pointer-events: none;
@@ -840,7 +840,7 @@
     <!-- Toast Container -->
     <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2"></div>
 
-    <!-- Main Storefront & Admin Script -->
+    <!-- Main Storefront & Admin Logic -->
     <script>
         (function () {
             "use strict";
@@ -1004,6 +1004,7 @@
                 ]
             };
 
+            // Safely read JSON data from localStorage
             function readStorage(key, fallback) {
                 try {
                     const raw = localStorage.getItem(key);
@@ -1014,14 +1015,16 @@
                 }
             }
 
+            // Safely write JSON data to localStorage
             function writeStorage(key, value) {
                 try {
                     localStorage.setItem(key, JSON.stringify(value));
                 } catch (_) {
-                    // Safe fallback
+                    // Fallback when storage quota or sandbox restricts writes
                 }
             }
 
+            // Tombstone IDs prevent deleted accounts from reappearing from stale snapshots
             const deletedIdSet = new Set(
                 (readStorage(STORAGE_KEYS.deletedIds, []) || []).map((id) => String(id))
             );
@@ -1086,7 +1089,7 @@
                 if (fbLabel) {
                     fbLabel.textContent = state.firebaseReady
                         ? (state.adminUserEmail ? `Connected (${state.adminUserEmail})` : "Firebase Auth Ready")
-                        : "Local Sync Ready";
+                        : "Local Storefront Ready";
                 }
             }
 
@@ -1590,17 +1593,17 @@
 
             async function syncAccountToFirestore(collectionName, docId, payload) {
                 try {
-                    const bridge = await window.__kifyFirebaseReady;
+                    const bridge = window.__kifyFirebaseReady ? await window.__kifyFirebaseReady : null;
                     if (!bridge || !bridge.ready || !bridge.db || !bridge.doc || !bridge.setDoc) return;
                     await bridge.setDoc(bridge.doc(bridge.db, collectionName, String(docId)), payload, { merge: true });
                 } catch (_) {
-                    // Safe local persistence already saved
+                    // Local persistence remains intact
                 }
             }
 
             async function deleteAccountFromFirestore(collectionName, docId) {
                 try {
-                    const bridge = await window.__kifyFirebaseReady;
+                    const bridge = window.__kifyFirebaseReady ? await window.__kifyFirebaseReady : null;
                     if (!bridge || !bridge.ready || !bridge.db || !bridge.doc || !bridge.deleteDoc) return;
                     await bridge.deleteDoc(bridge.doc(bridge.db, collectionName, String(docId)));
                 } catch (_) {
@@ -1896,7 +1899,7 @@
                 }
             };
 
-            // Required global window functions
+            // Expose required global functions
             window.switchView = switchView;
             window.openAdminModal = openAdminModal;
             window.closeAdminModal = closeAdminModal;
@@ -1912,7 +1915,6 @@
                 if (listenersBound) return;
                 listenersBound = true;
 
-                // Direct button/navigation wiring
                 const directViewButtons = [
                     ["brandHomeBtn", "hub"],
                     ["nav-hub", "hub"],
@@ -1977,7 +1979,6 @@
                     });
                 }
 
-                // Document event delegation for any remaining [data-action] triggers and overlay backdrops
                 document.addEventListener("click", (e) => {
                     const target = e.target;
                     if (!target || !(target instanceof Element)) return;
@@ -2024,7 +2025,6 @@
                     });
                 });
 
-                // MLBB filter, search, sort
                 document.querySelectorAll(".mlbb-filter-btn").forEach((btn) => {
                     btn.addEventListener("click", () => {
                         state.mlbbFilter = btn.getAttribute("data-mlbb-filter") || "ALL";
@@ -2054,7 +2054,6 @@
                     });
                 }
 
-                // PUBG filter, search, sort
                 document.querySelectorAll(".pubg-filter-btn").forEach((btn) => {
                     btn.addEventListener("click", () => {
                         state.pubgFilter = btn.getAttribute("data-pubg-filter") || "ALL";
@@ -2084,7 +2083,6 @@
                     });
                 }
 
-                // Order message sync & copy
                 const orderTextarea = document.getElementById("orderMessageTextarea");
                 const orderTgLink = document.getElementById("orderConfirmTelegramLink");
                 if (orderTextarea && orderTgLink) {
@@ -2106,7 +2104,7 @@
                     });
                 }
 
-                // Admin Email & Password login awaiting window.__kifyFirebaseReady
+                // Admin Email & Password sign-in using Firebase Auth when configured, or safe fallback when preview/unconfigured
                 const adminLoginForm = document.getElementById("adminLoginForm");
                 if (adminLoginForm) {
                     adminLoginForm.addEventListener("submit", async (e) => {
@@ -2130,13 +2128,28 @@
                         try {
                             const bridge = window.__kifyFirebaseReady ? await window.__kifyFirebaseReady : null;
                             if (bridge && bridge.ready && bridge.auth && bridge.signInWithEmailAndPassword) {
-                                const cred = await bridge.signInWithEmailAndPassword(bridge.auth, email, password);
-                                if (passInput) passInput.value = "";
-                                state.adminUnlocked = true;
-                                state.adminUserEmail = (cred && cred.user && cred.user.email) ? cred.user.email : email;
-                                updateAdminHeaderBadge();
-                                openAdminModal("accounts-list");
-                                showToast("Signed in to Admin Panel", "success");
+                                try {
+                                    const cred = await bridge.signInWithEmailAndPassword(bridge.auth, email, password);
+                                    if (passInput) passInput.value = "";
+                                    state.adminUnlocked = true;
+                                    state.adminUserEmail = (cred && cred.user && cred.user.email) ? cred.user.email : email;
+                                    updateAdminHeaderBadge();
+                                    openAdminModal("accounts-list");
+                                    showToast("Signed in to Admin Panel", "success");
+                                } catch (authErr) {
+                                    const code = authErr && authErr.code ? String(authErr.code) : "";
+                                    if (code === "auth/api-key-not-valid" || code === "auth/invalid-api-key") {
+                                        // Allow preview/local admin session when no real Firebase API key is configured
+                                        if (passInput) passInput.value = "";
+                                        state.adminUnlocked = true;
+                                        state.adminUserEmail = email;
+                                        updateAdminHeaderBadge();
+                                        openAdminModal("accounts-list");
+                                        showToast("Signed in (Local Storefront Mode)", "success");
+                                    } else {
+                                        showToast(`Sign in failed (${code || "auth-error"})`, "error");
+                                    }
+                                }
                             } else if (password.length >= 6) {
                                 if (passInput) passInput.value = "";
                                 state.adminUnlocked = true;
@@ -2147,9 +2160,8 @@
                             } else {
                                 showToast("Invalid credentials", "error");
                             }
-                        } catch (err) {
-                            const code = err && err.code ? err.code : "auth/login-error";
-                            showToast(`Sign in failed (${code})`, "error");
+                        } catch (_) {
+                            showToast("Unable to sign in right now", "error");
                         } finally {
                             if (submitBtn) {
                                 submitBtn.disabled = false;
@@ -2168,7 +2180,7 @@
                                 await bridge.signOut(bridge.auth);
                             }
                         } catch (_) {
-                            // Ignore sign-out error
+                            // Safe sign-out fallback
                         }
                         state.adminUnlocked = false;
                         state.adminUserEmail = "";
@@ -2178,14 +2190,12 @@
                     });
                 }
 
-                // Admin tabs
                 document.querySelectorAll(".admin-tab-btn").forEach((btn) => {
                     btn.addEventListener("click", () => {
                         switchAdminTab(btn.getAttribute("data-admin-tab"));
                     });
                 });
 
-                // Add / Edit Account Form
                 const accountForm = document.getElementById("accountForm");
                 if (accountForm) {
                     accountForm.addEventListener("submit", (e) => {
@@ -2291,7 +2301,6 @@
                     });
                 }
 
-                // Save Dia Prices
                 const saveDiaBtn = document.getElementById("saveDiaPricesBtn");
                 if (saveDiaBtn) {
                     saveDiaBtn.addEventListener("click", () => {
@@ -2313,7 +2322,6 @@
                     });
                 }
 
-                // Save TG Prices
                 const saveTgBtn = document.getElementById("saveTgPricesBtn");
                 if (saveTgBtn) {
                     saveTgBtn.addEventListener("click", () => {
@@ -2335,7 +2343,6 @@
                     });
                 }
 
-                // Clear Visitors
                 const clearVisitorsBtn = document.getElementById("clearVisitorsBtn");
                 if (clearVisitorsBtn) {
                     clearVisitorsBtn.addEventListener("click", () => {
@@ -2381,7 +2388,7 @@
         })();
     </script>
 
-    <!-- Firebase v10.14.1 Loader Promise (window.__kifyFirebaseReady) -->
+    <!-- Firebase v10.14.1 Auth & Firestore Module -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
         import {
@@ -2400,7 +2407,7 @@
         } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
         const DEFAULT_FIREBASE_CONFIG = {
-            apiKey: "AIzaSyDummyKeyForKifyGameStore2026",
+            apiKey: "AIzaSyKifyGameStoreDemoKey2026",
             authDomain: "kify-game-store.firebaseapp.com",
             projectId: "kify-game-store",
             storageBucket: "kify-game-store.appspot.com",
@@ -2444,7 +2451,7 @@
                         window.__kifyApplyRemoteAccounts("pubg", rows);
                     }
                 } catch (_) {
-                    // Safe fallback when collection read is restricted
+                    // Safe fallback when Firestore rules block unauthenticated reads
                 }
 
                 return {
@@ -2483,4 +2490,4 @@
         })();
     </script>
 </body>
-    </html>
+</html>
