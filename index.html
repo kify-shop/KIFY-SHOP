@@ -3,87 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KIFY GAME SHOP - MLBB VIP Account Center</title>
-    <!-- Updated brand favicon and apple-touch-icon -->
+    <title>KIFY GAME STORE - MLBB VIP Account Center</title>
+    <!-- Brand favicon and apple-touch-icon -->
     <link rel="icon" type="image/png" href="IMG_20261125_220821_646.png">
     <link rel="apple-touch-icon" href="IMG_20261125_220821_646.png">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome 6 Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Padauk, Plus Jakarta Sans & Montserrat -->
+    <!-- Google Fonts: Padauk, Noto Sans Myanmar, Plus Jakarta Sans & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Padauk:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Myanmar:wght@400;600;700;800&family=Padauk:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <script>
-        // Configure Tailwind CSS theme tokens for dark gold aesthetic
+        // Configure Tailwind CSS theme for deep dark slate/navy + electric royal/sky blue glassmorphic UI
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        gold: {
-                            50: '#fffbeb',
-                            100: '#fef3c7',
-                            300: '#fcd34d',
-                            400: '#fbbf24',
-                            500: '#f59e0b',
-                            600: '#d97706',
-                            700: '#b45309',
-                            800: '#92400e',
-                            glow: '#ffd700',
-                            accent: '#e6c666'
+                        navybg: '#060a13',
+                        navysurface: '#090f1d',
+                        navycard: '#0d1526',
+                        navyborder: '#1e293b',
+                        navyinput: '#111c33',
+                        royal: {
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8'
                         },
-                        darkbg: '#0a0b0e',
-                        darkcard: '#12141d',
-                        darkborder: '#232736',
-                        darkinput: '#1a1d2b'
+                        skyacc: {
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9'
+                        }
                     },
                     fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'Padauk', 'sans-serif'],
-                        display: ['Montserrat', 'Padauk', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'Inter', 'Noto Sans Myanmar', 'Padauk', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'Inter', 'Noto Sans Myanmar', 'Padauk', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Base dark styling and typography */
+        /* Deep dark navy ambient background with subtle radial highlights */
         body {
-            background-color: #08090c;
+            background-color: #060a13;
+            background-image:
+                radial-gradient(ellipse 80% 45% at 50% -8%, rgba(37, 99, 235, 0.20), transparent 70%),
+                radial-gradient(circle at 85% 25%, rgba(14, 165, 233, 0.08), transparent 45%),
+                radial-gradient(circle at 15% 75%, rgba(37, 99, 235, 0.07), transparent 45%);
             color: #e2e8f0;
-            font-family: 'Plus Jakarta Sans', 'Padauk', sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Inter', 'Noto Sans Myanmar', 'Padauk', sans-serif;
             overflow-x: hidden;
         }
 
-        /* Gold Gradient Effects */
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #fff2a3 0%, #f59e0b 50%, #b45309 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .glass-header {
+            background: rgba(8, 13, 25, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
-        .gold-gradient-bg {
-            background: linear-gradient(135deg, #fbbf24 0%, #d97706 60%, #78350f 100%);
+        .glass-card {
+            background: linear-gradient(180deg, rgba(15, 25, 46, 0.92) 0%, rgba(10, 17, 32, 0.96) 100%);
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            box-shadow: 0 12px 32px rgba(2, 6, 23, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
-        .gold-gradient-btn {
-            background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 50%, #d97706 100%);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .glass-card-hover {
+            transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
         }
-        .gold-gradient-btn:hover {
-            background: linear-gradient(135deg, #ffe082 0%, #fbbf24 50%, #b45309 100%);
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        .glass-card-hover:hover {
+            transform: translateY(-3px);
+            border-color: rgba(96, 165, 250, 0.42);
+            box-shadow: 0 16px 36px rgba(2, 6, 23, 0.8), 0 0 24px rgba(37, 99, 235, 0.16);
         }
 
-        .gold-border-glow {
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.1);
+        .blue-glow-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.42);
+            transition: all 0.22s ease;
         }
-        .gold-border-glow:hover {
-            border-color: rgba(251, 191, 36, 0.7);
-            box-shadow: 0 0 25px rgba(245, 158, 11, 0.25);
+        .blue-glow-btn:hover {
+            background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+            box-shadow: 0 8px 26px rgba(59, 130, 246, 0.58);
+        }
+
+        .logo-blue-glow {
+            box-shadow: 0 0 18px rgba(37, 99, 235, 0.35);
         }
 
         /* Custom Scrollbar */
@@ -92,497 +104,354 @@
             height: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #0d0f17;
+            background: #060a13;
         }
         ::-webkit-scrollbar-thumb {
-            background: #d97706;
-            border-radius: 4px;
-        }
-
-        .glass-panel {
-            background: rgba(18, 20, 29, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        /* Coin Emblem Animation */
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); }
-            50% { box-shadow: 0 0 30px rgba(251, 191, 36, 0.8); }
-        }
-
-        .coin-glow {
-            animation: pulseGlow 3s infinite ease-in-out;
-        }
-
-        @keyframes heroFloatShimmer {
-            0%, 100% {
-                transform: translateY(0px);
-                filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.25));
-            }
-            50% {
-                transform: translateY(-6px);
-                filter: drop-shadow(0 0 18px rgba(251, 191, 36, 0.55));
-            }
-        }
-
-        @keyframes goldShineSweep {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .hero-vip-float {
-            background: linear-gradient(110deg, #b45309 0%, #f59e0b 25%, #fff7b2 50%, #fbbf24 75%, #b45309 100%);
-            background-size: 220% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: heroFloatShimmer 3.2s ease-in-out infinite, goldShineSweep 4.5s linear infinite;
-            will-change: transform, filter, background-position;
-        }
-
-        @keyframes borderLightOrbit {
-            0% {
-                --border-angle: 0deg;
-            }
-            100% {
-                --border-angle: 360deg;
-            }
-        }
-
-        @property --border-angle {
-            syntax: "<angle>";
-            inherits: true;
-            initial-value: 0deg;
-        }
-
-        .hero-light-border {
-            position: relative;
-            z-index: 1;
-            border: 1.5px solid transparent;
-            background:
-                linear-gradient(90deg, rgba(18, 20, 29, 0.96) 0%, rgba(10, 11, 14, 0.96) 55%, rgba(69, 26, 3, 0.55) 100%) padding-box,
-                conic-gradient(
-                    from var(--border-angle, 0deg),
-                    rgba(245, 158, 11, 0.14) 0deg,
-                    rgba(251, 191, 36, 0.25) 45deg,
-                    rgba(255, 247, 178, 0.95) 85deg,
-                    rgba(251, 191, 36, 0.85) 115deg,
-                    rgba(245, 158, 11, 0.15) 165deg,
-                    rgba(180, 83, 9, 0.12) 260deg,
-                    rgba(255, 242, 163, 0.75) 315deg,
-                    rgba(245, 158, 11, 0.14) 360deg
-                ) border-box;
-            animation: borderLightOrbit 4.5s linear infinite;
-            box-shadow: 0 0 22px rgba(245, 158, 11, 0.14);
-        }
-
-        .hero-light-border::before {
-            content: "";
-            position: absolute;
-            inset: -2px;
-            border-radius: inherit;
-            background: conic-gradient(
-                from var(--border-angle, 0deg),
-                transparent 0deg,
-                transparent 65deg,
-                rgba(255, 247, 178, 0.5) 95deg,
-                transparent 130deg,
-                transparent 295deg,
-                rgba(251, 191, 36, 0.35) 320deg,
-                transparent 360deg
-            );
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            padding: 2px;
-            filter: blur(5px);
-            pointer-events: none;
-            z-index: -1;
-            animation: borderLightOrbit 4.5s linear infinite;
-        }
-
-        @keyframes splashCardFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-5px);
-            }
-        }
-
-        .splash-entry-card {
-            animation: splashCardFloat 3.6s ease-in-out infinite;
+            background: #2563eb;
+            border-radius: 9999px;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black">
+<body class="min-h-screen flex flex-col justify-between selection:bg-blue-600 selection:text-white">
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="sticky top-0 z-40 glass-panel border-b border-amber-500/20 shadow-xl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-            
-            <!-- BRAND LOGO WITH UPDATED IMAGE -->
-            <div class="flex items-center gap-3 cursor-pointer" onclick="showEntryGateway()">
-                <div class="relative w-12 h-12 rounded-full overflow-hidden coin-glow flex-shrink-0 border border-amber-400/60 bg-darkbg">
-                    <img src="IMG_20261125_220821_646.png" alt="KIFY GAME SHOP Logo"
-                        onerror="this.onerror=null;this.src='https://placehold.co/96x96/12141d/f59e0b?text=KIFY';"
-                        class="w-full h-full object-cover">
+    <!-- TOP HEADER & QUICK NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 glass-header border-b border-slate-800/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-3.5 pb-3 space-y-3">
+            <!-- Top Row: Brand Badge + Right Action Pills -->
+            <div class="flex items-center justify-between gap-3">
+                <!-- Left: Logo Badge + KIFY GAME STORE / DIGITAL ARMORY -->
+                <div class="flex items-center gap-3 cursor-pointer select-none" onclick="showEntryGateway()">
+                    <div class="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden logo-blue-glow flex-shrink-0 border border-blue-400/40 bg-navycard">
+                        <img src="IMG_20261125_220821_646.png" alt="KIFY GAME STORE Logo"
+                            onerror="this.onerror=null;this.src='https://placehold.co/96x96/0d1526/38bdf8?text=KIFY';"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="leading-tight">
+                        <h1 class="text-sm sm:text-base font-extrabold tracking-wide text-white uppercase">
+                            KIFY GAME STORE
+                        </h1>
+                        <p class="text-[10px] sm:text-[11px] font-semibold tracking-[0.16em] text-slate-400 uppercase">
+                            DIGITAL ARMORY
+                        </p>
+                    </div>
                 </div>
-                <div>
-                    <h1 class="text-xl font-extrabold tracking-wider gold-gradient-text flex items-center gap-1.5 font-display">
-                        KIFY GAME SHOP
-                    </h1>
+
+                <!-- Right: @KIFYCASS Pill + Admin Preview Button -->
+                <div class="flex items-center gap-2 sm:gap-2.5">
+                    <a href="https://t.me/KIFYCASS" target="_blank" rel="noopener noreferrer"
+                        class="flex items-center gap-1.5 bg-slate-800/80 hover:bg-slate-800 text-sky-400 border border-slate-700/80 hover:border-sky-500/40 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full text-xs font-semibold transition-all">
+                        <i class="fa-brands fa-telegram text-sm text-sky-400"></i>
+                        <span>@KIFYCASS</span>
+                    </a>
+
+                    <button id="headerAdminBtn" type="button" onclick="openAdminModal()"
+                        class="hidden items-center gap-1.5 blue-glow-btn text-white border border-blue-400/40 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full text-xs font-bold cursor-pointer">
+                        <i class="fa-solid fa-sliders text-xs"></i>
+                        <span id="adminBtnText">Admin Preview</span>
+                    </button>
                 </div>
             </div>
 
-            <!-- SEARCH BAR (DESKTOP) -->
-            <div class="hidden md:flex flex-1 max-w-md mx-4 relative">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-amber-500/70 text-sm"></i>
-                <input type="text" id="searchInputDesktop" onkeyup="filterAccounts()" placeholder="Account Code, High Rank, Star, Skin ရှာဖွေပါ..." 
-                    class="w-full bg-darkinput/90 border border-darkborder focus:border-amber-500 text-sm rounded-full pl-10 pr-4 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-all">
-            </div>
-
-            <!-- ACTIONS -->
-            <div class="flex items-center gap-2.5">
-                <a href="https://t.me/KIFYCASS" target="_blank" rel="noopener noreferrer" 
-                    class="hidden sm:flex items-center gap-2 bg-sky-600/20 hover:bg-sky-600/30 text-sky-400 border border-sky-500/30 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all">
-                    <i class="fa-brands fa-telegram text-base text-sky-400"></i>
-                    <span>Telegram Contact</span>
-                </a>
-
-                <button id="headerAdminBtn" onclick="openAdminModal()" 
-                    class="hidden items-center gap-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all">
-                    <i class="fa-solid fa-user-shield text-sm"></i>
-                    <span id="adminBtnText">Admin Panel</span>
+            <!-- Second Row: Pill Navigation Strip (Hub, Accounts, Dia Top-Up, TG & Stars) -->
+            <nav aria-label="Primary Store Navigation" class="flex items-center gap-2 overflow-x-auto pb-0.5">
+                <button type="button" id="navPill-hub" onclick="showEntryGateway()"
+                    class="top-nav-pill px-4 py-1.5 rounded-full text-xs font-bold bg-blue-600 text-white shadow-sm shadow-blue-600/40 whitespace-nowrap transition-all cursor-pointer">
+                    Hub
                 </button>
-            </div>
-        </div>
-
-        <!-- SEARCH BAR (MOBILE) -->
-        <div class="md:hidden px-4 pb-3">
-            <div class="relative w-full">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-amber-500/70 text-sm"></i>
-                <input type="text" id="searchInputMobile" onkeyup="filterAccountsMobile()" placeholder="Account Code, High Rank, Star, Skin ရှာရန်..." 
-                    class="w-full bg-darkinput border border-darkborder focus:border-amber-500 text-sm rounded-full pl-10 pr-4 py-2 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-amber-500">
-            </div>
+                <button type="button" id="navPill-accounts" onclick="enterStorefront()"
+                    class="top-nav-pill px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-800/75 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700/70 whitespace-nowrap transition-all cursor-pointer">
+                    Accounts
+                </button>
+                <button type="button" id="navPill-dia" onclick="openDiaPricesView()"
+                    class="top-nav-pill px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-800/75 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700/70 whitespace-nowrap transition-all cursor-pointer">
+                    Dia Top-Up
+                </button>
+                <button type="button" id="navPill-tg" onclick="openTgStarPremiumView()"
+                    class="top-nav-pill px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-800/75 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700/70 whitespace-nowrap transition-all cursor-pointer">
+                    TG &amp; Stars
+                </button>
+            </nav>
         </div>
     </header>
 
     <!-- MAIN CONTENT AREA -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-7">
 
-        <!-- ENTRY GATEWAY / SPLASH VIEW -->
-        <section id="entryGateway" class="py-6 sm:py-10 flex flex-col items-center justify-center gap-6">
-            <!-- Card 1: Mobile Legend Accounts -->
-            <div class="splash-entry-card w-full max-w-2xl rounded-3xl hero-light-border p-6 sm:p-8 text-center space-y-6">
-                <div class="relative w-full h-52 sm:h-64 rounded-2xl overflow-hidden border border-amber-500/40 bg-darkbg shadow-xl">
-                    <img id="mlbbSplashImg" src="IMG_20261125_220821_646.png" alt="Mobile Legends Account Banner"
-                        onerror="if(!this.dataset.f1){this.dataset.f1=1;this.src='https://placehold.co/800x420/12141d/f59e0b?text=KIFY+GAME+SHOP+MLBB';}"
-                        class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none"></div>
-                    <span class="absolute bottom-3 left-3 bg-amber-500/20 text-amber-300 border border-amber-400/40 text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-sm">
-                        <i class="fa-solid fa-gamepad mr-1"></i> MOBILE LEGENDS VIP CENTER
-                    </span>
-                </div>
+        <!-- 1. HUB / ENTRY GATEWAY VIEW (MATCHING 1000002089.jpg) -->
+        <section id="entryGateway" class="space-y-6">
+            <!-- Hero Banner Card -->
+            <div class="relative rounded-3xl glass-card p-6 sm:p-8 md:p-10 overflow-hidden">
+                <div class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[520px] h-[220px] bg-blue-600/15 blur-3xl rounded-full"></div>
 
-                <div class="space-y-2">
-                    <h2 class="text-xl sm:text-2xl font-extrabold hero-vip-float font-display">
-                        Mobile Legend အကောင့်များကြည့်ရန်
+                <div class="relative z-10 max-w-2xl space-y-4">
+                    <div class="inline-flex items-center gap-2 bg-slate-900/90 border border-slate-700/80 px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-wider uppercase">
+                        <i class="fa-solid fa-shield-halved text-sky-400 text-xs"></i>
+                        <span class="text-sky-400">KIFY GAME STORE</span>
+                        <span class="text-slate-500">•</span>
+                        <span class="text-slate-200">@KIFYCASS</span>
+                    </div>
+
+                    <h2 class="text-2xl sm:text-4xl font-black tracking-tight text-white uppercase leading-tight">
+                        KIFY GAME <span class="text-blue-500">STORE</span>
                     </h2>
-                    <p class="text-xs sm:text-sm text-gray-400">
-                        ရောင်းချရန် အသင့်ရှိသော Account စာရင်းများကို ကြည့်ရှုရန် အောက်ပါခလုတ်ကို နှိပ်ပါ
+
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl">
+                        Mobile Legends အကောင့်များ၊ Diamond၊ Telegram star နှင့် Premium များကို @KIFYCASS telegram ဆက်သွယ်ပြီးဝယ်ယူနိုင်ပါသည်
                     </p>
-                </div>
 
-                <div class="flex items-center justify-center pt-1">
-                    <button type="button" onclick="enterStorefront()"
-                        class="w-full sm:w-auto px-6 py-3.5 rounded-2xl gold-gradient-btn text-black font-extrabold text-sm shadow-lg flex items-center justify-center gap-2 cursor-pointer">
-                        <span>Mobile Legend အကောင့်များကြည့်ရန်</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
+                    <div class="flex flex-wrap items-center gap-3 pt-2">
+                        <button type="button" onclick="enterStorefront()"
+                            class="blue-glow-btn text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-xl inline-flex items-center gap-2 cursor-pointer">
+                            <span>Mobile Legend အကောင့်များ</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+
+                        <a href="https://t.me/KIFYCASS" target="_blank" rel="noopener noreferrer"
+                            class="bg-slate-900/90 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700/80 font-semibold text-xs sm:text-sm px-4 py-3 rounded-xl inline-flex items-center gap-2 transition-all">
+                            <i class="fa-brands fa-telegram text-sky-400 text-base"></i>
+                            <span>Telegram မှ ဆက်သွယ်ရန်</span>
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Row of 2 Cards: MLBB Dia Prices & Star + TG Premium Prices -->
-            <div class="w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Card 2: MLBB Dia Prices -->
-                <div class="splash-entry-card w-full rounded-3xl hero-light-border p-5 sm:p-6 text-center space-y-5 flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <div class="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden border border-amber-500/40 bg-darkbg shadow-xl">
-                            <img id="diaSplashImg" src="IMG_20261125_220821_646.png" alt="MLBB Diamond Top-Up Banner"
-                                onerror="if(!this.dataset.f1){this.dataset.f1=1;this.src='https://placehold.co/600x360/12141d/fbbf24?text=MLBB+DIAMONDS';}"
-                                class="w-full h-full object-cover object-top">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none"></div>
-                            <span class="absolute bottom-2.5 left-2.5 bg-amber-500/20 text-amber-300 border border-amber-400/40 text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-sm">
-                                <i class="fa-regular fa-gem mr-1"></i> MLBB DIAMOND TOP-UP
-                            </span>
-                        </div>
-
-                        <div class="space-y-1.5">
-                            <h3 class="text-lg sm:text-xl font-extrabold hero-vip-float font-display">
-                                MLBB Diamond ဈေးနှုန်းများ
-                            </h3>
-                            <p class="text-xs text-gray-400">
-                                Weekly Pass နှင့် Diamond Package ဈေးနှုန်းများကို ကြည့်ရှုရန်
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-center pt-1">
-                        <button type="button" onclick="openDiaPricesView()"
-                            class="w-full px-5 py-3 rounded-2xl gold-gradient-btn text-black font-extrabold text-xs sm:text-sm shadow-lg flex items-center justify-center gap-2 cursor-pointer">
-                            <i class="fa-regular fa-gem"></i>
-                            <span>Mlbb Dia ဈေးကြည့်ရန်</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Card 3: Star & TG Premium Prices -->
-                <div class="splash-entry-card w-full rounded-3xl hero-light-border p-5 sm:p-6 text-center space-y-5 flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <div class="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden border border-amber-500/40 bg-darkbg shadow-xl">
-                            <img id="tgSplashImg" src="IMG_20261125_220821_646.png" alt="Telegram Star & Premium Banner"
-                                onerror="if(!this.dataset.f1){this.dataset.f1=1;this.src='https://placehold.co/600x360/12141d/38bdf8?text=TG+STAR+PREMIUM';}"
-                                class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none"></div>
-                            <span class="absolute bottom-2.5 left-2.5 bg-sky-500/20 text-sky-300 border border-sky-400/40 text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-sm">
-                                <i class="fa-brands fa-telegram mr-1"></i> STAR &amp; TG PREMIUM
-                            </span>
-                        </div>
-
-                        <div class="space-y-1.5">
-                            <h3 class="text-lg sm:text-xl font-extrabold hero-vip-float font-display">
-                                Star နှင့် TG Premium ဈေးနှုန်းများ
-                            </h3>
-                            <p class="text-xs text-gray-400">
-                                Telegram Star နှင့် Gift Plan ဈေးနှုန်းများကို ကြည့်ရှုရန်
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-center pt-1">
-                        <button type="button" onclick="openTgStarPremiumView()"
-                            class="w-full px-5 py-3 rounded-2xl gold-gradient-btn text-black font-extrabold text-xs sm:text-sm shadow-lg flex items-center justify-center gap-2 cursor-pointer">
-                            <i class="fa-solid fa-star"></i>
-                            <span>Star နှင့် TG Premium ဈေးကြည့်ရန်</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- MLBB DIA PRICES VIEW -->
-        <section id="diaPricesSection" class="hidden space-y-6">
-            <div class="relative rounded-3xl overflow-hidden hero-light-border p-6 sm:p-8">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                        <span class="inline-flex items-center gap-1.5 text-[11px] font-bold px-3 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 mb-2">
-                            <i class="fa-regular fa-gem"></i> MLBB DIAMOND TOP-UP LIST
-                        </span>
-                        <h2 class="text-xl sm:text-2xl font-extrabold hero-vip-float font-display">
-                            MLBB Dia ဈေးနှုန်းများ
-                        </h2>
-                        <p class="text-xs sm:text-sm text-gray-400 mt-1">
-                            ဝယ်ယူလိုသော Package / Diamond ပမာဏကို နှိပ်ပြီး Telegram မှ တိုက်ရိုက် ဝယ်ယူနိုင်ပါသည်
+            <!-- 3-Column Feature Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <!-- Card 1: Mobile Legend အကောင့်များ -->
+                <div onclick="enterStorefront()"
+                    class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between space-y-6 cursor-pointer">
+                    <div class="space-y-3">
+                        <h3 class="text-lg sm:text-xl font-extrabold text-white leading-snug">
+                            Mobile Legend အကောင့်များ
+                        </h3>
+                        <p class="text-xs sm:text-[13px] text-slate-400 leading-relaxed">
+                            Explore curated MLBB accounts, filter by Available or Sold Out status, sort by price, inspect photo slides, and order via @KIFYCASS.
                         </p>
                     </div>
-                    <button type="button" onclick="showEntryGateway()"
-                        class="self-start sm:self-auto px-4 py-2.5 rounded-xl bg-darkinput hover:bg-amber-500/15 text-amber-300 border border-amber-500/40 text-xs font-bold flex items-center gap-2 cursor-pointer transition-all">
-                        <i class="fa-solid fa-arrow-left"></i>
-                        <span>အစစာမျက်နှာသို့</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- TOP BUNDLES -->
-            <div id="diaBundlesGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <!-- Dynamically rendered -->
-            </div>
-
-            <!-- COMPACT SIDE-BY-SIDE GRID CARDS FOR DIAMOND PACKAGES -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                <div class="rounded-2xl bg-darkcard border border-amber-500/35 overflow-hidden shadow-xl">
-                    <div class="px-4 py-3 bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-transparent border-b border-darkborder flex items-center justify-between">
-                        <span class="text-xs font-extrabold text-amber-300 uppercase tracking-wider">
-                            <i class="fa-regular fa-gem mr-1.5"></i> Standard Packages
+                    <div class="pt-1">
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold text-sky-400 hover:text-sky-300">
+                            <span>Browse Accounts</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
                         </span>
-                        <span class="text-[11px] text-gray-400">MMK (ကျပ်)</span>
-                    </div>
-                    <div id="diaLeftList" class="p-3 grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-                        <!-- Dynamically rendered -->
                     </div>
                 </div>
 
-                <div class="rounded-2xl bg-darkcard border border-amber-500/35 overflow-hidden shadow-xl">
-                    <div class="px-4 py-3 bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-transparent border-b border-darkborder flex items-center justify-between">
-                        <span class="text-xs font-extrabold text-amber-300 uppercase tracking-wider">
-                            <i class="fa-regular fa-gem mr-1.5"></i> High Packages
-                        </span>
-                        <span class="text-[11px] text-gray-400">MMK (ကျပ်)</span>
+                <!-- Card 2: MLBB Diamond ဈေးနှုန်းများ -->
+                <div onclick="openDiaPricesView()"
+                    class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between space-y-6 cursor-pointer">
+                    <div class="space-y-3">
+                        <h3 class="text-lg sm:text-xl font-extrabold text-white leading-snug">
+                            MLBB Diamond ဈေးနှုန်းများ
+                        </h3>
+                        <p class="text-xs sm:text-[13px] text-slate-400 leading-relaxed">
+                            View Weekly Pass, Weekly Elite Bundle, Monthly Epic Bundle, and 86 to 9,288 Diamond packages with instant @KIFYCASS order links.
+                        </p>
                     </div>
-                    <div id="diaRightList" class="p-3 grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-                        <!-- Dynamically rendered -->
+                    <div class="pt-1">
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold text-sky-400 hover:text-sky-300">
+                            <span>View Dia Prices</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </span>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- STAR & TG PREMIUM PRICES VIEW -->
-        <section id="tgStarPremiumSection" class="hidden space-y-6">
-            <div class="relative rounded-3xl overflow-hidden hero-light-border p-6 sm:p-8">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                        <span class="inline-flex items-center gap-1.5 text-[11px] font-bold px-3 py-1 rounded-full bg-sky-500/15 text-sky-300 border border-sky-500/30 mb-2">
-                            <i class="fa-brands fa-telegram"></i> TELEGRAM STAR &amp; PREMIUM LIST
-                        </span>
-                        <h2 class="text-xl sm:text-2xl font-extrabold hero-vip-float font-display">
+                <!-- Card 3: Star နှင့် TG Premium ဈေးနှုန်းများ -->
+                <div onclick="openTgStarPremiumView()"
+                    class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between space-y-6 cursor-pointer">
+                    <div class="space-y-3">
+                        <h3 class="text-lg sm:text-xl font-extrabold text-white leading-snug">
                             Star နှင့် TG Premium ဈေးနှုန်းများ
-                        </h2>
-                        <p class="text-xs sm:text-sm text-gray-400 mt-1">
-                            ဝယ်ယူလိုသော Telegram Star သို့မဟုတ် Premium Plan ကို နှိပ်ပြီး Telegram မှ တိုက်ရိုက် ဝယ်ယူနိုင်ပါသည်
+                        </h3>
+                        <p class="text-xs sm:text-[13px] text-slate-400 leading-relaxed">
+                            Check Telegram Premium gift plans (3 Months, 6 Months, 1 Year) and Telegram Star packages (50 to 1,000 Stars) via @KIFYCASS.
                         </p>
                     </div>
-                    <button type="button" onclick="showEntryGateway()"
-                        class="self-start sm:self-auto px-4 py-2.5 rounded-xl bg-darkinput hover:bg-amber-500/15 text-amber-300 border border-amber-500/40 text-xs font-bold flex items-center gap-2 cursor-pointer transition-all">
-                        <i class="fa-solid fa-arrow-left"></i>
-                        <span>အစစာမျက်နှာသို့</span>
-                    </button>
+                    <div class="pt-1">
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold text-sky-400 hover:text-sky-300">
+                            <span>View TG &amp; Stars</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </span>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- TELEGRAM PREMIUM GIFT PLANS -->
-            <div id="tgPremiumGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- 2. MLBB DIA PRICES VIEW (MATCHING 1000002091.jpg) -->
+        <section id="diaPricesSection" class="hidden space-y-6">
+            <!-- Header Card -->
+            <div class="glass-card rounded-2xl p-5 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <p class="text-[11px] font-bold tracking-[0.16em] text-sky-400 uppercase mb-1">
+                        DIAMOND &amp; PASS ARMORY
+                    </p>
+                    <h2 class="text-xl sm:text-3xl font-extrabold text-white leading-snug">
+                        MLBB Diamond ဈေးနှုန်းများ
+                    </h2>
+                </div>
+                <button type="button" onclick="showEntryGateway()"
+                    class="self-start sm:self-center px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700/80 text-xs font-semibold inline-flex items-center gap-2 cursor-pointer transition-all">
+                    <i class="fa-solid fa-arrow-left text-xs"></i>
+                    <span>Back to Hub</span>
+                </button>
+            </div>
+
+            <!-- TOP BUNDLES (Weekly Pass, Weekly Elite Bundle, Monthly Epic Bundle) -->
+            <div id="diaBundlesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <!-- Dynamically rendered -->
             </div>
 
-            <!-- TELEGRAM STAR PACKAGES -->
-            <div class="rounded-2xl bg-darkcard border border-amber-500/35 overflow-hidden shadow-xl">
-                <div class="px-4 py-3 bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-transparent border-b border-darkborder flex items-center justify-between">
-                    <span class="text-xs font-extrabold text-amber-300 uppercase tracking-wider">
-                        <i class="fa-solid fa-star mr-1.5"></i> Telegram Star Zay Packages
-                    </span>
-                    <span class="text-[11px] text-gray-400">MMK (ကျပ်)</span>
+            <!-- DIAMOND PACKAGES CONTAINER -->
+            <div class="glass-card rounded-2xl p-4 sm:p-6 space-y-4">
+                <div class="flex items-center justify-between px-1">
+                    <h3 class="text-sm sm:text-base font-bold text-white">Diamond Packages</h3>
+                    <span class="text-xs font-semibold text-sky-400">ks</span>
                 </div>
-                <div id="tgStarList" class="p-3 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5">
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-3" id="diaPackagesCombinedGrid">
+                    <div id="diaLeftList" class="space-y-2.5">
+                        <!-- Dynamically rendered -->
+                    </div>
+                    <div id="diaRightList" class="space-y-2.5">
+                        <!-- Dynamically rendered -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. STAR & TG PREMIUM PRICES VIEW (MATCHING 1000002092.jpg) -->
+        <section id="tgStarPremiumSection" class="hidden space-y-6">
+            <!-- Header Card -->
+            <div class="glass-card rounded-2xl p-5 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <p class="text-[11px] font-bold tracking-[0.16em] text-sky-400 uppercase mb-1">
+                        TELEGRAM STAR &amp; GIFT PREMIUM
+                    </p>
+                    <h2 class="text-xl sm:text-3xl font-extrabold text-white leading-snug">
+                        Star နှင့် TG Premium ဈေးနှုန်းများ
+                    </h2>
+                </div>
+                <button type="button" onclick="showEntryGateway()"
+                    class="self-start sm:self-center px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700/80 text-xs font-semibold inline-flex items-center gap-2 cursor-pointer transition-all">
+                    <i class="fa-solid fa-arrow-left text-xs"></i>
+                    <span>Back to Hub</span>
+                </button>
+            </div>
+
+            <!-- TELEGRAM PREMIUM GIFT PLANS CONTAINER -->
+            <div class="glass-card rounded-2xl p-4 sm:p-6 space-y-4">
+                <div class="flex items-center justify-between px-1">
+                    <h3 class="text-sm sm:text-base font-bold text-white">Telegram Premium Gift Plans</h3>
+                    <span class="text-xs font-semibold text-sky-400">ks</span>
+                </div>
+                <div id="tgPremiumGrid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                    <!-- Dynamically rendered -->
+                </div>
+            </div>
+
+            <!-- TELEGRAM STAR PACKAGES CONTAINER -->
+            <div class="glass-card rounded-2xl p-4 sm:p-6 space-y-4">
+                <div class="flex items-center justify-between px-1">
+                    <h3 class="text-sm sm:text-base font-bold text-white">Telegram Star Packages</h3>
+                    <span class="text-xs font-semibold text-sky-400">ks</span>
+                </div>
+                <div id="tgStarList" class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
                     <!-- Dynamically rendered -->
                 </div>
             </div>
         </section>
 
-        <!-- STOREFRONT VIEW (HIDDEN UNTIL CLICKED) -->
-        <div id="storefrontContent" class="hidden space-y-8">
+        <!-- 4. ACCOUNTS STOREFRONT VIEW (MATCHING 1000002090.jpg) -->
+        <div id="storefrontContent" class="hidden space-y-6">
 
-        <!-- HERO BANNER WITH BACK TO ENTRY GATEWAY BUTTON -->
-        <div class="relative rounded-3xl overflow-hidden hero-light-border p-6 sm:p-8 md:p-10">
-            <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div class="max-w-3xl">
-                    <h2 class="text-xl sm:text-2xl md:text-3xl font-extrabold leading-relaxed hero-vip-float font-display">
-                        KIFY GAME SHOP မှ ရောင်းချပေးသောအကောင့်များကို စိတ်ချယုံကြည်စွာ ဝယ်ယူနိုင်ပါသည်
-                    </h2>
+            <!-- Filter, Search & Sort Controls -->
+            <section class="glass-card rounded-2xl p-4 sm:p-5 space-y-4">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                    <!-- Filter Pills -->
+                    <div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 text-xs font-semibold">
+                        <button type="button" onclick="setFilter('ALL')" id="tab-ALL"
+                            class="filter-btn px-4 py-2 rounded-xl bg-blue-600 text-white font-bold shadow-sm shadow-blue-600/40 whitespace-nowrap transition-all cursor-pointer">
+                            All
+                        </button>
+                        <button type="button" onclick="setFilter('High Rank')" id="tab-HighRank"
+                            class="filter-btn px-4 py-2 rounded-xl bg-slate-900/90 text-slate-300 hover:text-white border border-slate-700/80 hover:border-blue-500/40 whitespace-nowrap transition-all cursor-pointer">
+                            High Rank
+                        </button>
+                        <button type="button" onclick="setFilter('AVAILABLE_ONLY')" id="tab-Available"
+                            class="filter-btn px-4 py-2 rounded-xl bg-slate-900/90 text-slate-300 hover:text-emerald-400 border border-slate-700/80 hover:border-emerald-500/40 whitespace-nowrap transition-all cursor-pointer">
+                            Available
+                        </button>
+                    </div>
+
+                    <!-- Sort Selector -->
+                    <div class="flex items-center gap-2 text-xs self-end md:self-auto">
+                        <select id="sortSelect" onchange="filterAccounts()"
+                            class="bg-slate-900/95 border border-slate-700/80 text-slate-200 font-semibold rounded-xl px-3.5 py-2 focus:outline-none focus:border-blue-500 cursor-pointer">
+                            <option value="newest">Newest First</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                        </select>
+                    </div>
                 </div>
-                <button type="button" onclick="showEntryGateway()"
-                    class="self-start sm:self-center flex-shrink-0 px-4 py-2.5 rounded-xl bg-darkinput hover:bg-amber-500/15 text-amber-300 border border-amber-500/45 text-xs font-bold flex items-center gap-2 cursor-pointer transition-all">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <span>အစစာမျက်နှာသို့</span>
+
+                <!-- Search Input Bar -->
+                <div class="relative w-full">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" id="searchInputDesktop" onkeyup="filterAccounts()"
+                        placeholder="Search by code (e.g. KIFY-104), rank, star, or rare skin..."
+                        class="w-full bg-slate-900/90 border border-slate-700/80 focus:border-blue-500 text-xs sm:text-sm rounded-xl pl-9 pr-4 py-2.5 text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all">
+                </div>
+            </section>
+
+            <!-- ACCOUNT CARDS GRID -->
+            <section id="accountGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="col-span-full text-center py-12 text-slate-400 text-xs">
+                    <i class="fa-solid fa-spinner fa-spin text-sky-400 text-lg mr-2"></i> Accounts စာရင်း ရယူနေပါသည်...
+                </div>
+            </section>
+
+            <!-- EMPTY STATE -->
+            <div id="emptyState" class="hidden text-center py-16 space-y-3 glass-card rounded-3xl">
+                <div class="w-14 h-14 mx-auto rounded-2xl bg-blue-600/15 border border-blue-500/30 flex items-center justify-center text-sky-400 text-xl">
+                    <i class="fa-solid fa-ghost"></i>
+                </div>
+                <h3 class="text-base font-bold text-white">Account မရှိသေးပါ (No Accounts)</h3>
+                <p class="text-xs text-slate-400">Admin Panel မှ Account အသစ်တင်ပြီး ကြည့်ရှုနိုင်ပါသည်။</p>
+                <button type="button" onclick="resetFilters()"
+                    class="px-4 py-2 rounded-xl blue-glow-btn text-white text-xs font-bold cursor-pointer">
+                    Reset Filters
                 </button>
             </div>
         </div>
-
-        <!-- FILTER & SORT CONTROLS -->
-        <section class="space-y-4">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                
-                <!-- High Rank Category Tabs -->
-                <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none text-xs font-semibold">
-                    <button onclick="setFilter('ALL')" id="tab-ALL" class="filter-btn px-4 py-2.5 rounded-xl bg-amber-500 text-black font-bold border border-amber-400 shadow-md transition-all whitespace-nowrap">
-                        <i class="fa-solid fa-layer-group mr-1.5"></i> အားလုံး (All)
-                    </button>
-                    <button onclick="setFilter('High Rank')" id="tab-HighRank" class="filter-btn px-4 py-2.5 rounded-xl bg-darkcard text-gray-300 hover:text-white border border-darkborder hover:border-amber-500/50 transition-all whitespace-nowrap">
-                        <i class="fa-solid fa-crown text-amber-400 mr-1.5"></i> High Rank
-                    </button>
-                    <button onclick="setFilter('AVAILABLE_ONLY')" id="tab-Available" class="filter-btn px-4 py-2.5 rounded-xl bg-darkcard text-gray-300 hover:text-emerald-400 border border-darkborder hover:border-emerald-500/50 transition-all whitespace-nowrap">
-                        <i class="fa-solid fa-circle-check text-emerald-500 mr-1.5"></i> ဝယ်ယူနိုင်သည်များ (Available)
-                    </button>
-                </div>
-
-                <!-- Sort Selector -->
-                <div class="flex items-center gap-2 text-xs self-end md:self-auto">
-                    <span class="text-gray-400">စီမည်:</span>
-                    <select id="sortSelect" onchange="filterAccounts()" class="bg-darkcard border border-darkborder text-gray-200 rounded-xl px-3 py-2 focus:outline-none focus:border-amber-500">
-                        <option value="newest">အသစ်ဆုံး (Newest First)</option>
-                        <option value="price-low">ဈေးနှုန်း: နည်းမှ အများ</option>
-                        <option value="price-high">ဈေးနှုန်း: အများမှ နည်း</option>
-                    </select>
-                </div>
-            </div>
-        </section>
-
-        <!-- ACCOUNT CARDS GRID -->
-        <section id="accountGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="col-span-full text-center py-12 text-gray-400 text-xs">
-                <i class="fa-solid fa-spinner fa-spin text-amber-400 text-lg mr-2"></i> Accounts စာရင်း ရယူနေပါသည်...
-            </div>
-        </section>
-
-        <!-- EMPTY STATE -->
-        <div id="emptyState" class="hidden text-center py-16 space-y-3 bg-darkcard/50 rounded-3xl border border-darkborder">
-            <div class="w-16 h-16 mx-auto rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500 text-2xl">
-                <i class="fa-solid fa-ghost"></i>
-            </div>
-            <h3 class="text-lg font-bold text-gray-200">Account မရှိသေးပါ (No Accounts)</h3>
-            <p class="text-xs text-gray-400">Admin Panel မှ Account အသစ်တင်ပြီး ကြည့်ရှုနိုင်ပါသည်။</p>
-            <button onclick="resetFilters()" class="px-4 py-2 rounded-xl bg-amber-500/20 text-amber-400 text-xs font-semibold border border-amber-500/30 hover:bg-amber-500/30 transition-all">
-                မူလအတိုင်း ပြန်ကြည့်မည်
-            </button>
-        </div>
-        </div>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="mt-16 bg-darkcard border-t border-darkborder text-gray-400 py-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-amber-400/60">
-                        <img src="IMG_20261125_220821_646.png" alt="KIFY GAME SHOP Logo"
-                            onerror="this.onerror=null;this.src='https://placehold.co/80x80/12141d/f59e0b?text=KIFY';"
-                            class="w-full h-full object-cover">
-                    </div>
-                    <div>
-                        <h4 class="text-sm font-bold text-white gold-gradient-text">KIFY GAME SHOP</h4>
-                        <p class="text-xs text-gray-400">Most Trusted Mobile Legends Account Store in Myanmar</p>
-                    </div>
-                </div>
-
-                <div class="flex items-center gap-6 text-sm">
-                    <a href="https://t.me/KIFYCASS" target="_blank" rel="noopener noreferrer" class="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-                        <i class="fa-brands fa-telegram text-sky-400"></i> Telegram VIP
-                    </a>
-                    <a id="footerAdminLink" href="javascript:void(0)" onclick="openAdminModal()" class="hidden hover:text-amber-400 transition-colors items-center gap-1.5">
-                        <i class="fa-solid fa-lock text-amber-400"></i> Admin Panel
-                    </a>
-                </div>
+    <!-- FOOTER (MATCHING 1000002089.jpg / 1000002092.jpg) -->
+    <footer class="mt-12 border-t border-slate-800/80 bg-[#070b14]/95 text-slate-400 py-5 text-xs">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="font-bold tracking-wider uppercase text-slate-300">
+                KIFY GAME STORE
             </div>
-            <hr class="border-darkborder">
-            <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-2">
-                <p>&copy; 2026 KIFY GAME SHOP. All rights reserved.</p>
-                <p class="flex items-center gap-1">Designed for MLBB Gamers <i class="fa-solid fa-heart text-amber-500"></i></p>
+
+            <div class="flex flex-wrap items-center justify-center gap-3 text-[11px] sm:text-xs">
+                <a href="https://t.me/KIFYCASS" target="_blank" rel="noopener noreferrer"
+                    class="text-sky-400 hover:text-sky-300 font-semibold inline-flex items-center gap-1 transition-colors">
+                    <i class="fa-brands fa-telegram text-sm"></i>
+                    <span>Telegram @KIFYCASS</span>
+                </a>
+                <span class="text-slate-600">•</span>
+                <span class="text-slate-400">&copy; 2026 KIFY GAME STORE</span>
+                <a id="footerAdminLink" href="javascript:void(0)" onclick="openAdminModal()"
+                    class="hidden text-sky-400 hover:text-sky-300 font-semibold items-center gap-1 ml-1">
+                    <i class="fa-solid fa-lock text-[10px]"></i> Admin
+                </a>
             </div>
         </div>
     </footer>
 
     <!-- ACCOUNT DETAILS MODAL -->
     <div id="accountModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
-        <div class="relative w-full max-w-3xl bg-darkcard border border-amber-500/40 rounded-3xl overflow-hidden shadow-2xl my-8">
-            <button onclick="closeModal('accountModal')" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/60 hover:bg-amber-500 hover:text-black text-white flex items-center justify-center transition-all border border-amber-500/30">
+        <div class="relative w-full max-w-3xl glass-card border border-blue-500/35 rounded-3xl overflow-hidden shadow-2xl my-8">
+            <button type="button" onclick="closeModal('accountModal')"
+                class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-slate-900/90 hover:bg-blue-600 text-slate-200 hover:text-white flex items-center justify-center transition-all border border-slate-700 cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
@@ -594,38 +463,38 @@
 
     <!-- ADMIN AUTH & DASHBOARD MODAL -->
     <div id="adminModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
-        <div class="relative w-full max-w-4xl bg-darkcard border border-amber-500/50 rounded-3xl overflow-hidden shadow-2xl my-8">
-            <div class="flex items-center justify-between px-6 py-4 bg-darkbg border-b border-darkborder">
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-shield-halved text-amber-500 text-lg"></i>
-                    <h3 class="text-base font-bold text-white">KIFY GAME SHOP Admin Management</h3>
+        <div class="relative w-full max-w-4xl glass-card border border-blue-500/40 rounded-3xl overflow-hidden shadow-2xl my-8">
+            <div class="flex items-center justify-between px-6 py-4 bg-slate-950/90 border-b border-slate-800">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-shield-halved text-sky-400 text-base"></i>
+                    <h3 class="text-sm sm:text-base font-bold text-white">KIFY GAME STORE Admin Management</h3>
                 </div>
-                <button onclick="closeModal('adminModal')" class="text-gray-400 hover:text-white text-lg">
+                <button type="button" onclick="closeModal('adminModal')" class="text-slate-400 hover:text-white text-lg cursor-pointer">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
             <!-- LOGIN VIEW -->
             <div id="adminLoginView" class="p-8 max-w-md mx-auto space-y-6 text-center">
-                <div class="w-16 h-16 mx-auto rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl">
+                <div class="w-16 h-16 mx-auto rounded-2xl bg-blue-600/15 border border-blue-500/35 flex items-center justify-center text-sky-400 text-2xl">
                     <i class="fa-solid fa-lock"></i>
                 </div>
                 <div>
                     <h4 class="text-xl font-bold text-white">Admin Panel သို့ဝင်ရောက်ရန်</h4>
-                    <p class="text-xs text-gray-400 mt-1">Firebase Admin Email နှင့် Password ဖြင့် ဝင်ရောက်ပါ</p>
+                    <p class="text-xs text-slate-400 mt-1">Firebase Admin Email နှင့် Password ဖြင့် ဝင်ရောက်ပါ</p>
                 </div>
                 <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-left">
                     <div class="relative">
-                        <i class="fa-solid fa-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-                        <input type="email" id="adminEmailInput" required placeholder="Admin Email ထည့်ပါ..." 
-                            class="w-full bg-darkinput border border-darkborder focus:border-amber-500 text-sm rounded-xl pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-amber-500">
+                        <i class="fa-solid fa-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="email" id="adminEmailInput" required placeholder="Admin Email ထည့်ပါ..."
+                            class="w-full bg-slate-900/90 border border-slate-700 focus:border-blue-500 text-sm rounded-xl pl-10 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
                     </div>
                     <div class="relative">
-                        <i class="fa-solid fa-key absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-                        <input type="password" id="adminPasswordInput" required placeholder="Admin Password ထည့်ပါ..." 
-                            class="w-full bg-darkinput border border-darkborder focus:border-amber-500 text-sm rounded-xl pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-amber-500">
+                        <i class="fa-solid fa-key absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="password" id="adminPasswordInput" required placeholder="Admin Password ထည့်ပါ..."
+                            class="w-full bg-slate-900/90 border border-slate-700 focus:border-blue-500 text-sm rounded-xl pl-10 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
                     </div>
-                    <button type="submit" id="adminLoginBtn" class="w-full py-3 rounded-xl gold-gradient-btn text-black font-extrabold text-sm shadow-lg">
+                    <button type="submit" id="adminLoginBtn" class="w-full py-3 rounded-xl blue-glow-btn text-white font-extrabold text-sm shadow-lg cursor-pointer">
                         Login ဝင်မည် <i class="fa-solid fa-arrow-right-to-bracket ml-1.5"></i>
                     </button>
                 </form>
@@ -633,28 +502,28 @@
 
             <!-- DASHBOARD VIEW (AFTER AUTH) -->
             <div id="adminDashboardView" class="hidden p-6 space-y-6">
-                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-darkborder pb-4">
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
                     <div class="flex flex-wrap items-center gap-2">
-                        <button onclick="showAdminTab('list')" id="adminTab-list" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 text-black">
+                        <button type="button" onclick="showAdminTab('list')" id="adminTab-list" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 text-white cursor-pointer">
                             <i class="fa-solid fa-list mr-1.5"></i> Accounts စာရင်း
                         </button>
-                        <button onclick="showAdminTab('add')" id="adminTab-add" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-darkinput text-gray-300 hover:text-white border border-darkborder">
+                        <button type="button" onclick="showAdminTab('add')" id="adminTab-add" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
                             <i class="fa-solid fa-plus mr-1.5"></i> Account အသစ်ထည့်မည်
                         </button>
-                        <button onclick="showAdminTab('dia')" id="adminTab-dia" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-darkinput text-gray-300 hover:text-white border border-darkborder">
+                        <button type="button" onclick="showAdminTab('dia')" id="adminTab-dia" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
                             <i class="fa-regular fa-gem mr-1.5"></i> Dia ဈေးပြင်ရန်
                         </button>
-                        <button onclick="showAdminTab('tg')" id="adminTab-tg" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-darkinput text-gray-300 hover:text-white border border-darkborder">
+                        <button type="button" onclick="showAdminTab('tg')" id="adminTab-tg" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
                             <i class="fa-solid fa-star mr-1.5"></i> Star &amp; TG ဈေးပြင်ရန်
                         </button>
-                        <button onclick="showAdminTab('visitors')" id="adminTab-visitors" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-darkinput text-gray-300 hover:text-white border border-darkborder">
+                        <button type="button" onclick="showAdminTab('visitors')" id="adminTab-visitors" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
                             <i class="fa-solid fa-eye mr-1.5"></i> Visitors (<span id="adminVisitorBadgeCount">0</span>)
                         </button>
-                        <button onclick="showAdminTab('settings')" id="adminTab-settings" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-darkinput text-gray-300 hover:text-white border border-darkborder">
+                        <button type="button" onclick="showAdminTab('settings')" id="adminTab-settings" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
                             <i class="fa-solid fa-gear mr-1.5"></i> Account Info
                         </button>
                     </div>
-                    <button onclick="handleAdminLogout()" class="px-3 py-1.5 text-xs text-red-400 hover:bg-red-500/10 rounded-lg border border-red-500/30 transition-all">
+                    <button type="button" onclick="handleAdminLogout()" class="px-3 py-1.5 text-xs text-rose-400 hover:bg-rose-500/10 rounded-lg border border-rose-500/30 transition-all cursor-pointer">
                         <i class="fa-solid fa-power-off mr-1"></i> Logout
                     </button>
                 </div>
@@ -662,12 +531,12 @@
                 <!-- TAB 1: ACCOUNTS MANAGEMENT TABLE -->
                 <div id="adminSection-list" class="space-y-4">
                     <div class="flex justify-between items-center">
-                        <h4 class="text-sm font-bold text-gray-200">တင်ထားသော MLBB Account များ (စုစုပေါင်း: <span id="adminTotalCount">0</span>)</h4>
+                        <h4 class="text-sm font-bold text-slate-200">တင်ထားသော MLBB Account များ (စုစုပေါင်း: <span id="adminTotalCount">0</span>)</h4>
                     </div>
 
-                    <div class="overflow-x-auto rounded-2xl border border-darkborder bg-darkbg">
-                        <table class="w-full text-left text-xs text-gray-300">
-                            <thead class="bg-darkcard text-amber-400 uppercase tracking-wider font-semibold border-b border-darkborder">
+                    <div class="overflow-x-auto rounded-2xl border border-slate-800 bg-slate-950/80">
+                        <table class="w-full text-left text-xs text-slate-300">
+                            <thead class="bg-slate-900 text-sky-400 uppercase tracking-wider font-semibold border-b border-slate-800">
                                 <tr>
                                     <th class="p-3">ပုံ</th>
                                     <th class="p-3">Title / Code</th>
@@ -678,7 +547,7 @@
                                     <th class="p-3 text-right">လုပ်ဆောင်ချက်</th>
                                 </tr>
                             </thead>
-                            <tbody id="adminAccountTable" class="divide-y divide-darkborder">
+                            <tbody id="adminAccountTable" class="divide-y divide-slate-800/80">
                                 <!-- Dynamic rows -->
                             </tbody>
                         </table>
@@ -687,7 +556,7 @@
 
                 <!-- TAB 2: ADD / EDIT ACCOUNT FORM -->
                 <div id="adminSection-add" class="hidden space-y-6">
-                    <h4 id="formHeaderTitle" class="text-sm font-bold text-amber-400 flex items-center gap-2">
+                    <h4 id="formHeaderTitle" class="text-sm font-bold text-sky-400 flex items-center gap-2">
                         <i class="fa-solid fa-square-plus"></i> MLBB Account အသစ်တင်မည်
                     </h4>
 
@@ -696,50 +565,50 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-xs text-gray-400 mb-1">Account Title / Code *</label>
-                                <input type="text" id="accTitle" required placeholder="ဥပမာ- Kify0001" 
-                                    class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                                <label class="block text-xs text-slate-400 mb-1">Account Title / Code *</label>
+                                <input type="text" id="accTitle" required placeholder="ဥပမာ- KIFY-104"
+                                    class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:border-blue-500 focus:outline-none">
                             </div>
 
                             <div>
-                                <label class="block text-xs text-gray-400 mb-1">High Rank / Star အရေအတွက် *</label>
-                                <input type="text" id="accRank" required placeholder="ဥပမာ- 120★ သို့မဟုတ် High Rank 85★" 
-                                    class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                                <label class="block text-xs text-slate-400 mb-1">High Rank / Star အရေအတွက် *</label>
+                                <input type="text" id="accRank" required placeholder="ဥပမာ- 142★ သို့မဟုတ် High Rank 142★"
+                                    class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:border-blue-500 focus:outline-none">
                             </div>
 
                             <div>
-                                <label class="block text-xs text-gray-400 mb-1">ဈေးနှုန်း (MMK/ကျပ်) *</label>
-                                <input type="number" id="accPrice" required placeholder="ဥပမာ- 180000" 
-                                    class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                                <label class="block text-xs text-slate-400 mb-1">ဈေးနှုန်း (MMK/ကျပ်) *</label>
+                                <input type="number" id="accPrice" required placeholder="ဥပမာ- 295000"
+                                    class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:border-blue-500 focus:outline-none">
                             </div>
 
                             <div>
-                                <label class="block text-xs text-gray-400 mb-1">Skins အရေအတွက် *</label>
-                                <input type="number" id="accSkins" required placeholder="ဥပမာ- 285" 
-                                    class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                                <label class="block text-xs text-slate-400 mb-1">Skins အရေအတွက် *</label>
+                                <input type="number" id="accSkins" required placeholder="ဥပမာ- 368"
+                                    class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:border-blue-500 focus:outline-none">
                             </div>
 
                             <div>
-                                <label class="block text-xs text-gray-400 mb-1">Heroes အရေအတွက် *</label>
-                                <input type="number" id="accHeroes" required placeholder="ဥပမာ- 120" 
-                                    class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                                <label class="block text-xs text-slate-400 mb-1">Heroes အရေအတွက် *</label>
+                                <input type="number" id="accHeroes" required placeholder="ဥပမာ- 125"
+                                    class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:border-blue-500 focus:outline-none">
                             </div>
 
                             <div>
-                                <label class="block text-xs text-gray-400 mb-1">Win Rate (%)</label>
-                                <input type="text" id="accWinrate" placeholder="ဥပမာ- 65.4%" 
-                                    class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                                <label class="block text-xs text-slate-400 mb-1">Win Rate (%)</label>
+                                <input type="text" id="accWinrate" placeholder="ဥပမာ- 69.2%"
+                                    class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:border-blue-500 focus:outline-none">
                             </div>
 
                             <div>
-                                <label class="block text-xs text-gray-400 mb-1">Telegram Contact Link/Username</label>
-                                <input type="text" id="accTelegram" value="KIFYCASS" placeholder="KIFYCASS" 
-                                    class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                                <label class="block text-xs text-slate-400 mb-1">Telegram Contact Link/Username</label>
+                                <input type="text" id="accTelegram" value="KIFYCASS" placeholder="KIFYCASS"
+                                    class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:border-blue-500 focus:outline-none">
                             </div>
 
                             <div>
-                                <label class="block text-xs text-gray-400 mb-1">အခြေအနေ (Status)</label>
-                                <select id="accStatus" class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                                <label class="block text-xs text-slate-400 mb-1">အခြေအနေ (Status)</label>
+                                <select id="accStatus" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:border-blue-500 focus:outline-none">
                                     <option value="AVAILABLE">ဝယ်ယူနိုင်သည် (Available)</option>
                                     <option value="SOLD">ရောင်းပြီး (Sold Out)</option>
                                 </select>
@@ -747,70 +616,69 @@
                         </div>
 
                         <div>
-                            <label class="block text-xs text-gray-400 mb-1">Rare Skins / Highlights (ကော်မာဖြင့်ခြားပါ)</label>
-                            <input type="text" id="accHighlights" placeholder="ဥပမာ- Gusion Collector, Lesley Legend, Chou KOF, Beatrix Prime" 
-                                class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                            <label class="block text-xs text-slate-400 mb-1">Rare Skins / Highlights (ကော်မာဖြင့်ခြားပါ)</label>
+                            <input type="text" id="accHighlights" placeholder="ဥပမာ- Gusion Collector, Beatrix Prime, Chou KOF"
+                                class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:border-blue-500 focus:outline-none">
                         </div>
 
                         <div>
-                            <label class="block text-xs text-gray-400 mb-1">Account အကြောင်း အသေးစိတ်ဖော်ပြချက်</label>
-                            <textarea id="accDesc" rows="3" placeholder="Moonton All Unbind/ Clean Account, Emblem Max 6, Epic 15 ခုပါ..." 
-                                class="w-full bg-darkinput border border-darkborder rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-500 focus:outline-none"></textarea>
+                            <label class="block text-xs text-slate-400 mb-1">Account အကြောင်း အသေးစိတ်ဖော်ပြချက်</label>
+                            <textarea id="accDesc" rows="3" placeholder="Moonton All Unbind/ Clean Account, Emblem Max 6..."
+                                class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:border-blue-500 focus:outline-none"></textarea>
                         </div>
 
                         <!-- IMAGE UPLOADER -->
-                        <div class="space-y-2 border-t border-darkborder pt-3">
-                            <label class="block text-xs font-bold text-amber-400">Account ဓာတ်ပုံများ တင်ရန် (Image Upload)</label>
+                        <div class="space-y-2 border-t border-slate-800 pt-3">
+                            <label class="block text-xs font-bold text-sky-400">Account ဓာတ်ပုံများ တင်ရန် (Image Upload)</label>
                             <div class="flex items-center gap-4">
-                                <label class="cursor-pointer bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2">
+                                <label class="cursor-pointer bg-blue-600/15 hover:bg-blue-600/25 text-sky-300 border border-blue-500/40 px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2">
                                     <i class="fa-solid fa-cloud-arrow-up text-sm"></i>
                                     <span>ပုံရွေးချယ်ပါ (Select Photos)</span>
                                     <input type="file" id="imageInput" accept="image/*" multiple onchange="handleImageUpload(event)" class="hidden">
                                 </label>
-                                <span class="text-[11px] text-gray-400">ရွေးချယ်သည့် အစဉ်လိုက်အတိုင်း ထည့်သွင်းပေးပါမည်။</span>
+                                <span class="text-[11px] text-slate-400">ရွေးချယ်သည့် အစဉ်လိုက်အတိုင်း ထည့်သွင်းပေးပါမည်။</span>
                             </div>
 
-                            <div id="imagePreviewContainer" class="flex flex-wrap gap-3 mt-3 min-h-[60px] p-2 bg-darkbg border border-darkborder rounded-xl">
-                                <p id="noImageHint" class="text-xs text-gray-500 self-center mx-auto">ပုံမရွေးရသေးပါ</p>
+                            <div id="imagePreviewContainer" class="flex flex-wrap gap-3 mt-3 min-h-[60px] p-2 bg-slate-950/80 border border-slate-800 rounded-xl">
+                                <p id="noImageHint" class="text-xs text-slate-500 self-center mx-auto">ပုံမရွေးရသေးပါ</p>
                             </div>
                         </div>
 
                         <div class="flex items-center gap-3 pt-4">
-                            <button type="submit" id="saveAccountBtn" class="px-6 py-2.5 rounded-xl gold-gradient-btn text-black font-extrabold text-xs">
+                            <button type="submit" id="saveAccountBtn" class="px-6 py-2.5 rounded-xl blue-glow-btn text-white font-extrabold text-xs cursor-pointer">
                                 <i class="fa-solid fa-floppy-disk mr-1"></i> သိမ်းဆည်းမည် (Save Listing)
                             </button>
-                            <button type="button" onclick="cancelEditForm()" class="px-4 py-2.5 rounded-xl bg-gray-800 text-gray-300 text-xs hover:bg-gray-700">
+                            <button type="button" onclick="cancelEditForm()" class="px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs hover:bg-slate-700 cursor-pointer">
                                 မလုပ်တော့ပါ
                             </button>
                         </div>
                     </form>
                 </div>
 
-                <!-- TAB 2.5: DIA PRICE EDITOR -->
+                <!-- TAB 3: DIA PRICE EDITOR -->
                 <div id="adminSection-dia" class="hidden space-y-6">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-darkborder pb-3">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
                         <div>
-                            <h4 class="text-sm font-bold text-amber-400 flex items-center gap-2">
+                            <h4 class="text-sm font-bold text-sky-400 flex items-center gap-2">
                                 <i class="fa-regular fa-gem"></i> Dia ဈေးပြင်ရန် (MLBB Diamond &amp; Pass Prices)
                             </h4>
-                            <p class="text-xs text-gray-400 mt-0.5">
+                            <p class="text-xs text-slate-400 mt-0.5">
                                 Item နာမည်/ပမာဏ နှင့် ဈေးနှုန်း နှစ်ခုလုံးကို ကြိုက်သလို ပြင်ဆင်နိုင်ပြီး အကွက်အသစ်များလည်း ထပ်ထည့်နိုင်ပါသည်
                             </p>
                         </div>
                         <button type="button" onclick="handleSaveDiaPrices()"
-                            class="px-5 py-2.5 rounded-xl gold-gradient-btn text-black font-extrabold text-xs shadow-md flex items-center gap-2 self-start sm:self-auto cursor-pointer">
+                            class="px-5 py-2.5 rounded-xl blue-glow-btn text-white font-extrabold text-xs shadow-md flex items-center gap-2 self-start sm:self-auto cursor-pointer">
                             <i class="fa-solid fa-floppy-disk"></i>
                             <span>Dia ဈေးများ သိမ်းမည်</span>
                         </button>
                     </div>
 
                     <form id="diaPriceEditorForm" onsubmit="event.preventDefault(); handleSaveDiaPrices();" class="space-y-6">
-                        <!-- Editable Bundles -->
                         <div class="space-y-2.5">
                             <div class="flex items-center justify-between gap-2">
-                                <p class="text-xs font-bold text-amber-300">Pass &amp; Bundles များ</p>
+                                <p class="text-xs font-bold text-sky-300">Pass &amp; Bundles များ</p>
                                 <button type="button" onclick="addEditableBundleRow()"
-                                    class="px-3 py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/40 text-[11px] font-bold flex items-center gap-1.5 cursor-pointer transition-all">
+                                    class="px-3 py-1.5 rounded-lg bg-blue-600/15 hover:bg-blue-600/25 text-sky-300 border border-blue-500/40 text-[11px] font-bold flex items-center gap-1.5 cursor-pointer transition-all">
                                     <i class="fa-solid fa-plus"></i>
                                     <span>Bundle အသစ်ထည့်မည်</span>
                                 </button>
@@ -820,12 +688,11 @@
                             </div>
                         </div>
 
-                        <!-- Editable Diamond Packages -->
                         <div class="space-y-2.5">
                             <div class="flex items-center justify-between gap-2">
-                                <p class="text-xs font-bold text-amber-300">Diamond Packages များ</p>
+                                <p class="text-xs font-bold text-sky-300">Diamond Packages များ</p>
                                 <button type="button" onclick="addEditableDiamondRow()"
-                                    class="px-3 py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/40 text-[11px] font-bold flex items-center gap-1.5 cursor-pointer transition-all">
+                                    class="px-3 py-1.5 rounded-lg bg-blue-600/15 hover:bg-blue-600/25 text-sky-300 border border-blue-500/40 text-[11px] font-bold flex items-center gap-1.5 cursor-pointer transition-all">
                                     <i class="fa-solid fa-plus"></i>
                                     <span>Dia Package အသစ်ထည့်မည်</span>
                                 </button>
@@ -835,9 +702,9 @@
                             </div>
                         </div>
 
-                        <div class="pt-2 flex items-center justify-end gap-3 border-t border-darkborder">
+                        <div class="pt-2 flex items-center justify-end gap-3 border-t border-slate-800">
                             <button type="submit"
-                                class="px-6 py-2.5 rounded-xl gold-gradient-btn text-black font-extrabold text-xs shadow-md flex items-center gap-2 cursor-pointer">
+                                class="px-6 py-2.5 rounded-xl blue-glow-btn text-white font-extrabold text-xs shadow-md flex items-center gap-2 cursor-pointer">
                                 <i class="fa-solid fa-floppy-disk"></i>
                                 <span>Dia ဈေးများ သိမ်းမည်</span>
                             </button>
@@ -845,31 +712,30 @@
                     </form>
                 </div>
 
-                <!-- TAB 2.6: STAR & TG PREMIUM PRICE EDITOR -->
+                <!-- TAB 4: STAR & TG PREMIUM PRICE EDITOR -->
                 <div id="adminSection-tg" class="hidden space-y-6">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-darkborder pb-3">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
                         <div>
-                            <h4 class="text-sm font-bold text-amber-400 flex items-center gap-2">
+                            <h4 class="text-sm font-bold text-sky-400 flex items-center gap-2">
                                 <i class="fa-solid fa-star"></i> Star &amp; TG ဈေးပြင်ရန် (Telegram Star &amp; Premium Prices)
                             </h4>
-                            <p class="text-xs text-gray-400 mt-0.5">
+                            <p class="text-xs text-slate-400 mt-0.5">
                                 Telegram Star နှင့် Premium Gift Plan ဈေးနှုန်းများကို ပြင်ဆင်နိုင်ပြီး အသစ်ထပ်ထည့်နိုင်ပါသည်
                             </p>
                         </div>
                         <button type="button" onclick="handleSaveTgPrices()"
-                            class="px-5 py-2.5 rounded-xl gold-gradient-btn text-black font-extrabold text-xs shadow-md flex items-center gap-2 self-start sm:self-auto cursor-pointer">
+                            class="px-5 py-2.5 rounded-xl blue-glow-btn text-white font-extrabold text-xs shadow-md flex items-center gap-2 self-start sm:self-auto cursor-pointer">
                             <i class="fa-solid fa-floppy-disk"></i>
                             <span>Star &amp; TG ဈေးများ သိမ်းမည်</span>
                         </button>
                     </div>
 
                     <form id="tgPriceEditorForm" onsubmit="event.preventDefault(); handleSaveTgPrices();" class="space-y-6">
-                        <!-- Editable TG Premium Gift Plans -->
                         <div class="space-y-2.5">
                             <div class="flex items-center justify-between gap-2">
-                                <p class="text-xs font-bold text-amber-300">Telegram Premium (Gift Plan) များ</p>
+                                <p class="text-xs font-bold text-sky-300">Telegram Premium (Gift Plan) များ</p>
                                 <button type="button" onclick="addEditableTgPremiumRow()"
-                                    class="px-3 py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/40 text-[11px] font-bold flex items-center gap-1.5 cursor-pointer transition-all">
+                                    class="px-3 py-1.5 rounded-lg bg-blue-600/15 hover:bg-blue-600/25 text-sky-300 border border-blue-500/40 text-[11px] font-bold flex items-center gap-1.5 cursor-pointer transition-all">
                                     <i class="fa-solid fa-plus"></i>
                                     <span>Premium Plan အသစ်ထည့်မည်</span>
                                 </button>
@@ -879,12 +745,11 @@
                             </div>
                         </div>
 
-                        <!-- Editable Telegram Star Packages -->
                         <div class="space-y-2.5">
                             <div class="flex items-center justify-between gap-2">
-                                <p class="text-xs font-bold text-amber-300">Telegram Star Packages များ</p>
+                                <p class="text-xs font-bold text-sky-300">Telegram Star Packages များ</p>
                                 <button type="button" onclick="addEditableTgStarRow()"
-                                    class="px-3 py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/40 text-[11px] font-bold flex items-center gap-1.5 cursor-pointer transition-all">
+                                    class="px-3 py-1.5 rounded-lg bg-blue-600/15 hover:bg-blue-600/25 text-sky-300 border border-blue-500/40 text-[11px] font-bold flex items-center gap-1.5 cursor-pointer transition-all">
                                     <i class="fa-solid fa-plus"></i>
                                     <span>Star Package အသစ်ထည့်မည်</span>
                                 </button>
@@ -894,9 +759,9 @@
                             </div>
                         </div>
 
-                        <div class="pt-2 flex items-center justify-end gap-3 border-t border-darkborder">
+                        <div class="pt-2 flex items-center justify-end gap-3 border-t border-slate-800">
                             <button type="submit"
-                                class="px-6 py-2.5 rounded-xl gold-gradient-btn text-black font-extrabold text-xs shadow-md flex items-center gap-2 cursor-pointer">
+                                class="px-6 py-2.5 rounded-xl blue-glow-btn text-white font-extrabold text-xs shadow-md flex items-center gap-2 cursor-pointer">
                                 <i class="fa-solid fa-floppy-disk"></i>
                                 <span>Star &amp; TG ဈေးများ သိမ်းမည်</span>
                             </button>
@@ -904,27 +769,27 @@
                     </form>
                 </div>
 
-                <!-- TAB 2.8: VISITOR LOGS (ADMIN ONLY) -->
+                <!-- TAB 5: VISITOR LOGS (ADMIN ONLY) -->
                 <div id="adminSection-visitors" class="hidden space-y-4">
-                    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-darkborder pb-3">
+                    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
                         <div>
-                            <h4 class="text-sm font-bold text-amber-400 flex items-center gap-2">
+                            <h4 class="text-sm font-bold text-sky-400 flex items-center gap-2">
                                 <i class="fa-solid fa-eye"></i> Website ဝင်ကြည့်သူ မှတ်တမ်းများ (Admin Only)
                             </h4>
-                            <p class="text-xs text-gray-400 mt-0.5">
-                                စုစုပေါင်း Visit: <span id="visitorTotalCount" class="text-amber-300 font-bold">0</span> | ယနေ့ Visit: <span id="visitorTodayCount" class="text-emerald-400 font-bold">0</span>
+                            <p class="text-xs text-slate-400 mt-0.5">
+                                စုစုပေါင်း Visit: <span id="visitorTotalCount" class="text-sky-300 font-bold">0</span> | ယနေ့ Visit: <span id="visitorTodayCount" class="text-emerald-400 font-bold">0</span>
                             </p>
                         </div>
                         <button type="button" onclick="clearVisitorLogs()"
-                            class="px-3.5 py-2 rounded-xl bg-red-500/15 hover:bg-red-500/25 text-red-400 border border-red-500/35 text-xs font-bold flex items-center gap-1.5 cursor-pointer transition-all">
+                            class="px-3.5 py-2 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 text-rose-400 border border-rose-500/35 text-xs font-bold flex items-center gap-1.5 cursor-pointer transition-all">
                             <i class="fa-solid fa-trash-can"></i>
                             <span>မှတ်တမ်းများ ရှင်းမည်</span>
                         </button>
                     </div>
 
-                    <div class="overflow-x-auto rounded-2xl border border-darkborder bg-darkbg">
-                        <table class="w-full text-left text-xs text-gray-300">
-                            <thead class="bg-darkcard text-amber-400 uppercase tracking-wider font-semibold border-b border-darkborder">
+                    <div class="overflow-x-auto rounded-2xl border border-slate-800 bg-slate-950/80">
+                        <table class="w-full text-left text-xs text-slate-300">
+                            <thead class="bg-slate-900 text-sky-400 uppercase tracking-wider font-semibold border-b border-slate-800">
                                 <tr>
                                     <th class="p-3">အချိန်</th>
                                     <th class="p-3">စက် / Browser</th>
@@ -932,25 +797,24 @@
                                     <th class="p-3">Referer</th>
                                 </tr>
                             </thead>
-                            <tbody id="adminVisitorTable" class="divide-y divide-darkborder">
-                                <tr><td colspan="4" class="text-center py-6 text-gray-500">မှတ်တမ်း ရယူနေပါသည်...</td></tr>
+                            <tbody id="adminVisitorTable" class="divide-y divide-slate-800/80">
+                                <tr><td colspan="4" class="text-center py-6 text-slate-500">မှတ်တမ်း ရယူနေပါသည်...</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- TAB 3: SETTINGS (FIREBASE AUTH INFO) -->
+                <!-- TAB 6: SETTINGS (FIREBASE AUTH INFO) -->
                 <div id="adminSection-settings" class="hidden space-y-4 max-w-lg">
-                    <h4 class="text-sm font-bold text-amber-400">Firebase Authentication Status</h4>
-                    <div class="bg-darkbg border border-darkborder rounded-2xl p-4 space-y-2 text-xs text-gray-300">
-                        <p>လက်ရှိ ဝင်ရောက်ထားသော Admin: <span id="currentAdminEmailDisplay" class="text-amber-400 font-bold">-</span></p>
-                        <p class="text-gray-400 leading-relaxed">Password ပြောင်းလဲလိုပါက Firebase Console &gt; Authentication &gt; Users ထဲမှ ပြောင်းနိုင်သလို၊ အောက်ပါ ခလုတ်ဖြင့် Password Reset Link ကို Email သို့ ပို့နိုင်ပါသည်။</p>
-                        <button type="button" onclick="sendAdminPasswordReset()" class="mt-2 px-4 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 font-bold text-xs">
+                    <h4 class="text-sm font-bold text-sky-400">Firebase Authentication Status</h4>
+                    <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 space-y-2 text-xs text-slate-300">
+                        <p>လက်ရှိ ဝင်ရောက်ထားသော Admin: <span id="currentAdminEmailDisplay" class="text-sky-400 font-bold">-</span></p>
+                        <p class="text-slate-400 leading-relaxed">Password ပြောင်းလဲလိုပါက Firebase Console &gt; Authentication &gt; Users ထဲမှ ပြောင်းနိုင်သလို၊ အောက်ပါ ခလုတ်ဖြင့် Password Reset Link ကို Email သို့ ပို့နိုင်ပါသည်။</p>
+                        <button type="button" onclick="sendAdminPasswordReset()" class="mt-2 px-4 py-2 rounded-xl bg-blue-600/20 hover:bg-blue-600/30 text-sky-300 border border-blue-500/40 font-bold text-xs cursor-pointer">
                             <i class="fa-solid fa-paper-plane mr-1"></i> Password Reset Email ပို့မည်
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -1003,6 +867,26 @@
         const ADMIN_ACCESS_KEY = "kify2026";
         let visitorLogs = [];
         let visitorUnsubscribe = null;
+
+        /**
+         * Updates active styling on the top pill navigation bar.
+         */
+        function setActiveNavPill(activeKey) {
+            const pills = {
+                hub: document.getElementById('navPill-hub'),
+                accounts: document.getElementById('navPill-accounts'),
+                dia: document.getElementById('navPill-dia'),
+                tg: document.getElementById('navPill-tg')
+            };
+            Object.entries(pills).forEach(([key, el]) => {
+                if (!el) return;
+                if (key === activeKey) {
+                    el.className = 'top-nav-pill px-4 py-1.5 rounded-full text-xs font-bold bg-blue-600 text-white shadow-sm shadow-blue-600/40 whitespace-nowrap transition-all cursor-pointer';
+                } else {
+                    el.className = 'top-nav-pill px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-800/75 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700/70 whitespace-nowrap transition-all cursor-pointer';
+                }
+            });
+        }
 
         /**
          * Parses user agent into a clean OS + browser label for visitor logs.
@@ -1099,11 +983,11 @@
 
             if (!tbody) return;
             if (!currentAdminUser) {
-                tbody.innerHTML = `<tr><td colspan="4" class="text-center py-6 text-gray-500">Admin Login ဝင်ပြီးမှ ကြည့်နိုင်ပါသည်</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="4" class="text-center py-6 text-slate-500">Admin Login ဝင်ပြီးမှ ကြည့်နိုင်ပါသည်</td></tr>`;
                 return;
             }
             if (visitorLogs.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="text-center py-6 text-gray-500">Visitor မှတ်တမ်း မရှိသေးပါ</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="4" class="text-center py-6 text-slate-500">Visitor မှတ်တမ်း မရှိသေးပါ</td></tr>`;
                 return;
             }
 
@@ -1113,11 +997,11 @@
                 const scr = String(v.screen || "-").replace(/</g, "&lt;");
                 const ref = String(v.referer || "Direct").replace(/</g, "&lt;");
                 return `
-                    <tr class="hover:bg-darkcard/50 transition-colors">
-                        <td class="p-3 text-gray-300 whitespace-nowrap">${dt}</td>
-                        <td class="p-3 font-semibold text-amber-300">${dev}</td>
-                        <td class="p-3 text-gray-400 whitespace-nowrap">${scr}</td>
-                        <td class="p-3 text-gray-400 max-w-[180px] truncate">${ref}</td>
+                    <tr class="hover:bg-slate-900/60 transition-colors">
+                        <td class="p-3 text-slate-300 whitespace-nowrap">${dt}</td>
+                        <td class="p-3 font-semibold text-sky-300">${dev}</td>
+                        <td class="p-3 text-slate-400 whitespace-nowrap">${scr}</td>
+                        <td class="p-3 text-slate-400 max-w-[180px] truncate">${ref}</td>
                     </tr>
                 `;
             }).join("");
@@ -1208,8 +1092,8 @@
         // Default Telegram Star & Premium prices
         const DEFAULT_TG_DATA = {
             premium: [
-                { id: 'tgp-3m', label: '3 Months (Gift plan)', price: 62000 },
-                { id: 'tgp-6m', label: '6 Months (Gift plan)', price: 84000 },
+                { id: 'tgp-3m', label: '3 Months (Gift Plan)', price: 62000 },
+                { id: 'tgp-6m', label: '6 Months (Gift Plan)', price: 84000 },
                 { id: 'tgp-1y', label: '1 Year (Gift Plan)', price: 146000 }
             ],
             stars: [
@@ -1367,7 +1251,7 @@
                     startVisitorLogsSync();
                 } else {
                     stopVisitorLogsSync();
-                    if (adminBtnText) adminBtnText.innerText = "Admin Panel";
+                    if (adminBtnText) adminBtnText.innerText = "Admin Preview";
                     if (emailDisplay) emailDisplay.innerText = "-";
                     document.getElementById('adminLoginView').classList.remove('hidden');
                     document.getElementById('adminDashboardView').classList.add('hidden');
@@ -1474,7 +1358,7 @@
         }
 
         /**
-         * Renders MLBB Diamond bundles and package cards.
+         * Renders MLBB Diamond bundles and 2-column horizontal package rows.
          */
         function renderDiaPricesView() {
             const bundlesGrid = document.getElementById('diaBundlesGrid');
@@ -1486,34 +1370,34 @@
                 const labelText = item.label || 'Bundle';
                 const priceVal = Number(item.price || 0);
                 const formatted = priceVal.toLocaleString();
-                const tgMsg = encodeURIComponent(` MLBB ${labelText} (ဈေးနှုန်း: ${formatted} Ks) ဝယ်ချင်လို့ပါ။`);
+                const tgMsg = encodeURIComponent(`မင်္ဂလာပါ @KIFYCASS၊ MLBB ${labelText} (ဈေးနှုန်း: ${formatted} Ks) ဝယ်ယူလိုပါသည်။`);
                 return `
                     <a href="https://t.me/KIFYCASS?text=${tgMsg}" target="_blank" rel="noopener noreferrer"
-                        class="group rounded-2xl bg-darkcard border border-amber-500/40 hover:border-amber-400 p-4 flex items-center gap-3 shadow-lg transition-all">
-                        <div class="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-300 flex-shrink-0">
-                            <i class="fa-regular fa-gem text-base"></i>
+                        class="glass-card glass-card-hover rounded-2xl px-4 py-3.5 flex items-center justify-between gap-3">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <div class="w-9 h-9 rounded-xl bg-slate-900/90 border border-slate-700/80 flex items-center justify-center text-sky-400 flex-shrink-0">
+                                <i class="fa-regular fa-gem text-sm"></i>
+                            </div>
+                            <span class="text-xs sm:text-sm font-bold text-white truncate">${labelText}</span>
                         </div>
-                        <div class="min-w-0">
-                            <p class="text-xs sm:text-sm font-extrabold text-white group-hover:text-amber-300 transition-colors truncate">${labelText}</p>
-                            <p class="text-xs sm:text-sm text-amber-400 font-extrabold mt-0.5">${formatted} ks</p>
-                        </div>
+                        <span class="text-xs sm:text-sm font-extrabold text-sky-400 whitespace-nowrap">${formatted} ks</span>
                     </a>
                 `;
             }).join('');
 
-            const buildBox = (pkg) => {
+            const buildRow = (pkg) => {
                 const amtText = pkg.amount || 'Dia';
                 const priceVal = Number(pkg.price || 0);
                 const formatted = priceVal.toLocaleString();
                 const tgMsg = encodeURIComponent(`မင်္ဂလာပါ @KIFYCASS၊ MLBB ${amtText} Diamonds (ဈေးနှုန်း: ${formatted} Ks) ဝယ်ယူလိုပါသည်။`);
                 return `
                     <a href="https://t.me/KIFYCASS?text=${tgMsg}" target="_blank" rel="noopener noreferrer"
-                        class="rounded-xl bg-darkbg hover:bg-amber-500/10 border border-darkborder hover:border-amber-500/50 px-3 py-2.5 flex items-center justify-between gap-2 transition-all">
-                        <span class="text-xs sm:text-sm font-extrabold text-white tracking-wide flex items-center gap-1.5">
-                            <i class="fa-regular fa-gem text-amber-400 text-xs"></i>
+                        class="rounded-xl bg-slate-900/85 hover:bg-slate-900 border border-slate-800 hover:border-blue-500/45 px-4 py-3 flex items-center justify-between gap-2 transition-all">
+                        <span class="text-xs sm:text-sm font-bold text-slate-200 flex items-center gap-2.5">
+                            <i class="fa-regular fa-gem text-sky-400 text-xs"></i>
                             <span>${amtText}</span>
                         </span>
-                        <span class="text-xs sm:text-sm font-extrabold text-amber-400 whitespace-nowrap">${formatted} ks</span>
+                        <span class="text-xs sm:text-sm font-extrabold text-sky-400 whitespace-nowrap">${formatted} ks</span>
                     </a>
                 `;
             };
@@ -1521,12 +1405,12 @@
             const leftPkgs = diaData.packages.filter(p => p.section !== 'right');
             const rightPkgs = diaData.packages.filter(p => p.section === 'right');
 
-            leftList.innerHTML = leftPkgs.map(buildBox).join('');
-            rightList.innerHTML = rightPkgs.map(buildBox).join('');
+            leftList.innerHTML = leftPkgs.map(buildRow).join('');
+            rightList.innerHTML = rightPkgs.map(buildRow).join('');
         }
 
         /**
-         * Renders Telegram Premium plans and Telegram Star packages.
+         * Renders Telegram Premium gift plans and 2-column horizontal Star package rows.
          */
         function renderTgStarPremiumView() {
             const premiumGrid = document.getElementById('tgPremiumGrid');
@@ -1540,14 +1424,17 @@
                 const tgMsg = encodeURIComponent(`မင်္ဂလာပါ @KIFYCASS၊ Telegram Premium ${labelText} (ဈေးနှုန်း: ${formatted} Ks) ဝယ်ယူလိုပါသည်။`);
                 return `
                     <a href="https://t.me/KIFYCASS?text=${tgMsg}" target="_blank" rel="noopener noreferrer"
-                        class="group rounded-2xl bg-darkcard border border-amber-500/40 hover:border-amber-400 p-4 flex items-center gap-3 shadow-lg transition-all">
-                        <div class="w-10 h-10 rounded-xl bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-300 flex-shrink-0">
-                            <i class="fa-brands fa-telegram text-lg"></i>
+                        class="rounded-xl bg-slate-900/85 hover:bg-slate-900 border border-slate-800 hover:border-blue-500/45 px-4 py-3.5 flex items-center justify-between gap-3 transition-all">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <div class="w-9 h-9 rounded-xl bg-slate-800/90 border border-slate-700/80 flex items-center justify-center text-sky-400 flex-shrink-0">
+                                <i class="fa-brands fa-telegram text-base"></i>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-[9px] font-bold tracking-[0.14em] text-slate-400 uppercase">TELEGRAM PREMIUM</p>
+                                <p class="text-xs sm:text-sm font-bold text-white truncate">${labelText}</p>
+                            </div>
                         </div>
-                        <div class="min-w-0">
-                            <p class="text-xs sm:text-sm font-extrabold text-white group-hover:text-amber-300 transition-colors truncate">${labelText}</p>
-                            <p class="text-xs sm:text-sm text-amber-400 font-extrabold mt-0.5">${formatted} ks</p>
-                        </div>
+                        <span class="text-xs sm:text-sm font-extrabold text-sky-400 whitespace-nowrap">${formatted} ks</span>
                     </a>
                 `;
             }).join('');
@@ -1559,12 +1446,12 @@
                 const tgMsg = encodeURIComponent(`မင်္ဂလာပါ @KIFYCASS၊ Telegram Star ${amtText} (ဈေးနှုန်း: ${formatted} Ks) ဝယ်ယူလိုပါသည်။`);
                 return `
                     <a href="https://t.me/KIFYCASS?text=${tgMsg}" target="_blank" rel="noopener noreferrer"
-                        class="rounded-xl bg-darkbg hover:bg-amber-500/10 border border-darkborder hover:border-amber-500/50 px-3 py-2.5 flex items-center justify-between gap-2 transition-all">
-                        <span class="text-xs sm:text-sm font-extrabold text-white tracking-wide flex items-center gap-1.5">
+                        class="rounded-xl bg-slate-900/85 hover:bg-slate-900 border border-slate-800 hover:border-blue-500/45 px-4 py-3 flex items-center justify-between gap-2 transition-all">
+                        <span class="text-xs sm:text-sm font-bold text-slate-200 flex items-center gap-2.5">
                             <i class="fa-solid fa-star text-amber-400 text-xs"></i>
                             <span>${amtText}</span>
                         </span>
-                        <span class="text-xs sm:text-sm font-extrabold text-amber-400 whitespace-nowrap">${formatted} ks</span>
+                        <span class="text-xs sm:text-sm font-extrabold text-sky-400 whitespace-nowrap">${formatted} ks</span>
                     </a>
                 `;
             }).join('');
@@ -1608,37 +1495,37 @@
             if (!bundleContainer || !diaContainer) return;
 
             bundleContainer.innerHTML = draftDiaData.bundles.map((item) => `
-                <div class="bg-darkbg border border-darkborder rounded-xl p-3 flex items-center gap-2">
+                <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-3 flex items-center gap-2">
                     <div class="flex-1 min-w-0 space-y-1.5">
                         <input type="text" id="diaBundleLabel-${item.id}" value="${String(item.label).replace(/"/g, '&quot;')}" placeholder="Bundle အမည် (ဥပမာ- Weekly Pass)" required
-                            class="w-full bg-darkinput border border-darkborder focus:border-amber-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-white focus:outline-none">
+                            class="w-full bg-slate-900 border border-slate-700 focus:border-blue-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-white focus:outline-none">
                         <div class="flex items-center gap-1.5">
                             <input type="number" min="0" step="1" id="diaBundlePrice-${item.id}" value="${Number(item.price || 0)}" placeholder="ဈေးနှုန်း" required
-                                class="w-full bg-darkinput border border-darkborder focus:border-amber-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-amber-300 focus:outline-none">
-                            <span class="text-[11px] font-bold text-gray-400 flex-shrink-0">ks</span>
+                                class="w-full bg-slate-900 border border-slate-700 focus:border-blue-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-sky-400 focus:outline-none">
+                            <span class="text-[11px] font-bold text-slate-400 flex-shrink-0">ks</span>
                         </div>
                     </div>
                     <button type="button" onclick="removeEditableBundleRow('${item.id}')" title="ဖျက်ရန်"
-                        class="self-stretch px-2.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs cursor-pointer transition-all">
+                        class="self-stretch px-2.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs cursor-pointer transition-all">
                         <i class="fa-solid fa-trash-can"></i>
                     </button>
                 </div>
             `).join('');
 
             diaContainer.innerHTML = draftDiaData.packages.map((pkg) => `
-                <div class="bg-darkbg border border-darkborder rounded-xl p-2.5 flex items-center gap-2">
-                    <div class="w-24 flex-shrink-0 flex items-center gap-1 bg-darkinput border border-darkborder rounded-lg px-2 py-1.5">
-                        <i class="fa-regular fa-gem text-amber-400 text-xs"></i>
+                <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-2.5 flex items-center gap-2">
+                    <div class="w-24 flex-shrink-0 flex items-center gap-1 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5">
+                        <i class="fa-regular fa-gem text-sky-400 text-xs"></i>
                         <input type="text" id="diaPkgAmount-${pkg.id}" value="${String(pkg.amount).replace(/"/g, '&quot;')}" placeholder="Dia" required
                             class="w-full bg-transparent text-xs font-extrabold text-white focus:outline-none">
                     </div>
                     <div class="flex-1 flex items-center gap-1 min-w-0">
                         <input type="number" min="0" step="1" id="diaPkgPrice-${pkg.id}" value="${Number(pkg.price || 0)}" placeholder="ဈေးနှုန်း" required
-                            class="w-full bg-darkinput border border-darkborder focus:border-amber-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-amber-300 text-right focus:outline-none">
-                        <span class="text-[11px] font-bold text-gray-400 flex-shrink-0">ks</span>
+                            class="w-full bg-slate-900 border border-slate-700 focus:border-blue-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-sky-400 text-right focus:outline-none">
+                        <span class="text-[11px] font-bold text-slate-400 flex-shrink-0">ks</span>
                     </div>
                     <button type="button" onclick="removeEditableDiamondRow('${pkg.id}')" title="ဖျက်ရန်"
-                        class="p-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs cursor-pointer transition-all flex-shrink-0">
+                        class="p-2 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs cursor-pointer transition-all flex-shrink-0">
                         <i class="fa-solid fa-trash-can"></i>
                     </button>
                 </div>
@@ -1651,37 +1538,37 @@
             if (!premiumContainer || !starContainer) return;
 
             premiumContainer.innerHTML = draftTgData.premium.map((item) => `
-                <div class="bg-darkbg border border-darkborder rounded-xl p-3 flex items-center gap-2">
+                <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-3 flex items-center gap-2">
                     <div class="flex-1 min-w-0 space-y-1.5">
-                        <input type="text" id="tgPremiumLabel-${item.id}" value="${String(item.label).replace(/"/g, '&quot;')}" placeholder="Plan အမည် (ဥပမာ- 3 Months (Gift plan))" required
-                            class="w-full bg-darkinput border border-darkborder focus:border-amber-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-white focus:outline-none">
+                        <input type="text" id="tgPremiumLabel-${item.id}" value="${String(item.label).replace(/"/g, '&quot;')}" placeholder="Plan အမည် (ဥပမာ- 3 Months (Gift Plan))" required
+                            class="w-full bg-slate-900 border border-slate-700 focus:border-blue-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-white focus:outline-none">
                         <div class="flex items-center gap-1.5">
                             <input type="number" min="0" step="1" id="tgPremiumPrice-${item.id}" value="${Number(item.price || 0)}" placeholder="ဈေးနှုန်း" required
-                                class="w-full bg-darkinput border border-darkborder focus:border-amber-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-amber-300 focus:outline-none">
-                            <span class="text-[11px] font-bold text-gray-400 flex-shrink-0">ks</span>
+                                class="w-full bg-slate-900 border border-slate-700 focus:border-blue-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-sky-400 focus:outline-none">
+                            <span class="text-[11px] font-bold text-slate-400 flex-shrink-0">ks</span>
                         </div>
                     </div>
                     <button type="button" onclick="removeEditableTgPremiumRow('${item.id}')" title="ဖျက်ရန်"
-                        class="self-stretch px-2.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs cursor-pointer transition-all">
+                        class="self-stretch px-2.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs cursor-pointer transition-all">
                         <i class="fa-solid fa-trash-can"></i>
                     </button>
                 </div>
             `).join('');
 
             starContainer.innerHTML = draftTgData.stars.map((st) => `
-                <div class="bg-darkbg border border-darkborder rounded-xl p-2.5 flex items-center gap-2">
-                    <div class="w-24 flex-shrink-0 flex items-center gap-1 bg-darkinput border border-darkborder rounded-lg px-2 py-1.5">
+                <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-2.5 flex items-center gap-2">
+                    <div class="w-24 flex-shrink-0 flex items-center gap-1 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5">
                         <i class="fa-solid fa-star text-amber-400 text-xs"></i>
                         <input type="text" id="tgStarAmount-${st.id}" value="${String(st.amount).replace(/"/g, '&quot;')}" placeholder="Star" required
                             class="w-full bg-transparent text-xs font-extrabold text-white focus:outline-none">
                     </div>
                     <div class="flex-1 flex items-center gap-1 min-w-0">
                         <input type="number" min="0" step="1" id="tgStarPrice-${st.id}" value="${Number(st.price || 0)}" placeholder="ဈေးနှုန်း" required
-                            class="w-full bg-darkinput border border-darkborder focus:border-amber-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-amber-300 text-right focus:outline-none">
-                        <span class="text-[11px] font-bold text-gray-400 flex-shrink-0">ks</span>
+                            class="w-full bg-slate-900 border border-slate-700 focus:border-blue-500 rounded-lg px-2.5 py-1.5 text-xs font-bold text-sky-400 text-right focus:outline-none">
+                        <span class="text-[11px] font-bold text-slate-400 flex-shrink-0">ks</span>
                     </div>
                     <button type="button" onclick="removeEditableTgStarRow('${st.id}')" title="ဖျက်ရန်"
-                        class="p-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs cursor-pointer transition-all flex-shrink-0">
+                        class="p-2 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs cursor-pointer transition-all flex-shrink-0">
                         <i class="fa-solid fa-trash-can"></i>
                     </button>
                 </div>
@@ -1791,6 +1678,7 @@
         }
 
         window.openDiaPricesView = function() {
+            setActiveNavPill('dia');
             const gateway = document.getElementById('entryGateway');
             const storefront = document.getElementById('storefrontContent');
             const diaSection = document.getElementById('diaPricesSection');
@@ -1804,6 +1692,7 @@
         };
 
         window.openTgStarPremiumView = function() {
+            setActiveNavPill('tg');
             const gateway = document.getElementById('entryGateway');
             const storefront = document.getElementById('storefrontContent');
             const diaSection = document.getElementById('diaPricesSection');
@@ -1948,6 +1837,7 @@
         };
 
         window.addEventListener('DOMContentLoaded', () => {
+            setActiveNavPill('hub');
             updateAdminVisibility();
             recordPageVisit();
             renderDiaPricesView();
@@ -1961,14 +1851,16 @@
         window.addEventListener('hashchange', updateAdminVisibility);
 
         /**
-         * Filters, sorts, and renders MLBB account cards in the storefront grid.
+         * Filters, sorts, and renders MLBB account cards matching the dark navy card layout.
          */
         window.renderAccounts = function() {
             const grid = document.getElementById('accountGrid');
             const emptyState = document.getElementById('emptyState');
-            
-            const searchVal = (document.getElementById('searchInputDesktop').value || document.getElementById('searchInputMobile').value || '').toLowerCase().trim();
-            const sortVal = document.getElementById('sortSelect').value;
+            const searchInput = document.getElementById('searchInputDesktop');
+            const sortSelect = document.getElementById('sortSelect');
+
+            const searchVal = (searchInput ? searchInput.value : '').toLowerCase().trim();
+            const sortVal = sortSelect ? sortSelect.value : 'newest';
 
             let filtered = accounts.filter(acc => {
                 const rankLabel = formatHighRankLabel(acc.rank);
@@ -2000,81 +1892,111 @@
                 emptyState.classList.add('hidden');
             }
 
-            grid.innerHTML = filtered.map(acc => {
+            grid.innerHTML = filtered.map((acc, index) => {
                 const isSold = acc.status === 'SOLD';
-                const mainImg = (acc.images && acc.images.length > 0) 
-                    ? acc.images[0] 
-                    : 'https://placehold.co/600x350/12141d/f59e0b?text=KIFY+GAME+SHOP';
+                const mainImg = (acc.images && acc.images.length > 0)
+                    ? acc.images[0]
+                    : 'IMG_20261125_220821_646.png';
 
-                const rankBadgeColor = 'bg-amber-500/20 text-amber-400 border-amber-500/30';
                 const rankLabel = formatHighRankLabel(acc.rank);
                 const formattedPrice = Number(acc.price).toLocaleString();
+                const summaryLine = (acc.highlights && acc.highlights.length > 0)
+                    ? acc.highlights.slice(0, 2).join(' • ')
+                    : `${acc.skins} Skins • ${acc.heroes} Heroes`;
 
                 return `
-                    <div class="group bg-darkcard border border-darkborder hover:border-amber-500/50 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 shadow-lg hover:shadow-amber-500/10 flex flex-col">
-                        <div class="relative h-48 sm:h-52 bg-darkbg overflow-hidden cursor-pointer" onclick="openAccountDetails('${acc.id}')">
+                    <div class="glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col">
+                        <!-- Top Banner Preview Panel -->
+                        <div class="relative h-52 bg-gradient-to-br from-[#0b162c] via-[#091224] to-[#060b16] p-4 flex flex-col justify-between overflow-hidden cursor-pointer border-b border-slate-800/80" onclick="openAccountDetails('${acc.id}')">
+                            <!-- Subtle Background Image Layer -->
                             <img src="${mainImg}" alt="${acc.title}"
                                 onerror="this.onerror=null;this.src='IMG_20261125_220821_646.png';"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            
-                            <div class="absolute top-3 left-3 z-10 flex gap-2">
-                                ${isSold 
-                                    ? `<span class="bg-red-600/90 text-white text-[10px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider backdrop-blur-sm"><i class="fa-solid fa-ban mr-1"></i> Sold Out</span>`
-                                    : `<span class="bg-emerald-500/90 text-black text-[10px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider backdrop-blur-sm"><i class="fa-solid fa-check mr-1"></i> Available</span>`
-                                }
-                            </div>
+                                class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-30 transition-opacity">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#080f1e] via-[#091326]/70 to-[#081020]/75 pointer-events-none"></div>
 
-                            <div class="absolute top-3 right-3 z-10">
-                                <span class="${rankBadgeColor} border text-[11px] font-bold px-2.5 py-1 rounded-lg backdrop-blur-sm">
+                            <!-- Top Badges Row -->
+                            <div class="relative z-10 flex items-center justify-between gap-2">
+                                <div class="flex items-center gap-2">
+                                    ${isSold
+                                        ? `<span class="bg-rose-500 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">SOLD</span>`
+                                        : `<span class="bg-emerald-500 text-slate-950 text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">AVAILABLE</span>`
+                                    }
+                                    <span class="text-[10px] font-bold tracking-wider text-slate-400 uppercase hidden sm:inline">
+                                        KIFY GAME STORE • SLIDE ${index + 1}
+                                    </span>
+                                </div>
+
+                                <span class="bg-slate-900/90 text-sky-300 border border-slate-700/80 text-[11px] font-bold px-2.5 py-0.5 rounded-full">
                                     ${rankLabel}
                                 </span>
                             </div>
 
-                            <div class="absolute bottom-3 right-3 z-10 bg-black/70 text-gray-300 text-[10px] font-semibold px-2 py-0.5 rounded-md backdrop-blur-sm flex items-center gap-1">
-                                <i class="fa-solid fa-image"></i> ${acc.images ? acc.images.length : 1}
+                            <!-- Center Showcase Code & Highlight Summary -->
+                            <div class="relative z-10 my-auto pt-1">
+                                <div class="text-xl sm:text-2xl font-black text-white tracking-tight uppercase">
+                                    ${acc.title}
+                                </div>
+                                <p class="text-xs font-bold text-sky-400 mt-0.5">
+                                    ${rankLabel} • ${acc.skins} Skins
+                                </p>
+                                <p class="text-[11px] text-slate-400 mt-1 line-clamp-1">
+                                    ${summaryLine}
+                                </p>
+                            </div>
+
+                            <!-- Bottom Caption -->
+                            <div class="relative z-10 flex items-center justify-between text-[9px] font-bold tracking-[0.14em] text-slate-500 uppercase">
+                                <span>KIFY GAME STORE • @KIFYCASS</span>
+                                <span class="text-slate-400"><i class="fa-solid fa-images mr-1"></i>${acc.images ? acc.images.length : 1}</span>
                             </div>
                         </div>
 
+                        <!-- Bottom Details & Price Panel -->
                         <div class="p-4 sm:p-5 flex-grow flex flex-col justify-between space-y-4">
-                            <div class="space-y-2">
-                                <h3 class="text-sm sm:text-base font-bold text-white group-hover:text-amber-400 transition-colors line-clamp-1 cursor-pointer" onclick="openAccountDetails('${acc.id}')">
-                                    ${acc.title}
-                                </h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="text-[11px] font-bold text-sky-400 uppercase tracking-wide">${acc.title}</p>
+                                    <h3 class="text-base sm:text-lg font-extrabold text-white mt-0.5 line-clamp-1 cursor-pointer hover:text-sky-400 transition-colors" onclick="openAccountDetails('${acc.id}')">
+                                        ${acc.title} — ${rankLabel}
+                                    </h3>
+                                </div>
 
-                                <div class="grid grid-cols-3 gap-1 bg-darkbg p-2 rounded-xl text-center text-xs border border-darkborder">
-                                    <div>
-                                        <p class="text-[10px] text-gray-400 uppercase">Skins</p>
-                                        <p class="font-extrabold text-amber-400">${acc.skins}</p>
+                                <!-- 3-Column Stats Box -->
+                                <div class="grid grid-cols-3 bg-slate-900/90 rounded-xl border border-slate-800/90 py-2.5 text-center divide-x divide-slate-800">
+                                    <div class="px-2">
+                                        <p class="text-[10px] font-semibold text-slate-400">Skins</p>
+                                        <p class="text-sm font-extrabold text-white mt-0.5">${acc.skins}</p>
                                     </div>
-                                    <div>
-                                        <p class="text-[10px] text-gray-400 uppercase">Heroes</p>
-                                        <p class="font-extrabold text-gray-200">${acc.heroes}</p>
+                                    <div class="px-2">
+                                        <p class="text-[10px] font-semibold text-slate-400">Heroes</p>
+                                        <p class="text-sm font-extrabold text-white mt-0.5">${acc.heroes}</p>
                                     </div>
-                                    <div>
-                                        <p class="text-[10px] text-gray-400 uppercase">Win Rate</p>
-                                        <p class="font-extrabold text-emerald-400">${acc.winrate || 'N/A'}</p>
+                                    <div class="px-2">
+                                        <p class="text-[10px] font-semibold text-slate-400">Win Rate</p>
+                                        <p class="text-sm font-extrabold text-emerald-400 mt-0.5">${acc.winrate || 'N/A'}</p>
                                     </div>
                                 </div>
 
-                                <div class="flex flex-wrap gap-1.5 pt-1">
+                                <!-- Skin Highlight Pills -->
+                                <div class="flex flex-wrap gap-1.5">
                                     ${(acc.highlights || []).slice(0, 3).map(hl => `
-                                        <span class="bg-amber-500/10 text-amber-300 text-[10px] px-2 py-0.5 rounded-md border border-amber-500/20 font-medium">
-                                            <i class="fa-solid fa-gem text-[9px] mr-1 text-amber-400"></i>${hl}
+                                        <span class="bg-slate-900/90 text-slate-300 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-slate-800">
+                                            ${hl}
                                         </span>
                                     `).join('')}
                                 </div>
                             </div>
 
-                            <div class="pt-3 border-t border-darkborder flex items-center justify-between gap-2">
+                            <!-- Bottom Price + Details Button Row -->
+                            <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-3">
                                 <div>
-                                    <p class="text-[10px] text-gray-400 uppercase font-medium">ဈေးနှုန်း (Price)</p>
-                                    <p class="text-base sm:text-lg font-black text-amber-400 gold-gradient-text">${formattedPrice} <span class="text-xs font-bold text-amber-500">MMK</span></p>
+                                    <p class="text-[10px] font-semibold text-slate-400">Price</p>
+                                    <p class="text-base sm:text-lg font-black text-sky-400">${formattedPrice} <span class="text-xs font-bold text-slate-400">MMK</span></p>
                                 </div>
 
-                                <button onclick="openAccountDetails('${acc.id}')" 
-                                    class="px-3.5 py-2 rounded-xl ${isSold ? 'bg-gray-800 text-gray-400 cursor-not-allowed' : 'gold-gradient-btn text-black font-extrabold'} text-xs shadow-md transition-all flex items-center gap-1.5">
-                                    <span>${isSold ? 'အသေးစိတ်' : 'info အစုံကြည့်ရန်'}</span>
-                                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                <button type="button" onclick="openAccountDetails('${acc.id}')"
+                                    class="px-4 py-2 rounded-xl blue-glow-btn text-white font-bold text-xs cursor-pointer">
+                                    Details
                                 </button>
                             </div>
                         </div>
@@ -2085,9 +2007,9 @@
 
         window.setFilter = function(filterType) {
             activeFilter = filterType;
-            
+
             document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.className = 'filter-btn px-4 py-2.5 rounded-xl bg-darkcard text-gray-300 hover:text-white border border-darkborder hover:border-amber-500/50 transition-all whitespace-nowrap';
+                btn.className = 'filter-btn px-4 py-2 rounded-xl bg-slate-900/90 text-slate-300 hover:text-white border border-slate-700/80 hover:border-blue-500/40 whitespace-nowrap transition-all cursor-pointer';
             });
 
             let activeBtnId = 'tab-ALL';
@@ -2096,16 +2018,16 @@
 
             const activeBtn = document.getElementById(activeBtnId);
             if (activeBtn) {
-                activeBtn.className = 'filter-btn px-4 py-2.5 rounded-xl bg-amber-500 text-black font-bold border border-amber-400 shadow-md transition-all whitespace-nowrap';
+                activeBtn.className = 'filter-btn px-4 py-2 rounded-xl bg-blue-600 text-white font-bold shadow-sm shadow-blue-600/40 whitespace-nowrap transition-all cursor-pointer';
             }
 
             renderAccounts();
         };
 
         window.filterAccounts = function() { renderAccounts(); };
-        window.filterAccountsMobile = function() { renderAccounts(); };
 
         window.enterStorefront = function() {
+            setActiveNavPill('accounts');
             const gateway = document.getElementById('entryGateway');
             const storefront = document.getElementById('storefrontContent');
             const diaSection = document.getElementById('diaPricesSection');
@@ -2118,6 +2040,7 @@
         };
 
         window.showEntryGateway = function() {
+            setActiveNavPill('hub');
             const gateway = document.getElementById('entryGateway');
             const storefront = document.getElementById('storefrontContent');
             const diaSection = document.getElementById('diaPricesSection');
@@ -2130,49 +2053,50 @@
         };
 
         window.resetFilters = function() {
-            document.getElementById('searchInputDesktop').value = '';
-            document.getElementById('searchInputMobile').value = '';
-            document.getElementById('sortSelect').value = 'newest';
+            const searchInput = document.getElementById('searchInputDesktop');
+            const sortSelect = document.getElementById('sortSelect');
+            if (searchInput) searchInput.value = '';
+            if (sortSelect) sortSelect.value = 'newest';
             setFilter('ALL');
             enterStorefront();
         };
 
         /**
-         * Opens modal showing full details and gallery for a selected MLBB account.
+         * Opens modal showing full details and photo carousel for a selected MLBB account.
          */
         window.openAccountDetails = function(id) {
             const acc = accounts.find(a => a.id === id);
             if (!acc) return;
 
-            currentModalImages = acc.images && acc.images.length > 0 ? acc.images : ['https://placehold.co/600x350/12141d/f59e0b?text=KIFY+GAME+SHOP'];
+            currentModalImages = acc.images && acc.images.length > 0 ? acc.images : ['IMG_20261125_220821_646.png'];
             activeModalImageIndex = 0;
 
             const isSold = acc.status === 'SOLD';
             const rankLabel = formatHighRankLabel(acc.rank);
             const formattedPrice = Number(acc.price).toLocaleString();
             const telegramUser = cleanTelegramUsername(acc.telegram);
-            
+
             const tgMessage = encodeURIComponent(`မင်္ဂလာပါ @KIFYCASS၊ Account [${acc.title}] (${rankLabel}၊ ဈေးနှုန်း: ${formattedPrice} MMK) ကို ဝယ်ယူလိုပါသည်။`);
             const tgLink = `https://t.me/${telegramUser}?text=${tgMessage}`;
 
             const modalBody = document.getElementById('accountModalBody');
             modalBody.innerHTML = `
                 <div class="space-y-3">
-                    <div class="relative h-64 sm:h-80 w-full bg-black rounded-2xl overflow-hidden border border-darkborder">
+                    <div class="relative h-64 sm:h-80 w-full bg-slate-950 rounded-2xl overflow-hidden border border-slate-800">
                         <img id="mainModalImg" src="${currentModalImages[0]}"
                             onerror="this.onerror=null;this.src='IMG_20261125_220821_646.png';"
                             class="w-full h-full object-contain">
-                        
+
                         ${currentModalImages.length > 1 ? `
-                            <button onclick="prevModalImg()" class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 text-amber-400 hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all">
+                            <button type="button" onclick="prevModalImg()" class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-900/80 text-sky-400 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-all cursor-pointer">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </button>
-                            <button onclick="nextModalImg()" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 text-amber-400 hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all">
+                            <button type="button" onclick="nextModalImg()" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-900/80 text-sky-400 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-all cursor-pointer">
                                 <i class="fa-solid fa-chevron-right"></i>
                             </button>
                         ` : ''}
 
-                        <div class="absolute bottom-3 left-3 bg-black/70 text-gray-300 text-xs px-2.5 py-1 rounded-lg border border-white/10">
+                        <div class="absolute bottom-3 left-3 bg-slate-900/85 text-slate-300 text-xs px-2.5 py-1 rounded-lg border border-slate-700/70">
                             <span id="imgCounter">1</span> / ${currentModalImages.length} ဓာတ်ပုံ
                         </div>
                     </div>
@@ -2182,88 +2106,88 @@
                             ${currentModalImages.map((img, idx) => `
                                 <img src="${img}" onclick="setModalImg(${idx})" id="thumb-${idx}"
                                     onerror="this.onerror=null;this.src='IMG_20261125_220821_646.png';"
-                                    class="w-16 h-12 object-cover rounded-lg border-2 cursor-pointer transition-all ${idx === 0 ? 'border-amber-500 opacity-100' : 'border-transparent opacity-60 hover:opacity-100'}">
+                                    class="w-16 h-12 object-cover rounded-lg border-2 cursor-pointer transition-all ${idx === 0 ? 'border-blue-500 opacity-100' : 'border-transparent opacity-60 hover:opacity-100'}">
                             `).join('')}
                         </div>
                     ` : ''}
                 </div>
 
                 <div class="space-y-4">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-darkborder pb-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
                         <div>
                             <div class="flex items-center gap-2 mb-1">
-                                <span class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">${rankLabel}</span>
-                                ${isSold 
-                                    ? `<span class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-red-600/20 text-red-400 border border-red-500/30">Sold Out</span>`
-                                    : `<span class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Available</span>`}
+                                <span class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-blue-600/20 text-sky-300 border border-blue-500/35">${rankLabel}</span>
+                                ${isSold
+                                    ? `<span class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30">SOLD</span>`
+                                    : `<span class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">AVAILABLE</span>`}
                             </div>
                             <h2 class="text-lg sm:text-xl font-bold text-white">${acc.title}</h2>
                         </div>
                         <div class="text-left sm:text-right">
-                            <p class="text-xs text-gray-400">ဝယ်ယူမည့် ဈေးနှုန်း</p>
-                            <p class="text-xl sm:text-2xl font-black text-amber-400 gold-gradient-text">${formattedPrice} <span class="text-xs font-bold text-amber-500">MMK</span></p>
+                            <p class="text-xs text-slate-400">Price</p>
+                            <p class="text-xl sm:text-2xl font-black text-sky-400">${formattedPrice} <span class="text-xs font-bold text-slate-400">MMK</span></p>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-darkbg p-3.5 rounded-2xl border border-darkborder text-xs">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-950/75 p-3.5 rounded-2xl border border-slate-800 text-xs">
                         <div class="flex items-center gap-2.5">
-                            <i class="fa-solid fa-shirt text-amber-400 text-lg"></i>
+                            <i class="fa-solid fa-shirt text-sky-400 text-lg"></i>
                             <div>
-                                <p class="text-[10px] text-gray-400">Skins အရေအတွက်</p>
+                                <p class="text-[10px] text-slate-400">Skins</p>
                                 <p class="font-bold text-white">${acc.skins} Skins</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-2.5">
-                            <i class="fa-solid fa-users text-amber-400 text-lg"></i>
+                            <i class="fa-solid fa-users text-sky-400 text-lg"></i>
                             <div>
-                                <p class="text-[10px] text-gray-400">Heroes အရေအတွက်</p>
+                                <p class="text-[10px] text-slate-400">Heroes</p>
                                 <p class="font-bold text-white">${acc.heroes} Heroes</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-2.5">
                             <i class="fa-solid fa-chart-line text-emerald-400 text-lg"></i>
                             <div>
-                                <p class="text-[10px] text-gray-400">Win Rate</p>
+                                <p class="text-[10px] text-slate-400">Win Rate</p>
                                 <p class="font-bold text-emerald-400">${acc.winrate || 'N/A'}</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-2.5">
-                            <i class="fa-solid fa-shield-halved text-amber-400 text-lg"></i>
+                            <i class="fa-solid fa-shield-halved text-sky-400 text-lg"></i>
                             <div>
-                                <p class="text-[10px] text-gray-400">ချိတ်ဆက်မှု</p>
-                                <p class="font-bold text-gray-200">Moonton Clean</p>
+                                <p class="text-[10px] text-slate-400">Bind Status</p>
+                                <p class="font-bold text-slate-200">Moonton Clean</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="space-y-1.5">
-                        <h4 class="text-xs font-bold text-gray-300 flex items-center gap-1.5">
-                            <i class="fa-solid fa-crown text-amber-400"></i> ပါဝင်သော Rare Skin Highlights
+                        <h4 class="text-xs font-bold text-slate-300 flex items-center gap-1.5">
+                            <i class="fa-solid fa-crown text-sky-400"></i> Rare Skin Highlights
                         </h4>
                         <div class="flex flex-wrap gap-1.5">
                             ${(acc.highlights || []).map(hl => `
-                                <span class="bg-amber-500/15 text-amber-300 text-xs px-2.5 py-1 rounded-lg border border-amber-500/30 font-medium">
-                                    🌟 ${hl}
+                                <span class="bg-slate-900/90 text-sky-300 text-xs px-2.5 py-1 rounded-lg border border-slate-800 font-medium">
+                                    ${hl}
                                 </span>
                             `).join('')}
                         </div>
                     </div>
 
-                    <div class="space-y-1 text-xs text-gray-300 bg-darkbg p-3.5 rounded-xl border border-darkborder leading-relaxed">
-                        <p class="font-semibold text-amber-400">အသေးစိတ် အချက်အလက်များ:</p>
+                    <div class="space-y-1 text-xs text-slate-300 bg-slate-950/75 p-3.5 rounded-xl border border-slate-800 leading-relaxed">
+                        <p class="font-semibold text-sky-400">အသေးစိတ် အချက်အလက်များ:</p>
                         <p>${acc.description || 'အသေးစိတ်အချက်အလက်များကို Admin Telegram တွင် တိုက်ရိုက်မေးမြန်းနိုင်ပါသည်။'}</p>
                     </div>
 
                     <div class="pt-2 flex flex-col sm:flex-row items-center gap-3">
                         ${isSold ? `
-                            <button disabled class="w-full py-3.5 rounded-xl bg-gray-800 text-gray-400 font-bold text-sm cursor-not-allowed">
+                            <button type="button" disabled class="w-full py-3.5 rounded-xl bg-slate-800 text-slate-400 font-bold text-sm cursor-not-allowed">
                                 ဤ Account ကို ရောင်းချပြီးပါပြီ (Sold Out)
                             </button>
                         ` : `
-                            <a href="${tgLink}" target="_blank" rel="noopener noreferrer" 
-                                class="w-full py-3.5 rounded-xl gold-gradient-btn text-black font-extrabold text-sm text-center shadow-lg flex items-center justify-center gap-2">
+                            <a href="${tgLink}" target="_blank" rel="noopener noreferrer"
+                                class="w-full py-3.5 rounded-xl blue-glow-btn text-white font-extrabold text-sm text-center shadow-lg flex items-center justify-center gap-2">
                                 <i class="fa-brands fa-telegram text-base"></i>
-                                <span>Telegram ဖြင့် တိုက်ရိုက် ဝယ်ယူမည်</span>
+                                <span>Telegram (@KIFYCASS) ဖြင့် တိုက်ရိုက် ဝယ်ယူမည်</span>
                             </a>
                         `}
                     </div>
@@ -2281,7 +2205,7 @@
                 const thumb = document.getElementById(`thumb-${idx}`);
                 if (thumb) {
                     if (idx === index) {
-                        thumb.className = "w-16 h-12 object-cover rounded-lg border-2 border-amber-500 opacity-100 cursor-pointer transition-all";
+                        thumb.className = "w-16 h-12 object-cover rounded-lg border-2 border-blue-500 opacity-100 cursor-pointer transition-all";
                     } else {
                         thumb.className = "w-16 h-12 object-cover rounded-lg border-2 border-transparent opacity-60 hover:opacity-100 cursor-pointer transition-all";
                     }
@@ -2379,10 +2303,10 @@
 
         window.showAdminTab = function(tabName) {
             document.querySelectorAll('.admin-tab-btn').forEach(btn => {
-                btn.className = 'admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-darkinput text-gray-300 hover:text-white border border-darkborder';
+                btn.className = 'admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 text-slate-300 hover:text-white border border-slate-700 cursor-pointer';
             });
 
-            document.getElementById(`adminTab-${tabName}`).className = 'admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 text-black';
+            document.getElementById(`adminTab-${tabName}`).className = 'admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 text-white cursor-pointer';
 
             document.getElementById('adminSection-list').classList.add('hidden');
             document.getElementById('adminSection-add').classList.add('hidden');
@@ -2413,35 +2337,35 @@
             document.getElementById('adminTotalCount').innerText = accounts.length;
 
             if (accounts.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-6 text-gray-500">တင်ထားသော Account မရှိသေးပါ</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-6 text-slate-500">တင်ထားသော Account မရှိသေးပါ</td></tr>`;
                 return;
             }
 
             tbody.innerHTML = accounts.map(acc => {
-                const img = (acc.images && acc.images.length > 0) ? acc.images[0] : 'https://placehold.co/100x60/12141d/f59e0b?text=KIFY';
+                const img = (acc.images && acc.images.length > 0) ? acc.images[0] : 'IMG_20261125_220821_646.png';
                 const isSold = acc.status === 'SOLD';
                 const rankLabel = formatHighRankLabel(acc.rank);
 
                 return `
-                    <tr class="hover:bg-darkcard/50 transition-colors">
+                    <tr class="hover:bg-slate-900/60 transition-colors">
                         <td class="p-3">
-                            <img src="${img}" onerror="this.onerror=null;this.src='IMG_20261125_220821_646.png';" class="w-12 h-9 object-cover rounded-md border border-darkborder">
+                            <img src="${img}" onerror="this.onerror=null;this.src='IMG_20261125_220821_646.png';" class="w-12 h-9 object-cover rounded-md border border-slate-700">
                         </td>
                         <td class="p-3 font-semibold text-white max-w-[150px] truncate">${acc.title}</td>
-                        <td class="p-3"><span class="bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded text-[11px] font-bold">${rankLabel}</span></td>
-                        <td class="p-3 text-gray-300">${acc.skins} Skins / ${acc.heroes} Heroes</td>
-                        <td class="p-3 font-bold text-amber-400">${Number(acc.price).toLocaleString()} Ks</td>
+                        <td class="p-3"><span class="bg-blue-600/15 text-sky-300 px-2 py-0.5 rounded text-[11px] font-bold">${rankLabel}</span></td>
+                        <td class="p-3 text-slate-300">${acc.skins} Skins / ${acc.heroes} Heroes</td>
+                        <td class="p-3 font-bold text-sky-400">${Number(acc.price).toLocaleString()} Ks</td>
                         <td class="p-3">
-                            <button onclick="toggleAccountStatus('${acc.id}')" 
-                                class="px-2 py-1 rounded text-[10px] font-bold uppercase transition-all ${isSold ? 'bg-red-500/20 text-red-400 border border-red-500/30' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'}">
+                            <button type="button" onclick="toggleAccountStatus('${acc.id}')"
+                                class="px-2 py-1 rounded text-[10px] font-bold uppercase transition-all cursor-pointer ${isSold ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'}">
                                 ${isSold ? 'SOLD' : 'AVAILABLE'}
                             </button>
                         </td>
                         <td class="p-3 text-right space-x-2">
-                            <button onclick="editAccount('${acc.id}')" class="text-amber-400 hover:text-amber-300 p-1" title="Edit">
+                            <button type="button" onclick="editAccount('${acc.id}')" class="text-sky-400 hover:text-sky-300 p-1 cursor-pointer" title="Edit">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
-                            <button onclick="confirmDeleteAccount('${acc.id}')" class="text-red-400 hover:text-red-300 p-1" title="Delete">
+                            <button type="button" onclick="confirmDeleteAccount('${acc.id}')" class="text-rose-400 hover:text-rose-300 p-1 cursor-pointer" title="Delete">
                                 <i class="fa-solid fa-trash-can"></i>
                             </button>
                         </td>
@@ -2485,16 +2409,16 @@
         window.renderImagePreviews = function() {
             const container = document.getElementById('imagePreviewContainer');
             if (uploadedImagesBase64.length === 0) {
-                container.innerHTML = `<p id="noImageHint" class="text-xs text-gray-500 self-center mx-auto">ပုံမရွေးရသေးပါ</p>`;
+                container.innerHTML = `<p id="noImageHint" class="text-xs text-slate-500 self-center mx-auto">ပုံမရွေးရသေးပါ</p>`;
                 return;
             }
 
             container.innerHTML = uploadedImagesBase64.map((img, idx) => `
-                <div class="relative group w-16 h-16 rounded-lg overflow-hidden border border-amber-500/40">
+                <div class="relative group w-16 h-16 rounded-lg overflow-hidden border border-blue-500/40">
                     <img src="${img}" class="w-full h-full object-cover">
-                    <span class="absolute bottom-0.5 left-0.5 bg-black/75 text-amber-300 text-[9px] font-bold px-1 rounded">${idx + 1}</span>
-                    <button type="button" onclick="removeUploadedImage(${idx})" 
-                        class="absolute top-0.5 right-0.5 bg-red-600 text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] shadow">
+                    <span class="absolute bottom-0.5 left-0.5 bg-slate-950/80 text-sky-300 text-[9px] font-bold px-1 rounded">${idx + 1}</span>
+                    <button type="button" onclick="removeUploadedImage(${idx})"
+                        class="absolute top-0.5 right-0.5 bg-rose-600 text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] shadow cursor-pointer">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
@@ -2623,29 +2547,29 @@
             const acc = accounts.find(a => a.id === id);
             if (!acc) return;
 
-            const toast = document.createElement('div');
-            toast.className = 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm';
-            toast.id = 'deleteModalConfirm';
-            toast.innerHTML = `
-                <div class="bg-darkcard border border-red-500/50 p-6 rounded-2xl max-w-sm w-full space-y-4 text-center shadow-2xl">
-                    <div class="w-12 h-12 mx-auto rounded-full bg-red-500/20 text-red-400 flex items-center justify-center text-xl">
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm';
+            modal.id = 'deleteModalConfirm';
+            modal.innerHTML = `
+                <div class="glass-card border border-rose-500/50 p-6 rounded-2xl max-w-sm w-full space-y-4 text-center shadow-2xl">
+                    <div class="w-12 h-12 mx-auto rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center text-xl">
                         <i class="fa-solid fa-triangle-exclamation"></i>
                     </div>
                     <div>
                         <h4 class="text-base font-bold text-white">ဖျက်ပစ်ရန် သေချာပါသလား?</h4>
-                        <p class="text-xs text-gray-400 mt-1">${acc.title} ကို စာရင်းမှ ဖျက်ပစ်ပါမည်။</p>
+                        <p class="text-xs text-slate-400 mt-1">${acc.title} ကို စာရင်းမှ ဖျက်ပစ်ပါမည်။</p>
                     </div>
                     <div class="flex gap-2">
-                        <button onclick="executeDelete('${acc.id}')" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs">
+                        <button type="button" onclick="executeDelete('${acc.id}')" class="flex-1 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs cursor-pointer">
                             ဖျက်မည်
                         </button>
-                        <button onclick="document.getElementById('deleteModalConfirm').remove()" class="flex-1 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs">
+                        <button type="button" onclick="document.getElementById('deleteModalConfirm').remove()" class="flex-1 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs cursor-pointer">
                             မဖျက်တော့ပါ
                         </button>
                     </div>
                 </div>
             `;
-            document.body.appendChild(toast);
+            document.body.appendChild(modal);
         };
 
         window.executeDelete = async function(id) {
@@ -2667,16 +2591,16 @@
         window.showToast = function(message, type = 'info') {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
-            
-            let bgStyle = 'bg-darkcard border-amber-500/40 text-amber-300';
-            let icon = 'fa-circle-info text-amber-400';
+
+            let bgStyle = 'glass-card border-blue-500/40 text-sky-300';
+            let icon = 'fa-circle-info text-sky-400';
 
             if (type === 'success') {
-                bgStyle = 'bg-darkcard border-emerald-500/50 text-emerald-300';
+                bgStyle = 'glass-card border-emerald-500/50 text-emerald-300';
                 icon = 'fa-circle-check text-emerald-400';
             } else if (type === 'error') {
-                bgStyle = 'bg-darkcard border-red-500/50 text-red-300';
-                icon = 'fa-circle-xmark text-red-400';
+                bgStyle = 'glass-card border-rose-500/50 text-rose-300';
+                icon = 'fa-circle-xmark text-rose-400';
             }
 
             toast.className = `flex items-center gap-2.5 px-4 py-3 rounded-xl border shadow-xl text-xs font-semibold ${bgStyle} transform transition-all duration-300 translate-y-2 opacity-0 pointer-events-auto`;
