@@ -102,7 +102,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Closed modals remain display: none and pointer-events: none until opened */
+        /* Closed modals strictly display: none and pointer-events: none until opened */
         .armory-modal {
             display: none;
             pointer-events: none;
@@ -172,8 +172,10 @@
                         <span>@KIFYCASS</span>
                     </a>
 
+                    <!-- Hidden by default for normal buyers; revealed only with secret access key -->
                     <button id="headerAdminBtn" type="button" data-action="open-admin"
-                        class="flex items-center gap-1.5 electric-btn font-extrabold border border-electric/40 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full text-xs cursor-pointer">
+                        style="display: none;"
+                        class="hidden items-center gap-1.5 electric-btn font-extrabold border border-electric/40 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full text-xs cursor-pointer">
                         <i class="fa-solid fa-sliders text-xs"></i>
                         <span id="adminBtnText">Admin</span>
                     </button>
@@ -308,7 +310,7 @@
                         </p>
                     </div>
                     <span class="inline-flex items-center gap-1.5 text-xs font-bold text-electric">
-                        <span>View Dia Prices</span>
+                        <span>Mlbb Dia ဈေးကြည့်ရန်</span>
                         <i class="fa-solid fa-arrow-right text-[11px]"></i>
                     </span>
                 </div>
@@ -324,7 +326,7 @@
                         </p>
                     </div>
                     <span class="inline-flex items-center gap-1.5 text-xs font-bold text-electric">
-                        <span>View TG &amp; Stars</span>
+                        <span>Star နှင့် TG Premium ဈေးကြည့်ရန်</span>
                         <i class="fa-solid fa-arrow-right text-[11px]"></i>
                     </span>
                 </div>
@@ -549,8 +551,10 @@
                 </a>
                 <span class="text-slate-600">•</span>
                 <span>&copy; 2026 KIFY GAME STORE</span>
+                <!-- Hidden by default for normal buyers; revealed only with secret access key -->
                 <button id="footerAdminBtn" type="button" data-action="open-admin"
-                    class="text-electric hover:text-white font-semibold inline-flex items-center gap-1 ml-1 cursor-pointer">
+                    style="display: none;"
+                    class="hidden text-electric hover:text-white font-semibold items-center gap-1 ml-1 cursor-pointer">
                     <i class="fa-solid fa-lock text-[10px]"></i> Admin Panel
                 </button>
             </div>
@@ -1025,6 +1029,46 @@
             sendPasswordResetEmail
         } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
+        // Secret key required in URL query (?admin=kify2026) or hash (#admin-kify2026 / #kify2026)
+        const ADMIN_SECRET_KEY = "kify2026";
+
+        function hasSecretAdminAccess() {
+            try {
+                const params = new URLSearchParams(window.location.search || "");
+                const queryVal = params.get("admin");
+                const rawHash = (window.location.hash || "").replace(/^#/, "").trim();
+                const normalizedHash = rawHash.startsWith("admin=") ? rawHash.slice("admin=".length) : rawHash;
+                return (
+                    queryVal === ADMIN_SECRET_KEY ||
+                    normalizedHash === `admin-${ADMIN_SECRET_KEY}` ||
+                    normalizedHash === ADMIN_SECRET_KEY
+                );
+            } catch (_) {
+                return false;
+            }
+        }
+
+        function updateAdminVisibility() {
+            const allowed = hasSecretAdminAccess();
+            const headerBtn = document.getElementById("headerAdminBtn");
+            const footerBtn = document.getElementById("footerAdminBtn");
+            const adminModal = document.getElementById("adminModal");
+
+            if (headerBtn) {
+                headerBtn.style.display = allowed ? "flex" : "none";
+                headerBtn.classList.toggle("hidden", !allowed);
+                headerBtn.classList.toggle("flex", allowed);
+            }
+            if (footerBtn) {
+                footerBtn.style.display = allowed ? "inline-flex" : "none";
+                footerBtn.classList.toggle("hidden", !allowed);
+                footerBtn.classList.toggle("inline-flex", allowed);
+            }
+            if (!allowed && adminModal) {
+                adminModal.classList.remove("is-open");
+            }
+        }
+
         // Active Firebase Web Config for kify-game-shop
         const firebaseConfig = Object.assign({
             apiKey: "AIzaSyAnBYPz6lQqbizaU1p2nG9bxQff_eEMm0I",
@@ -1055,8 +1099,9 @@
             console.error("Firebase init error:", initErr);
         }
 
+        // Tombstone protection so deleted IDs never reappear on stale/subsequent snapshots
         const DELETED_TOMBSTONES_KEY = "kify_armory_deleted_ids_v1";
-        const deletedIdsSet = new Set((() => {
+        const deletedAccountIds = new Set((() => {
             try {
                 const raw = localStorage.getItem(DELETED_TOMBSTONES_KEY);
                 const parsed = raw ? JSON.parse(raw) : [];
@@ -1067,18 +1112,18 @@
         })());
 
         function markDeleted(id) {
-            deletedIdsSet.add(String(id));
+            deletedAccountIds.add(String(id));
             try {
-                localStorage.setItem(DELETED_TOMBSTONES_KEY, JSON.stringify(Array.from(deletedIdsSet)));
+                localStorage.setItem(DELETED_TOMBSTONES_KEY, JSON.stringify(Array.from(deletedAccountIds)));
             } catch (_) {
                 // Ignore storage quota errors
             }
         }
 
         function unmarkDeleted(id) {
-            deletedIdsSet.delete(String(id));
+            deletedAccountIds.delete(String(id));
             try {
-                localStorage.setItem(DELETED_TOMBSTONES_KEY, JSON.stringify(Array.from(deletedIdsSet)));
+                localStorage.setItem(DELETED_TOMBSTONES_KEY, JSON.stringify(Array.from(deletedAccountIds)));
             } catch (_) {
                 // Ignore storage quota errors
             }
@@ -1086,47 +1131,47 @@
 
         const DEFAULT_DIA_DATA = {
             bundles: [
-                { id: 'b-weekly-pass', label: 'Weekly Pass', price: 9000 },
-                { id: 'b-weekly-elite', label: 'Weekly Elite Bundle', price: 5000 },
-                { id: 'b-monthly-epic', label: 'Monthly Epic Bundle', price: 22100 }
+                { id: "b-weekly-pass", label: "Weekly Pass", price: 9000 },
+                { id: "b-weekly-elite", label: "Weekly Elite Bundle", price: 5000 },
+                { id: "b-monthly-epic", label: "Monthly Epic Bundle", price: 22100 }
             ],
             packages: [
-                { id: 'd-86', amount: '86', price: 6500, section: 'left' },
-                { id: 'd-172', amount: '172', price: 16000, section: 'left' },
-                { id: 'd-257', amount: '257', price: 20300, section: 'left' },
-                { id: 'd-343', amount: '343', price: 26800, section: 'left' },
-                { id: 'd-429', amount: '429', price: 36300, section: 'left' },
-                { id: 'd-514', amount: '514', price: 40600, section: 'left' },
-                { id: 'd-600', amount: '600', price: 47100, section: 'left' },
-                { id: 'd-706', amount: '706', price: 51000, section: 'left' },
-                { id: 'd-878', amount: '878', price: 67000, section: 'left' },
-                { id: 'd-963', amount: '963', price: 71300, section: 'right' },
-                { id: 'd-1049', amount: '1049', price: 77800, section: 'right' },
-                { id: 'd-1135', amount: '1135', price: 87300, section: 'right' },
-                { id: 'd-1220', amount: '1220', price: 91600, section: 'right' },
-                { id: 'd-1412', amount: '1412', price: 102000, section: 'right' },
-                { id: 'd-2195', amount: '2195', price: 151300, section: 'right' },
-                { id: 'd-3688', amount: '3688', price: 256000, section: 'right' },
-                { id: 'd-5532', amount: '5532', price: 386000, section: 'right' },
-                { id: 'd-9288', amount: '9288', price: 631200, section: 'right' }
+                { id: "d-86", amount: "86", price: 6500, section: "left" },
+                { id: "d-172", amount: "172", price: 16000, section: "left" },
+                { id: "d-257", amount: "257", price: 20300, section: "left" },
+                { id: "d-343", amount: "343", price: 26800, section: "left" },
+                { id: "d-429", amount: "429", price: 36300, section: "left" },
+                { id: "d-514", amount: "514", price: 40600, section: "left" },
+                { id: "d-600", amount: "600", price: 47100, section: "left" },
+                { id: "d-706", amount: "706", price: 51000, section: "left" },
+                { id: "d-878", amount: "878", price: 67000, section: "left" },
+                { id: "d-963", amount: "963", price: 71300, section: "right" },
+                { id: "d-1049", amount: "1049", price: 77800, section: "right" },
+                { id: "d-1135", amount: "1135", price: 87300, section: "right" },
+                { id: "d-1220", amount: "1220", price: 91600, section: "right" },
+                { id: "d-1412", amount: "1412", price: 102000, section: "right" },
+                { id: "d-2195", amount: "2195", price: 151300, section: "right" },
+                { id: "d-3688", amount: "3688", price: 256000, section: "right" },
+                { id: "d-5532", amount: "5532", price: 386000, section: "right" },
+                { id: "d-9288", amount: "9288", price: 631200, section: "right" }
             ]
         };
 
         const DEFAULT_TG_DATA = {
             premium: [
-                { id: 'tgp-3m', label: '3 Months (Gift plan)', price: 62000 },
-                { id: 'tgp-6m', label: '6 Months (Gift plan)', price: 84000 },
-                { id: 'tgp-1y', label: '1 Year (Gift Plan)', price: 146000 }
+                { id: "tgp-3m", label: "3 Months (Gift plan)", price: 62000 },
+                { id: "tgp-6m", label: "6 Months (Gift plan)", price: 84000 },
+                { id: "tgp-1y", label: "1 Year (Gift Plan)", price: 146000 }
             ],
             stars: [
-                { id: 'tgs-50', amount: '50', price: 3800 },
-                { id: 'tgs-100', amount: '100', price: 7600 },
-                { id: 'tgs-150', amount: '150', price: 11400 },
-                { id: 'tgs-200', amount: '200', price: 15200 },
-                { id: 'tgs-250', amount: '250', price: 19000 },
-                { id: 'tgs-300', amount: '300', price: 22800 },
-                { id: 'tgs-500', amount: '500', price: 38000 },
-                { id: 'tgs-1000', amount: '1000', price: 76000 }
+                { id: "tgs-50", amount: "50", price: 3800 },
+                { id: "tgs-100", amount: "100", price: 7600 },
+                { id: "tgs-150", amount: "150", price: 11400 },
+                { id: "tgs-200", amount: "200", price: 15200 },
+                { id: "tgs-250", amount: "250", price: 19000 },
+                { id: "tgs-300", amount: "300", price: 22800 },
+                { id: "tgs-500", amount: "500", price: 38000 },
+                { id: "tgs-1000", amount: "1000", price: 76000 }
             ]
         };
 
@@ -1151,8 +1196,8 @@
 
         let mlbbAccounts = [];
         let pubgAccounts = [];
-        let activeMlbbFilter = 'ALL';
-        let activePubgFilter = 'ALL';
+        let activeMlbbFilter = "ALL";
+        let activePubgFilter = "ALL";
         let currentAdminUser = null;
         let uploadedImagesBase64 = [];
         let currentModalImages = [];
@@ -1161,12 +1206,12 @@
         let visitorUnsubscribe = null;
 
         function cleanTelegramUsername(raw) {
-            return (raw || 'KIFYCASS').replace(/^@/, '').replace(/^https?:\/\/t\.me\//i, '').trim() || 'KIFYCASS';
+            return (raw || "KIFYCASS").replace(/^@/, "").replace(/^https?:\/\/t\.me\//i, "").trim() || "KIFYCASS";
         }
 
         function formatRankLabel(rawRank) {
-            const trimmed = (rawRank || '').trim();
-            if (!trimmed) return 'Rank';
+            const trimmed = (rawRank || "").trim();
+            if (!trimmed) return "Rank";
             if (/high\s*rank/i.test(trimmed)) return trimmed;
             return /^\d+★?$/.test(trimmed) ? `High Rank ${trimmed}` : trimmed;
         }
@@ -1177,7 +1222,7 @@
                 reader.onload = function(event) {
                     const img = new Image();
                     img.onload = function() {
-                        const canvas = document.createElement('canvas');
+                        const canvas = document.createElement("canvas");
                         let width = img.width;
                         let height = img.height;
                         const maxDim = 760;
@@ -1192,9 +1237,9 @@
                         }
                         canvas.width = width;
                         canvas.height = height;
-                        const ctx = canvas.getContext('2d');
+                        const ctx = canvas.getContext("2d");
                         ctx.drawImage(img, 0, 0, width, height);
-                        resolve(canvas.toDataURL('image/jpeg', 0.72));
+                        resolve(canvas.toDataURL("image/jpeg", 0.72));
                     };
                     img.onerror = () => resolve(event.target.result);
                     img.src = event.target.result;
@@ -1208,7 +1253,7 @@
             const result = [];
             let totalBytes = 0;
             for (const item of imgList) {
-                const len = typeof item === 'string' ? item.length : 0;
+                const len = typeof item === "string" ? item.length : 0;
                 if (result.length > 0 && totalBytes + len > maxBytes) break;
                 result.push(item);
                 totalBytes += len;
@@ -1235,8 +1280,9 @@
             return `${os} • ${browser}`;
         }
 
+        // Only record non-admin visitor logs
         async function recordPageVisit() {
-            if (!visitsCol || currentAdminUser) return;
+            if (!visitsCol || currentAdminUser || hasSecretAdminAccess()) return;
             try {
                 const sessionKey = "kify_visit_recorded_v1";
                 if (sessionStorage.getItem(sessionKey)) return;
@@ -1254,7 +1300,7 @@
         }
 
         function startVisitorLogsSync() {
-            if (!currentAdminUser || !visitsCol || visitorUnsubscribe) return;
+            if (!currentAdminUser || !hasSecretAdminAccess() || !visitsCol || visitorUnsubscribe) return;
             try {
                 const q = query(visitsCol, orderBy("timestamp", "desc"), limit(100));
                 visitorUnsubscribe = onSnapshot(q, (snap) => {
@@ -1283,13 +1329,13 @@
             const todayEl = document.getElementById("visitorTodayCount");
             const badgeEl = document.getElementById("adminVisitorBadgeCount");
 
-            if (badgeEl) badgeEl.innerText = visitorLogs.length;
-            if (totalEl) totalEl.innerText = visitorLogs.length;
+            if (badgeEl) badgeEl.innerText = String(visitorLogs.length);
+            if (totalEl) totalEl.innerText = String(visitorLogs.length);
 
             const startOfToday = new Date();
             startOfToday.setHours(0, 0, 0, 0);
             const todayCount = visitorLogs.filter((v) => (v.timestamp || 0) >= startOfToday.getTime()).length;
-            if (todayEl) todayEl.innerText = todayCount;
+            if (todayEl) todayEl.innerText = String(todayCount);
 
             if (!tbody) return;
             if (!currentAdminUser) {
@@ -1334,7 +1380,7 @@
             onSnapshot(mlbbCol, (querySnapshot) => {
                 const list = [];
                 querySnapshot.forEach((docSnap) => {
-                    if (!deletedIdsSet.has(String(docSnap.id))) {
+                    if (!deletedAccountIds.has(String(docSnap.id))) {
                         list.push({ id: docSnap.id, ...docSnap.data(), game: "mlbb" });
                     }
                 });
@@ -1348,7 +1394,7 @@
             onSnapshot(pubgCol, (querySnapshot) => {
                 const list = [];
                 querySnapshot.forEach((docSnap) => {
-                    if (!deletedIdsSet.has(String(docSnap.id))) {
+                    if (!deletedAccountIds.has(String(docSnap.id))) {
                         list.push({ id: docSnap.id, ...docSnap.data(), game: "pubg" });
                     }
                 });
@@ -1361,7 +1407,10 @@
         }
 
         function initAuthSync() {
-            if (!auth) return;
+            if (!auth) {
+                updateAdminVisibility();
+                return;
+            }
             onAuthStateChanged(auth, (user) => {
                 currentAdminUser = user;
                 const adminBtnText = document.getElementById("adminBtnText");
@@ -1386,6 +1435,7 @@
                     document.getElementById("adminLoginView").classList.remove("hidden");
                     document.getElementById("adminDashboardView").classList.add("hidden");
                 }
+                updateAdminVisibility();
             });
         }
 
@@ -1953,7 +2003,7 @@
             if (!grid || !emptyState) return;
 
             let filtered = mlbbAccounts.filter(acc => {
-                if (!acc || deletedIdsSet.has(String(acc.id))) return false;
+                if (!acc || deletedAccountIds.has(String(acc.id))) return false;
                 const rankLabel = formatRankLabel(acc.rank);
                 if (activeMlbbFilter === "AVAILABLE" && acc.status !== "AVAILABLE") return false;
                 if (activeMlbbFilter === "SOLD" && acc.status !== "SOLD") return false;
@@ -1989,7 +2039,7 @@
             if (!grid || !emptyState) return;
 
             let filtered = pubgAccounts.filter(acc => {
-                if (!acc || deletedIdsSet.has(String(acc.id))) return false;
+                if (!acc || deletedAccountIds.has(String(acc.id))) return false;
                 const rankLabel = formatRankLabel(acc.rank);
                 if (activePubgFilter === "AVAILABLE" && acc.status !== "AVAILABLE") return false;
                 if (activePubgFilter === "SOLD" && acc.status !== "SOLD") return false;
@@ -2222,7 +2272,12 @@
             if (modal) modal.classList.remove("is-open");
         }
 
+        // Only open Admin Panel if secret key is present in URL query or hash
         function openAdminModal() {
+            updateAdminVisibility();
+            if (!hasSecretAdminAccess()) {
+                return;
+            }
             const modal = document.getElementById("adminModal");
             if (!modal) return;
             modal.classList.add("is-open");
@@ -2681,6 +2736,10 @@
             if (loginForm) {
                 loginForm.addEventListener("submit", async (e) => {
                     e.preventDefault();
+                    if (!hasSecretAdminAccess()) {
+                        updateAdminVisibility();
+                        return;
+                    }
                     if (!auth) {
                         showToast("Firebase Auth is not initialized", "error");
                         return;
@@ -2712,6 +2771,7 @@
                     try {
                         if (auth) await signOut(auth);
                         closeModalById("adminModal");
+                        updateAdminVisibility();
                         showToast("Logout လုပ်ဆောင်ပြီးပါပြီ", "info");
                     } catch (err) {
                         console.error(err);
@@ -2874,7 +2934,10 @@
             }
         }
 
+        window.addEventListener("hashchange", updateAdminVisibility);
+
         window.addEventListener("DOMContentLoaded", () => {
+            updateAdminVisibility();
             bindAllEvents();
             renderDiaPricesView();
             renderTgStarPremiumView();
