@@ -210,6 +210,12 @@
                             <i class="fa-solid fa-arrow-right text-xs"></i>
                         </button>
 
+                        <button type="button" onclick="openPubgAccountsView()"
+                            class="bg-navycard/90 hover:bg-navyinput text-skyacc-300 hover:text-white border border-royal-500/40 font-bold text-xs sm:text-sm px-4 py-3 rounded-xl inline-flex items-center gap-2 transition-all cursor-pointer">
+                            <i class="fa-solid fa-crosshairs text-skyacc-400 text-xs"></i>
+                            <span>PUBG အကောင့်များကြည့်ရန်</span>
+                        </button>
+
                         <a href="https://t.me/KIFYCASS" target="_blank" rel="noopener noreferrer"
                             class="bg-navycard/90 hover:bg-navyinput text-slate-200 hover:text-white border border-navyborder font-semibold text-xs sm:text-sm px-4 py-3 rounded-xl inline-flex items-center gap-2 transition-all">
                             <i class="fa-brands fa-telegram text-skyacc-400 text-base"></i>
@@ -219,8 +225,8 @@
                 </div>
             </div>
 
-            <!-- 3-Column Feature Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <!-- Feature Cards Grid (MLBB Accounts, PUBG Accounts, Dia Prices, Star & TG Premium) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
                 <!-- Card 1: Mobile Legend အကောင့်များ -->
                 <div onclick="enterStorefront()"
                     class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between space-y-6 cursor-pointer">
@@ -240,7 +246,26 @@
                     </div>
                 </div>
 
-                <!-- Card 2: MLBB Diamond ဈေးနှုန်းများ -->
+                <!-- Card 2: PUBG အကောင့်များကြည့်ရန် -->
+                <div onclick="openPubgAccountsView()"
+                    class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between space-y-6 cursor-pointer">
+                    <div class="space-y-3">
+                        <h3 class="text-lg sm:text-xl font-extrabold text-white leading-snug">
+                            PUBG အကောင့်များကြည့်ရန်
+                        </h3>
+                        <p class="text-xs sm:text-[13px] text-slate-400 leading-relaxed">
+                            Browse curated PUBG Mobile accounts with Mythic Fashion, upgradeable gun skins, RP levels, photo slides, and instant @KIFYCASS order links.
+                        </p>
+                    </div>
+                    <div class="pt-1">
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold text-skyacc-400 hover:text-skyacc-300">
+                            <span>PUBG အကောင့်များကြည့်ရန်</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Card 3: MLBB Diamond ဈေးနှုန်းများ -->
                 <div onclick="openDiaPricesView()"
                     class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between space-y-6 cursor-pointer">
                     <div class="space-y-3">
@@ -259,7 +284,7 @@
                     </div>
                 </div>
 
-                <!-- Card 3: Star နှင့် TG Premium ဈေးနှုန်းများ -->
+                <!-- Card 4: Star နှင့် TG Premium ဈေးနှုန်းများ -->
                 <div onclick="openTgStarPremiumView()"
                     class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between space-y-6 cursor-pointer">
                     <div class="space-y-3">
@@ -277,6 +302,77 @@
                         </span>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- 1B. DEDICATED PUBG MOBILE ACCOUNTS VIEW -->
+        <section id="pubgSection" class="hidden space-y-6">
+            <div class="glass-card rounded-2xl p-5 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <p class="text-[11px] font-bold tracking-[0.16em] text-skyacc-400 uppercase mb-1">
+                        PUBG MOBILE ARMORY
+                    </p>
+                    <h2 class="text-xl sm:text-3xl font-extrabold text-white leading-snug">
+                        PUBG အကောင့်များကြည့်ရန်
+                    </h2>
+                </div>
+                <button type="button" onclick="showEntryGateway()"
+                    class="self-start sm:self-center px-4 py-2 rounded-xl bg-navycard/90 hover:bg-navyinput text-slate-200 hover:text-white border border-navyborder text-xs font-semibold inline-flex items-center gap-2 cursor-pointer transition-all">
+                    <i class="fa-solid fa-arrow-left text-xs"></i>
+                    <span>Back to Hub</span>
+                </button>
+            </div>
+
+            <!-- PUBG Filter, Search & Sort Controls -->
+            <div class="glass-card rounded-2xl p-4 sm:p-5 space-y-4">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                    <div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 text-xs font-semibold">
+                        <button type="button" onclick="setPubgFilter('ALL')" id="pubgTab-ALL"
+                            class="pubg-filter-btn px-4 py-2 rounded-xl bg-royal-600 text-white font-bold shadow-sm shadow-royal-600/40 whitespace-nowrap transition-all cursor-pointer">
+                            All
+                        </button>
+                        <button type="button" onclick="setPubgFilter('AVAILABLE_ONLY')" id="pubgTab-Available"
+                            class="pubg-filter-btn px-4 py-2 rounded-xl bg-navyinput text-slate-300 hover:text-emerald-400 border border-navyborder hover:border-emerald-500/40 whitespace-nowrap transition-all cursor-pointer">
+                            Available
+                        </button>
+                        <button type="button" onclick="setPubgFilter('SOLD_ONLY')" id="pubgTab-Sold"
+                            class="pubg-filter-btn px-4 py-2 rounded-xl bg-navyinput text-slate-300 hover:text-rose-400 border border-navyborder hover:border-rose-500/40 whitespace-nowrap transition-all cursor-pointer">
+                            Sold Out
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-2 text-xs self-end md:self-auto">
+                        <select id="pubgSortSelect" onchange="filterPubgAccounts()"
+                            class="bg-navyinput border border-navyborder text-slate-200 font-semibold rounded-xl px-3.5 py-2 focus:outline-none focus:border-royal-500 cursor-pointer">
+                            <option value="newest">Newest First</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="relative w-full">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" id="pubgSearchInput" onkeyup="filterPubgAccounts()"
+                        placeholder="Search PUBG by code (e.g. PUBG-101), Mythic, gun skin, or tier..."
+                        class="w-full bg-navyinput border border-navyborder focus:border-royal-500 text-xs sm:text-sm rounded-xl pl-9 pr-4 py-2.5 text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-royal-500 transition-all">
+                </div>
+            </div>
+
+            <!-- PUBG ACCOUNT CARDS GRID -->
+            <div id="pubgAccountGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+
+            <!-- PUBG EMPTY STATE -->
+            <div id="pubgEmptyState" class="hidden text-center py-16 space-y-3 glass-card rounded-3xl">
+                <div class="w-14 h-14 mx-auto rounded-2xl bg-royal-600/15 border border-royal-500/30 flex items-center justify-center text-skyacc-400 text-xl">
+                    <i class="fa-solid fa-crosshairs"></i>
+                </div>
+                <h3 class="text-base font-bold text-white">PUBG Account မရှိသေးပါ (No PUBG Accounts)</h3>
+                <p class="text-xs text-slate-400">Admin Panel မှ PUBG Account အသစ်တင်ပြီး ကြည့်ရှုနိုင်ပါသည်။</p>
+                <button type="button" onclick="resetPubgFilters()"
+                    class="px-4 py-2 rounded-xl blue-glow-btn text-white text-xs font-bold cursor-pointer">
+                    Reset PUBG Filters
+                </button>
             </div>
         </section>
 
@@ -495,6 +591,9 @@
                         <button type="button" onclick="showAdminTab('add')" id="adminTab-add" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-navyinput text-slate-300 hover:text-white border border-navyborder cursor-pointer">
                             <i class="fa-solid fa-plus mr-1.5"></i> Account အသစ်ထည့်မည်
                         </button>
+                        <button type="button" onclick="showAdminTab('pubg')" id="adminTab-pubg" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-navyinput text-slate-300 hover:text-white border border-navyborder cursor-pointer">
+                            <i class="fa-solid fa-crosshairs mr-1.5"></i> PUBG Accounts
+                        </button>
                         <button type="button" onclick="showAdminTab('dia')" id="adminTab-dia" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-navyinput text-slate-300 hover:text-white border border-navyborder cursor-pointer">
                             <i class="fa-regular fa-gem mr-1.5"></i> Dia ဈေးပြင်ရန်
                         </button>
@@ -636,6 +735,119 @@
                             </button>
                         </div>
                     </form>
+                </div>
+
+                <!-- TAB 2B: PUBG ACCOUNTS MANAGER -->
+                <div id="adminSection-pubg" class="hidden space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-navyborder pb-3">
+                        <div>
+                            <h4 class="text-sm font-bold text-skyacc-400 flex items-center gap-2">
+                                <i class="fa-solid fa-crosshairs"></i> PUBG Accounts စီမံခန့်ခွဲရန် (စုစုပေါင်း: <span id="adminPubgTotalCount">0</span>)
+                            </h4>
+                            <p class="text-xs text-slate-400 mt-0.5">
+                                PUBG Mobile Account အသစ်ထည့်ခြင်း၊ ပြင်ဆင်ခြင်း၊ Sold / Available ပြောင်းခြင်း နှင့် ဖျက်ခြင်း ပြုလုပ်နိုင်ပါသည်
+                            </p>
+                        </div>
+                        <button type="button" onclick="cancelPubgEditForm()"
+                            class="px-3.5 py-2 rounded-xl bg-royal-600/15 hover:bg-royal-600/25 text-skyacc-300 border border-royal-500/40 text-xs font-bold flex items-center gap-1.5 self-start sm:self-auto cursor-pointer">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>PUBG Form ရှင်းမည်</span>
+                        </button>
+                    </div>
+
+                    <form onsubmit="handleSavePubgAccount(event)" class="space-y-4 bg-navybg/60 border border-navyborder rounded-2xl p-4">
+                        <input type="hidden" id="editPubgAccountId">
+                        <h5 id="pubgFormHeaderTitle" class="text-xs font-bold text-skyacc-300">PUBG Account အသစ်ထည့်မည်</h5>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">PUBG Account Code / Title *</label>
+                                <input type="text" id="pubgAccTitle" required placeholder="ဥပမာ- PUBG-101"
+                                    class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">Tier / Level / RP *</label>
+                                <input type="text" id="pubgAccRank" required placeholder="ဥပမာ- Conqueror • Lv.76"
+                                    class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">ဈေးနှုန်း (MMK/ကျပ်) *</label>
+                                <input type="number" id="pubgAccPrice" required placeholder="ဥပမာ- 220000"
+                                    class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">Mythic Outfits / Sets *</label>
+                                <input type="number" id="pubgAccMythics" required placeholder="ဥပမာ- 54"
+                                    class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">Upgradable Guns *</label>
+                                <input type="number" id="pubgAccGuns" required placeholder="ဥပမာ- 11"
+                                    class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">K/D Ratio</label>
+                                <input type="text" id="pubgAccKd" placeholder="ဥပမာ- 4.85 K/D"
+                                    class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">Telegram Username</label>
+                                <input type="text" id="pubgAccTelegram" value="KIFYCASS" placeholder="KIFYCASS"
+                                    class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs text-slate-400 mb-1">အခြေအနေ (Status)</label>
+                                <select id="pubgAccStatus" class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
+                                    <option value="AVAILABLE">ဝယ်ယူနိုင်သည် (Available)</option>
+                                    <option value="SOLD">ရောင်းပြီး (Sold Out)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">Gun Skins / Highlights (ကော်မာဖြင့်ခြားပါ)</label>
+                            <input type="text" id="pubgAccHighlights" placeholder="ဥပမာ- M416 Fool Lv.4, Glacier AKM, Pharaoh X-Suit"
+                                class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs text-slate-400 mb-1">အသေးစိတ်ဖော်ပြချက်</label>
+                            <textarea id="pubgAccDesc" rows="2" placeholder="Clean link details, materials, UC status..."
+                                class="w-full bg-navyinput border border-navyborder rounded-xl px-3 py-2 text-xs text-white focus:border-royal-500 focus:outline-none"></textarea>
+                        </div>
+
+                        <div class="flex items-center gap-3 pt-1">
+                            <button type="submit" id="savePubgAccountBtn" class="px-5 py-2.5 rounded-xl blue-glow-btn text-white font-extrabold text-xs cursor-pointer">
+                                <i class="fa-solid fa-floppy-disk mr-1"></i> PUBG Account သိမ်းမည်
+                            </button>
+                            <button type="button" onclick="cancelPubgEditForm()" class="px-4 py-2.5 rounded-xl bg-navyinput text-slate-300 text-xs hover:bg-slate-800 cursor-pointer">
+                                ရှင်းမည်
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="overflow-x-auto rounded-2xl border border-navyborder bg-navybg/80">
+                        <table class="w-full text-left text-xs text-slate-300">
+                            <thead class="bg-navycard text-skyacc-400 uppercase tracking-wider font-semibold border-b border-navyborder">
+                                <tr>
+                                    <th class="p-3">Code</th>
+                                    <th class="p-3">Tier / Info</th>
+                                    <th class="p-3">Mythics / Guns</th>
+                                    <th class="p-3">ဈေးနှုန်း</th>
+                                    <th class="p-3">အခြေအနေ</th>
+                                    <th class="p-3 text-right">လုပ်ဆောင်ချက်</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminPubgAccountTable" class="divide-y divide-navyborder/80"></tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <!-- TAB 3: DIA PRICE EDITOR -->
@@ -924,6 +1136,55 @@
             }
         ];
 
+        // Sample PUBG Mobile accounts for immediate preview and offline readiness
+        const SAMPLE_PUBG_ACCOUNTS = [
+            {
+                id: 'pubg-101',
+                title: 'PUBG-101',
+                rank: 'Conqueror • Lv.76',
+                price: 220000,
+                mythics: 54,
+                guns: 11,
+                kd: '4.85 K/D',
+                telegram: 'KIFYCASS',
+                status: 'AVAILABLE',
+                highlights: ['M416 Fool Lv.4', 'Pharaoh X-Suit', 'Glacier AKM'],
+                description: 'Clean linked PUBG Mobile account with 54 Mythic outfits and 11 upgradeable weapons.',
+                images: ['IMG_20261125_220821_646.png'],
+                created: 1732500000012
+            },
+            {
+                id: 'pubg-204',
+                title: 'PUBG-204',
+                rank: 'Ace Dominator • Lv.72',
+                price: 155000,
+                mythics: 38,
+                guns: 7,
+                kd: '4.12 K/D',
+                telegram: 'KIFYCASS',
+                status: 'AVAILABLE',
+                highlights: ['M762 Unicorn', 'Jester Suit', 'RP Max'],
+                description: 'Competitive PUBG Mobile account with upgradeable gun skins and clean social unbind.',
+                images: ['IMG_20261125_220821_646.png'],
+                created: 1732500000011
+            },
+            {
+                id: 'pubg-309',
+                title: 'PUBG-309',
+                rank: 'Ace Master • Lv.69',
+                price: 110000,
+                mythics: 24,
+                guns: 4,
+                kd: '3.64 K/D',
+                telegram: 'KIFYCASS',
+                status: 'SOLD',
+                highlights: ['UMP45 Empyrean', 'Mythic Companion'],
+                description: 'Sold Out archive PUBG account listing.',
+                images: ['IMG_20261125_220821_646.png'],
+                created: 1732500000010
+            }
+        ];
+
         function cloneDefaultDiaData() {
             return {
                 bundles: DEFAULT_DIA_DATA.bundles.map(b => ({ ...b })),
@@ -943,7 +1204,11 @@
         let tgData = cloneDefaultTgData();
         let draftTgData = cloneDefaultTgData();
         let accounts = SAMPLE_ACCOUNTS.map(a => ({ ...a, highlights: [...a.highlights], images: [...a.images] }));
+        let pubgAccounts = SAMPLE_PUBG_ACCOUNTS.map(p => ({ ...p, highlights: [...p.highlights], images: [...p.images] }));
+        const deletedAccountIds = new Set();
+        const deletedPubgAccountIds = new Set();
         let activeFilter = 'ALL';
+        let pubgActiveFilter = 'ALL';
         let currentAdminUser = null;
         let uploadedImagesBase64 = [];
         let currentModalImages = [];
@@ -956,6 +1221,7 @@
             const pills = {
                 hub: document.getElementById('navPill-hub'),
                 accounts: document.getElementById('navPill-accounts'),
+                pubg: document.getElementById('navPill-pubg'),
                 dia: document.getElementById('navPill-dia'),
                 tg: document.getElementById('navPill-tg')
             };
@@ -1290,6 +1556,279 @@
             }).join('');
         }
 
+        function setPubgFilter(filterType) {
+            pubgActiveFilter = filterType;
+            document.querySelectorAll('.pubg-filter-btn').forEach(btn => {
+                btn.className = 'pubg-filter-btn px-4 py-2 rounded-xl bg-navyinput text-slate-300 hover:text-white border border-navyborder hover:border-royal-500/40 whitespace-nowrap transition-all cursor-pointer';
+            });
+
+            let activeBtnId = 'pubgTab-ALL';
+            if (filterType === 'AVAILABLE_ONLY') activeBtnId = 'pubgTab-Available';
+            if (filterType === 'SOLD_ONLY') activeBtnId = 'pubgTab-Sold';
+
+            const activeBtn = document.getElementById(activeBtnId);
+            if (activeBtn) {
+                activeBtn.className = 'pubg-filter-btn px-4 py-2 rounded-xl bg-royal-600 text-white font-bold shadow-sm shadow-royal-600/40 whitespace-nowrap transition-all cursor-pointer';
+            }
+            renderPubgAccounts();
+        }
+
+        function filterPubgAccounts() {
+            renderPubgAccounts();
+        }
+
+        function resetPubgFilters() {
+            const searchInput = document.getElementById('pubgSearchInput');
+            const sortSelect = document.getElementById('pubgSortSelect');
+            if (searchInput) searchInput.value = '';
+            if (sortSelect) sortSelect.value = 'newest';
+            setPubgFilter('ALL');
+        }
+
+        function renderPubgAccounts() {
+            const grid = document.getElementById('pubgAccountGrid');
+            const emptyState = document.getElementById('pubgEmptyState');
+            const searchInput = document.getElementById('pubgSearchInput');
+            const sortSelect = document.getElementById('pubgSortSelect');
+            if (!grid || !emptyState) return;
+
+            const searchVal = (searchInput ? searchInput.value : '').toLowerCase().trim();
+            const sortVal = sortSelect ? sortSelect.value : 'newest';
+
+            let filtered = pubgAccounts.filter(acc => {
+                if (pubgActiveFilter === 'AVAILABLE_ONLY' && acc.status !== 'AVAILABLE') return false;
+                if (pubgActiveFilter === 'SOLD_ONLY' && acc.status !== 'SOLD') return false;
+
+                if (searchVal) {
+                    const titleMatch = (acc.title || '').toLowerCase().includes(searchVal);
+                    const rankMatch = (acc.rank || '').toLowerCase().includes(searchVal);
+                    const highlightMatch = (acc.highlights || []).some(h => h.toLowerCase().includes(searchVal));
+                    return titleMatch || rankMatch || highlightMatch;
+                }
+                return true;
+            });
+
+            if (sortVal === 'price-low') {
+                filtered.sort((a, b) => Number(a.price || 0) - Number(b.price || 0));
+            } else if (sortVal === 'price-high') {
+                filtered.sort((a, b) => Number(b.price || 0) - Number(a.price || 0));
+            } else {
+                filtered.sort((a, b) => (b.created || 0) - (a.created || 0));
+            }
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            emptyState.classList.add('hidden');
+
+            grid.innerHTML = filtered.map((acc, index) => {
+                const isSold = acc.status === 'SOLD';
+                const tierLabel = acc.rank || 'PUBG Account';
+                const formattedPrice = Number(acc.price || 0).toLocaleString();
+                const summaryLine = (acc.highlights && acc.highlights.length > 0)
+                    ? acc.highlights.slice(0, 2).join(' • ')
+                    : `${acc.mythics || 0} Mythics • ${acc.guns || 0} Upgradable Guns`;
+
+                return `
+                    <div class="glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col">
+                        <div class="relative h-52 bg-gradient-to-br from-navyinput via-navycard to-navybg p-4 flex flex-col justify-between overflow-hidden cursor-pointer border-b border-navyborder" onclick="openPubgAccountDetails('${acc.id}')">
+                            <div class="pointer-events-none absolute -right-12 -top-12 w-40 h-40 rounded-full bg-royal-600/15 blur-2xl"></div>
+
+                            <div class="relative z-10 flex items-center justify-between gap-2">
+                                <div class="flex items-center gap-2">
+                                    ${isSold
+                                        ? `<span class="bg-rose-500 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">SOLD</span>`
+                                        : `<span class="bg-emerald-500 text-slate-950 text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">AVAILABLE</span>`
+                                    }
+                                    <span class="text-[10px] font-bold tracking-wider text-slate-400 uppercase hidden sm:inline">
+                                        PUBG ARMORY • SLIDE ${index + 1}
+                                    </span>
+                                </div>
+
+                                <span class="bg-navybg/90 text-skyacc-300 border border-navyborder text-[11px] font-bold px-2.5 py-0.5 rounded-full">
+                                    ${tierLabel}
+                                </span>
+                            </div>
+
+                            <div class="relative z-10 my-auto pt-1">
+                                <div class="text-xl sm:text-2xl font-black text-white tracking-tight uppercase">
+                                    ${acc.title}
+                                </div>
+                                <p class="text-xs font-bold text-skyacc-400 mt-0.5">
+                                    ${tierLabel} • ${acc.mythics || 0} Mythics
+                                </p>
+                                <p class="text-[11px] text-slate-400 mt-1 line-clamp-1">
+                                    ${summaryLine}
+                                </p>
+                            </div>
+
+                            <div class="relative z-10 flex items-center justify-between text-[9px] font-bold tracking-[0.14em] text-slate-500 uppercase">
+                                <span>KIFY GAME STORE • @KIFYCASS</span>
+                                <span class="text-slate-400"><i class="fa-solid fa-images mr-1"></i>${acc.images ? acc.images.length : 1}</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 sm:p-5 flex-grow flex flex-col justify-between space-y-4">
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="text-[11px] font-bold text-skyacc-400 uppercase tracking-wide">${acc.title}</p>
+                                    <h3 class="text-base sm:text-lg font-extrabold text-white mt-0.5 line-clamp-1 cursor-pointer hover:text-skyacc-400 transition-colors" onclick="openPubgAccountDetails('${acc.id}')">
+                                        ${acc.title} — ${tierLabel}
+                                    </h3>
+                                </div>
+
+                                <div class="grid grid-cols-3 bg-navybg/90 rounded-xl border border-navyborder py-2.5 text-center divide-x divide-navyborder">
+                                    <div class="px-2">
+                                        <p class="text-[10px] font-semibold text-slate-400">Mythics</p>
+                                        <p class="text-sm font-extrabold text-white mt-0.5">${acc.mythics ?? 0}</p>
+                                    </div>
+                                    <div class="px-2">
+                                        <p class="text-[10px] font-semibold text-slate-400">Upgradable</p>
+                                        <p class="text-sm font-extrabold text-white mt-0.5">${acc.guns ?? 0}</p>
+                                    </div>
+                                    <div class="px-2">
+                                        <p class="text-[10px] font-semibold text-slate-400">K/D</p>
+                                        <p class="text-sm font-extrabold text-emerald-400 mt-0.5">${acc.kd || 'N/A'}</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-wrap gap-1.5">
+                                    ${(acc.highlights || []).slice(0, 3).map(hl => `
+                                        <span class="bg-navybg/90 text-slate-300 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-navyborder">
+                                            ${hl}
+                                        </span>
+                                    `).join('')}
+                                </div>
+                            </div>
+
+                            <div class="pt-3 border-t border-navyborder flex items-center justify-between gap-3">
+                                <div>
+                                    <p class="text-[10px] font-semibold text-slate-400">Price</p>
+                                    <p class="text-base sm:text-lg font-black text-skyacc-400">${formattedPrice} <span class="text-xs font-bold text-slate-400">MMK</span></p>
+                                </div>
+
+                                <button type="button" onclick="openPubgAccountDetails('${acc.id}')"
+                                    class="px-4 py-2 rounded-xl blue-glow-btn text-white font-bold text-xs cursor-pointer">
+                                    Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function openPubgAccountDetails(id) {
+            const acc = pubgAccounts.find(a => a.id === id);
+            if (!acc) return;
+
+            currentModalImages = acc.images && acc.images.length > 0 ? acc.images : ['IMG_20261125_220821_646.png'];
+            activeModalImageIndex = 0;
+
+            const isSold = acc.status === 'SOLD';
+            const tierLabel = acc.rank || 'PUBG Account';
+            const formattedPrice = Number(acc.price || 0).toLocaleString();
+            const telegramUser = cleanTelegramUsername(acc.telegram);
+            const tgMessage = encodeURIComponent(`မင်္ဂလာပါ @KIFYCASS၊ PUBG Account [${acc.title}] (${tierLabel}၊ ဈေးနှုန်း: ${formattedPrice} MMK) ကို ဝယ်ယူလိုပါသည်။`);
+            const tgLink = `https://t.me/${telegramUser}?text=${tgMessage}`;
+
+            const modalBody = document.getElementById('accountModalBody');
+            if (!modalBody) return;
+
+            modalBody.innerHTML = `
+                <div class="space-y-3">
+                    <div class="relative h-64 sm:h-72 w-full bg-gradient-to-br from-navyinput via-navycard to-navybg rounded-2xl overflow-hidden border border-navyborder flex flex-col justify-between p-5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold tracking-wider text-skyacc-400 uppercase">${acc.title}</span>
+                            <span class="text-xs font-bold text-slate-300 bg-navybg/90 border border-navyborder px-2.5 py-0.5 rounded-full">${tierLabel}</span>
+                        </div>
+                        <div class="my-auto text-center space-y-1">
+                            <p class="text-2xl sm:text-3xl font-black text-white uppercase">${acc.title}</p>
+                            <p class="text-xs sm:text-sm font-bold text-skyacc-400">${tierLabel} • ${acc.mythics ?? 0} Mythics • ${acc.guns ?? 0} Guns</p>
+                            <p class="text-xs text-slate-400">${(acc.highlights || []).join(' • ')}</p>
+                        </div>
+                        <div class="flex items-center justify-between text-[11px] text-slate-400">
+                            <span>KIFY GAME STORE • @KIFYCASS</span>
+                            <span>Slide <span id="imgCounter">1</span> / ${currentModalImages.length}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-navyborder pb-4">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-royal-600/20 text-skyacc-300 border border-royal-500/35">${tierLabel}</span>
+                                ${isSold
+                                    ? `<span class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30">SOLD</span>`
+                                    : `<span class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">AVAILABLE</span>`}
+                            </div>
+                            <h2 class="text-lg sm:text-xl font-bold text-white">${acc.title}</h2>
+                        </div>
+                        <div class="text-left sm:text-right">
+                            <p class="text-xs text-slate-400">Price</p>
+                            <p class="text-xl sm:text-2xl font-black text-skyacc-400">${formattedPrice} <span class="text-xs font-bold text-slate-400">MMK</span></p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-navybg/80 p-3.5 rounded-2xl border border-navyborder text-xs">
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-vest text-skyacc-400 text-lg"></i>
+                            <div>
+                                <p class="text-[10px] text-slate-400">Mythics</p>
+                                <p class="font-bold text-white">${acc.mythics ?? 0}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-gun text-skyacc-400 text-lg"></i>
+                            <div>
+                                <p class="text-[10px] text-slate-400">Upgradable</p>
+                                <p class="font-bold text-white">${acc.guns ?? 0}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-crosshairs text-emerald-400 text-lg"></i>
+                            <div>
+                                <p class="text-[10px] text-slate-400">K/D Ratio</p>
+                                <p class="font-bold text-emerald-400">${acc.kd || 'N/A'}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-shield-halved text-skyacc-400 text-lg"></i>
+                            <div>
+                                <p class="text-[10px] text-slate-400">Account</p>
+                                <p class="font-bold text-slate-200">PUBG Clean</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-1 text-xs text-slate-300 bg-navybg/80 p-3.5 rounded-xl border border-navyborder leading-relaxed">
+                        <p class="font-semibold text-skyacc-400">အသေးစိတ် အချက်အလက်များ:</p>
+                        <p>${acc.description || 'အသေးစိတ်အချက်အလက်များကို Admin Telegram တွင် တိုက်ရိုက်မေးမြန်းနိုင်ပါသည်။'}</p>
+                    </div>
+
+                    <div class="pt-2">
+                        ${isSold ? `
+                            <button type="button" disabled class="w-full py-3.5 rounded-xl bg-navyinput text-slate-400 font-bold text-sm cursor-not-allowed">
+                                ဤ PUBG Account ကို ရောင်းချပြီးပါပြီ (Sold Out)
+                            </button>
+                        ` : `
+                            <a href="${tgLink}" target="_blank" rel="noopener noreferrer"
+                                class="w-full py-3.5 rounded-xl blue-glow-btn text-white font-extrabold text-sm text-center shadow-lg flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-telegram text-base"></i>
+                                <span>Telegram (@KIFYCASS) ဖြင့် တိုက်ရိုက် ဝယ်ယူမည်</span>
+                            </a>
+                        `}
+                    </div>
+                </div>
+            `;
+
+            const modal = document.getElementById('accountModal');
+            if (modal) modal.classList.remove('hidden');
+        }
+
         function setFilter(filterType) {
             activeFilter = filterType;
             document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -1315,9 +1854,11 @@
             setActiveNavPill('accounts');
             const gateway = document.getElementById('entryGateway');
             const storefront = document.getElementById('storefrontContent');
+            const pubgSection = document.getElementById('pubgSection');
             const diaSection = document.getElementById('diaPricesSection');
             const tgSection = document.getElementById('tgStarPremiumSection');
             if (gateway) gateway.classList.add('hidden');
+            if (pubgSection) pubgSection.classList.add('hidden');
             if (diaSection) diaSection.classList.add('hidden');
             if (tgSection) tgSection.classList.add('hidden');
             if (storefront) storefront.classList.remove('hidden');
@@ -1325,13 +1866,31 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        function openPubgAccountsView() {
+            setActiveNavPill('pubg');
+            const gateway = document.getElementById('entryGateway');
+            const storefront = document.getElementById('storefrontContent');
+            const pubgSection = document.getElementById('pubgSection');
+            const diaSection = document.getElementById('diaPricesSection');
+            const tgSection = document.getElementById('tgStarPremiumSection');
+            if (gateway) gateway.classList.add('hidden');
+            if (storefront) storefront.classList.add('hidden');
+            if (diaSection) diaSection.classList.add('hidden');
+            if (tgSection) tgSection.classList.add('hidden');
+            if (pubgSection) pubgSection.classList.remove('hidden');
+            renderPubgAccounts();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         function showEntryGateway() {
             setActiveNavPill('hub');
             const gateway = document.getElementById('entryGateway');
             const storefront = document.getElementById('storefrontContent');
+            const pubgSection = document.getElementById('pubgSection');
             const diaSection = document.getElementById('diaPricesSection');
             const tgSection = document.getElementById('tgStarPremiumSection');
             if (storefront) storefront.classList.add('hidden');
+            if (pubgSection) pubgSection.classList.add('hidden');
             if (diaSection) diaSection.classList.add('hidden');
             if (tgSection) tgSection.classList.add('hidden');
             if (gateway) gateway.classList.remove('hidden');
@@ -1342,10 +1901,12 @@
             setActiveNavPill('dia');
             const gateway = document.getElementById('entryGateway');
             const storefront = document.getElementById('storefrontContent');
+            const pubgSection = document.getElementById('pubgSection');
             const diaSection = document.getElementById('diaPricesSection');
             const tgSection = document.getElementById('tgStarPremiumSection');
             if (gateway) gateway.classList.add('hidden');
             if (storefront) storefront.classList.add('hidden');
+            if (pubgSection) pubgSection.classList.add('hidden');
             if (tgSection) tgSection.classList.add('hidden');
             if (diaSection) diaSection.classList.remove('hidden');
             renderDiaPricesView();
@@ -1356,10 +1917,12 @@
             setActiveNavPill('tg');
             const gateway = document.getElementById('entryGateway');
             const storefront = document.getElementById('storefrontContent');
+            const pubgSection = document.getElementById('pubgSection');
             const diaSection = document.getElementById('diaPricesSection');
             const tgSection = document.getElementById('tgStarPremiumSection');
             if (gateway) gateway.classList.add('hidden');
             if (storefront) storefront.classList.add('hidden');
+            if (pubgSection) pubgSection.classList.add('hidden');
             if (diaSection) diaSection.classList.add('hidden');
             if (tgSection) tgSection.classList.remove('hidden');
             renderTgStarPremiumView();
@@ -1498,14 +2061,178 @@
                 document.getElementById('adminLoginView').classList.add('hidden');
                 document.getElementById('adminDashboardView').classList.remove('hidden');
                 renderAdminTable();
+                renderAdminPubgTable();
                 resetDraftFromDiaData();
                 renderAdminDiaEditor();
                 resetDraftFromTgData();
                 renderAdminTgEditor();
             } else {
-                document.getElementById('adminLoginView').classList.remove('hidden');
-                document.getElementById('adminDashboardView').classList.add('hidden');
+            ['list', 'add', 'pubg', 'dia', 'tg', 'visitors', 'settings'].forEach(sec => {
+                const secEl = document.getElementById(`adminSection-${sec}`);
+                if (secEl) secEl.classList.toggle('hidden', sec !== tabName);
+            });
+
+            if (tabName === 'list') renderAdminTable();
+            if (tabName === 'pubg') renderAdminPubgTable();
+            if (tabName === 'dia') {
+                resetDraftFromDiaData();
+                renderAdminDiaEditor();
             }
+            if (tabName === 'tg') {
+                resetDraftFromTgData();
+                renderAdminTgEditor();
+            }
+        }
+
+        function renderAdminPubgTable() {
+            const tbody = document.getElementById('adminPubgAccountTable');
+            const totalEl = document.getElementById('adminPubgTotalCount');
+            if (totalEl) totalEl.innerText = pubgAccounts.length;
+            if (!tbody) return;
+
+            if (pubgAccounts.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center py-6 text-slate-500">တင်ထားသော PUBG Account မရှိသေးပါ</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = pubgAccounts.map(acc => {
+                const isSold = acc.status === 'SOLD';
+                return `
+                    <tr class="hover:bg-navycard/60 transition-colors">
+                        <td class="p-3 font-semibold text-white max-w-[140px] truncate">${acc.title}</td>
+                        <td class="p-3"><span class="bg-royal-600/15 text-skyacc-300 px-2 py-0.5 rounded text-[11px] font-bold">${acc.rank || '-'}</span></td>
+                        <td class="p-3 text-slate-300">${acc.mythics ?? 0} Mythics / ${acc.guns ?? 0} Guns</td>
+                        <td class="p-3 font-bold text-skyacc-400">${Number(acc.price || 0).toLocaleString()} Ks</td>
+                        <td class="p-3">
+                            <span class="px-2 py-1 rounded text-[10px] font-bold uppercase ${isSold ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'}">
+                                ${isSold ? 'SOLD' : 'AVAILABLE'}
+                            </span>
+                        </td>
+                        <td class="p-3 text-right space-x-2">
+                            <button type="button" onclick="editPubgAccount('${acc.id}')" class="text-skyacc-400 hover:text-skyacc-300 p-1 cursor-pointer" title="Edit">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <button type="button" onclick="confirmDeletePubgAccount('${acc.id}')" class="text-rose-400 hover:text-rose-300 p-1 cursor-pointer" title="Delete">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function editPubgAccount(id) {
+            const acc = pubgAccounts.find(a => a.id === id);
+            if (!acc) return;
+            document.getElementById('editPubgAccountId').value = acc.id;
+            document.getElementById('pubgAccTitle').value = acc.title || '';
+            document.getElementById('pubgAccRank').value = acc.rank || '';
+            document.getElementById('pubgAccPrice').value = acc.price ?? '';
+            document.getElementById('pubgAccMythics').value = acc.mythics ?? '';
+            document.getElementById('pubgAccGuns').value = acc.guns ?? '';
+            document.getElementById('pubgAccKd').value = acc.kd || '';
+            document.getElementById('pubgAccTelegram').value = cleanTelegramUsername(acc.telegram);
+            document.getElementById('pubgAccStatus').value = acc.status || 'AVAILABLE';
+            document.getElementById('pubgAccHighlights').value = (acc.highlights || []).join(', ');
+            document.getElementById('pubgAccDesc').value = acc.description || '';
+            document.getElementById('pubgFormHeaderTitle').innerText = `PUBG Account ပြင်ဆင်ရန် (${acc.title})`;
+        }
+
+        function cancelPubgEditForm() {
+            document.getElementById('editPubgAccountId').value = '';
+            document.getElementById('pubgAccTitle').value = '';
+            document.getElementById('pubgAccRank').value = '';
+            document.getElementById('pubgAccPrice').value = '';
+            document.getElementById('pubgAccMythics').value = '';
+            document.getElementById('pubgAccGuns').value = '';
+            document.getElementById('pubgAccKd').value = '';
+            document.getElementById('pubgAccTelegram').value = 'KIFYCASS';
+            document.getElementById('pubgAccStatus').value = 'AVAILABLE';
+            document.getElementById('pubgAccHighlights').value = '';
+            document.getElementById('pubgAccDesc').value = '';
+            document.getElementById('pubgFormHeaderTitle').innerText = 'PUBG Account အသစ်ထည့်မည်';
+        }
+
+        async function handleSavePubgAccount(e) {
+            e.preventDefault();
+            const editId = document.getElementById('editPubgAccountId').value;
+            const title = document.getElementById('pubgAccTitle').value.trim();
+            const rank = document.getElementById('pubgAccRank').value.trim();
+            const price = parseFloat(document.getElementById('pubgAccPrice').value) || 0;
+            const mythics = parseInt(document.getElementById('pubgAccMythics').value, 10) || 0;
+            const guns = parseInt(document.getElementById('pubgAccGuns').value, 10) || 0;
+            const kd = document.getElementById('pubgAccKd').value.trim();
+            const telegram = cleanTelegramUsername(document.getElementById('pubgAccTelegram').value);
+            const status = document.getElementById('pubgAccStatus').value;
+            const highlights = document.getElementById('pubgAccHighlights').value.split(',').map(s => s.trim()).filter(Boolean);
+            const description = document.getElementById('pubgAccDesc').value.trim();
+
+            if (window.__kifyFirebaseBridge && window.__kifyFirebaseBridge.savePubgAccount) {
+                await window.__kifyFirebaseBridge.savePubgAccount({
+                    editId, title, rank, price, mythics, guns, kd, telegram, status, highlights, description
+                });
+                return;
+            }
+
+            if (editId) {
+                pubgAccounts = pubgAccounts.map(a => a.id === editId ? { ...a, title, rank, price, mythics, guns, kd, telegram, status, highlights, description } : a);
+            } else {
+                pubgAccounts.unshift({
+                    id: 'pubg-' + Date.now().toString().slice(-6),
+                    title, rank, price, mythics, guns, kd, telegram, status, highlights, description,
+                    images: ['IMG_20261125_220821_646.png'],
+                    created: Date.now()
+                });
+            }
+            renderPubgAccounts();
+            renderAdminPubgTable();
+            cancelPubgEditForm();
+            showToast('PUBG Account သိမ်းဆည်းပြီးပါပြီ', 'success');
+        }
+
+        function confirmDeletePubgAccount(id) {
+            const acc = pubgAccounts.find(a => a.id === id);
+            if (!acc) return;
+            const existing = document.getElementById('deleteModalConfirm');
+            if (existing) existing.remove();
+
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm';
+            modal.id = 'deleteModalConfirm';
+            modal.innerHTML = `
+                <div class="glass-card border border-rose-500/50 p-6 rounded-2xl max-w-sm w-full space-y-4 text-center shadow-2xl">
+                    <div class="w-12 h-12 mx-auto rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-bold text-white">ဖျက်ပစ်ရန် သေချာပါသလား?</h4>
+                        <p class="text-xs text-slate-400 mt-1">${acc.title} PUBG Account ကို စာရင်းမှ ဖျက်ပစ်ပါမည်။</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button type="button" onclick="executeDeletePubg('${acc.id}')" class="flex-1 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs cursor-pointer">
+                            ဖျက်မည်
+                        </button>
+                        <button type="button" onclick="document.getElementById('deleteModalConfirm').remove()" class="flex-1 py-2 rounded-xl bg-navyinput text-slate-300 text-xs cursor-pointer">
+                            မဖျက်တော့ပါ
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        async function executeDeletePubg(id) {
+            if (window.__kifyFirebaseBridge && window.__kifyFirebaseBridge.deletePubgAccount) {
+                await window.__kifyFirebaseBridge.deletePubgAccount(id);
+                return;
+            }
+            pubgAccounts = pubgAccounts.filter(a => a.id !== id);
+            const modal = document.getElementById('deleteModalConfirm');
+            if (modal) modal.remove();
+            renderPubgAccounts();
+            renderAdminPubgTable();
+            showToast('PUBG Account ဖျက်ပြီးပါပြီ', 'info');
+        }
         }
 
         function showAdminTab(tabName) {
@@ -1881,10 +2608,25 @@
         }
 
         async function executeDelete(id) {
+            if (!id) return;
+
+            // Track tombstoned ID so stale snapshot or fallback listeners cannot re-add it
+            deletedAccountIds.add(String(id));
+
+            // Immediately filter out of local accounts state and re-render both views
+            accounts = accounts.filter(a => String(a.id) !== String(id));
+            const modal = document.getElementById('deleteModalConfirm');
+            if (modal) modal.remove();
+            renderAccounts();
+            renderAdminTable();
+
             if (window.__kifyFirebaseBridge && window.__kifyFirebaseBridge.deleteAccount) {
                 await window.__kifyFirebaseBridge.deleteAccount(id);
                 return;
             }
+
+            showToast('Account ကို ဖျက်ပစ်ပြီးပါပြီ', 'info');
+        }
             accounts = accounts.filter(a => a.id !== id);
             const modal = document.getElementById('deleteModalConfirm');
             if (modal) modal.remove();
@@ -1927,6 +2669,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             setActiveNavPill('hub');
             renderAccounts();
+            renderPubgAccounts();
             renderDiaPricesView();
             renderTgStarPremiumView();
         });
@@ -1971,6 +2714,7 @@
             const db = getFirestore(app);
             const auth = getAuth(app);
             const accountsCol = collection(db, "mlbb_accounts");
+            const pubgAccountsCol = collection(db, "pubg_accounts");
             const visitsCol = collection(db, "visit_logs");
             const diaPricesDocRef = doc(db, "store_settings", "mlbb_dia_prices");
             const tgPricesDocRef = doc(db, "store_settings", "tg_star_premium_prices");
@@ -2189,24 +2933,101 @@
                     showAdminTab('list');
                 },
                 async deleteAccount(id) {
-                    if (!currentAdminUser) return;
-                    await deleteDoc(doc(db, "mlbb_accounts", id));
+                    if (!currentAdminUser) {
+                        showToast('Admin Login အရင်ဝင်ပါ', 'error');
+                        return;
+                    }
+                    if (!id) return;
+
+                    deletedAccountIds.add(String(id));
+                    accounts = accounts.filter(a => String(a.id) !== String(id));
                     const modal = document.getElementById('deleteModalConfirm');
                     if (modal) modal.remove();
-                    showToast('Account ကို ဖျက်ပစ်ပြီးပါပြီ', 'info');
+                    renderAccounts();
+                    renderAdminTable();
+
+                    try {
+                        await deleteDoc(doc(db, "mlbb_accounts", String(id)));
+                        showToast('Account ကို ဖျက်ပစ်ပြီးပါပြီ', 'info');
+                    } catch (err) {
+                        console.error("Delete account error:", err);
+                        showToast('Firestore မှ ဖျက်ရာတွင် အမှားရှိနေပါသည် (Rules စစ်ဆေးပါ)', 'error');
+                    }
+                },
+                async savePubgAccount(data) {
+                    if (!currentAdminUser) return;
+                    if (data.editId) {
+                        await updateDoc(doc(db, "pubg_accounts", data.editId), {
+                            title: data.title,
+                            rank: data.rank,
+                            price: data.price,
+                            mythics: data.mythics,
+                            guns: data.guns,
+                            kd: data.kd,
+                            telegram: data.telegram,
+                            status: data.status,
+                            highlights: data.highlights,
+                            description: data.description
+                        });
+                        showToast('PUBG Account ကို ပြင်ဆင်ပြီးပါပြီ', 'success');
+                    } else {
+                        const newId = 'pubg-' + Date.now().toString().slice(-6);
+                        await setDoc(doc(db, "pubg_accounts", newId), {
+                            id: newId,
+                            title: data.title,
+                            rank: data.rank,
+                            price: data.price,
+                            mythics: data.mythics,
+                            guns: data.guns,
+                            kd: data.kd,
+                            telegram: data.telegram,
+                            status: data.status,
+                            highlights: data.highlights,
+                            description: data.description,
+                            images: ['IMG_20261125_220821_646.png'],
+                            created: Date.now()
+                        });
+                        showToast('PUBG Account အသစ် တင်ပြီးပါပြီ', 'success');
+                    }
+                    cancelPubgEditForm();
+                    renderAdminPubgTable();
+                },
+                async deletePubgAccount(id) {
+                    if (!currentAdminUser) return;
+                    await deleteDoc(doc(db, "pubg_accounts", id));
+                    const modal = document.getElementById('deleteModalConfirm');
+                    if (modal) modal.remove();
+                    showToast('PUBG Account ကို ဖျက်ပစ်ပြီးပါပြီ', 'info');
                 }
             };
 
             onSnapshot(accountsCol, (snap) => {
                 const list = [];
+                snap.forEach((d) => {
+                    const docId = String(d.id);
+                    if (!deletedAccountIds.has(docId)) {
+                        list.push({ id: docId, ...d.data() });
+                    }
+                });
+                accounts = list.filter(a => !deletedAccountIds.has(String(a.id)));
+                renderAccounts();
+                if (currentAdminUser) renderAdminTable();
+            }, () => {
+                accounts = accounts.filter(a => !deletedAccountIds.has(String(a.id)));
+                renderAccounts();
+                if (currentAdminUser) renderAdminTable();
+            });
+
+            onSnapshot(pubgAccountsCol, (snap) => {
+                const list = [];
                 snap.forEach((d) => list.push({ id: d.id, ...d.data() }));
                 if (list.length > 0) {
-                    accounts = list;
-                    renderAccounts();
-                    if (currentAdminUser) renderAdminTable();
+                    pubgAccounts = list;
+                    renderPubgAccounts();
+                    if (currentAdminUser) renderAdminPubgTable();
                 }
             }, () => {
-                // Keep sample accounts on read restrictions
+                // Keep sample PUBG accounts on read restrictions
             });
 
             onSnapshot(diaPricesDocRef, (snap) => {
@@ -2241,6 +3062,7 @@
                     document.getElementById('adminLoginView').classList.add('hidden');
                     document.getElementById('adminDashboardView').classList.remove('hidden');
                     renderAdminTable();
+                    renderAdminPubgTable();
                     resetDraftFromDiaData();
                     renderAdminDiaEditor();
                     resetDraftFromTgData();
@@ -2261,4 +3083,4 @@
         }
     </script>
 </body>
-</html>
+    </html>
